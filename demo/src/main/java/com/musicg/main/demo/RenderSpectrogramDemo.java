@@ -17,7 +17,7 @@ package com.musicg.main.demo;
 
 import com.musicg.graphic.GraphicRender;
 import com.musicg.wave.Wave;
-import com.musicg.wave.extension.Spectrogram;
+import com.musicg.spectrogram.Spectrogram;
 
 import java.net.URISyntaxException;
 

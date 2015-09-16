@@ -35,7 +35,7 @@ public class LinearInterpolation {
 	 * @param samples	original samples
 	 * @return interpolated samples
 	 */
-	public short[] interpolate(int oldSampleRate, int newSampleRate, short[] samples) {
+	public short[] interpolate(float oldSampleRate, float newSampleRate, short[] samples) {
 
 		if (oldSampleRate==newSampleRate){
 			return samples;

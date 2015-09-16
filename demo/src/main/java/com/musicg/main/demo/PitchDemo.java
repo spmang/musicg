@@ -2,7 +2,7 @@ package com.musicg.main.demo;
 
 import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.wave.Wave;
-import com.musicg.wave.extension.Spectrogram;
+import com.musicg.spectrogram.Spectrogram;
 
 import java.net.URISyntaxException;
 

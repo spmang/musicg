@@ -1,14 +1,11 @@
 package com.musicg.wave;
 
-import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.sound.sampled.spi.AudioFileReader;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Iterator;
 
 public final class WaveFactory {
 
@@ -61,6 +58,30 @@ public final class WaveFactory {
         return initWaveWithInputStream(new ByteArrayInputStream(data));
     }
 
+    public static Wave createWave(final WaveHeader header, byte[] audioBytes) throws IOException {
+        // try to get the reader from the system.
+
+        try {
+            AudioInputStream input = createInputStream(new ByteArrayInputStream(audioBytes));
+            return new Wave(new SystemWaveHeader(input), input);
+        } catch (UnsupportedAudioFileException e) {
+
+            // move to the backup
+            InputStream inputStream = createCustomInputStream(new ByteArrayInputStream(audioBytes));
+            return new Wave(new CustomWaveHeader(inputStream), inputStream);
+        }
+    }
+
+    /**
+     * Create a new custom wave from the given sourceWave.
+     *
+     * @param sourceWave the source Wave to copy the properties from.
+     * @return A new custom Wave.
+     */
+    public static Wave createWave(final Wave sourceWave) {
+        return new Wave(createCustomHeader(sourceWave.getWaveHeader()), sourceWave.getAudioStream());
+    }
+
     private static Wave initWaveFromFile(final File inputFile) throws IOException {
         return initWaveWithInputStream(new FileInputStream(inputFile));
     }
@@ -69,12 +90,33 @@ public final class WaveFactory {
         // try to get the reader from the system.
 
         try {
-            AudioInputStream input = AudioSystem.getAudioInputStream(inputStream);
+            AudioInputStream input = createInputStream(inputStream);
             return new Wave(new SystemWaveHeader(input), input);
         } catch (UnsupportedAudioFileException e) {
 
             // move to the backup
-            return new Wave(new CustomWaveHeader(inputStream), inputStream);
+            InputStream customInput = createCustomInputStream(inputStream);
+            return new Wave(new CustomWaveHeader(customInput), customInput);
         }
+    }
+
+    private static AudioInputStream createInputStream(InputStream inputStream) throws IOException, UnsupportedAudioFileException {
+        if (!inputStream.markSupported()) {
+            inputStream = new BufferedInputStream(inputStream);
+        }
+        return AudioSystem.getAudioInputStream(inputStream);
+    }
+
+    private static InputStream createCustomInputStream(InputStream inputStream) throws IOException {
+        if (!inputStream.markSupported()) {
+            inputStream = new BufferedInputStream(inputStream);
+        }
+        return inputStream;
+    }
+
+    private static WaveHeader createCustomHeader(final WaveHeader sourceHeader) {
+
+        // TODO create custom header here.
+        return sourceHeader;
     }
 }

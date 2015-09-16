@@ -29,13 +29,13 @@ public interface WaveHeader {
 
     long getSubChunk1Size();
 
-    int getAudioFormat();
+    String getFormatName();
 
     int getChannels();
 
-    int getSampleRate();
+    float getSampleRate();
 
-    int getByteRate();
+    float getByteRate();
 
     int getBlockAlign();
 
@@ -43,5 +43,7 @@ public interface WaveHeader {
 
     long getSubChunk2Size();
 
-    int getTrimSample();
+
+    void setSampleRate(float newSampleRate);
+
 }

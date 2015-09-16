@@ -12,48 +12,58 @@ public class SystemWaveHeader implements WaveHeader {
 
     private AudioFormat format;
 
+    private int sampleSize;
+
     protected SystemWaveHeader(final AudioInputStream input) {
         super();
         format = input.getFormat();
+        sampleSize = format.getSampleSizeInBits() / 8;
     }
 
     public long getChunkSize() {
+        return 0;
 
     }
 
     public long getSubChunk1Size() {
-
+        return 0;
     }
 
-    public int getAudioFormat() {
-
+    public String getFormatName() {
+        return format.getEncoding().toString();
     }
 
     public int getChannels() {
+        return format.getChannels();
 
     }
 
-    public int getSampleRate() {
+    public float getSampleRate() {
+        return format.getSampleRate();
 
     }
 
-    public int getByteRate() {
+    public float getByteRate() {
+        return format.getFrameRate();
 
     }
 
     public int getBlockAlign() {
+        return 0;
 
     }
 
     public int getSampleSize() {
-
+        return sampleSize;
     }
 
     public long getSubChunk2Size() {
+        return 0;
 
     }
 
-    public int getTrimSample() {
-
+    public void setSampleRate(float newSampleRate) {
+        throw new UnsupportedOperationException("Cannot set sample rate for SystemWaveHeader");
     }
+
 }

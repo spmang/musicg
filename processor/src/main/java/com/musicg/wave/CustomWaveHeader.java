@@ -25,8 +25,8 @@ public class CustomWaveHeader implements WaveHeader {
     private long subChunk1Size; // unsigned 4 bytes, little endian
     private int audioFormat; // unsigned 2 bytes, little endian
     private int channels; // unsigned 2 bytes, little endian
-    private long sampleRate; // unsigned 4 bytes, little endian
-    private long byteRate; // unsigned 4 bytes, little endian
+    private float sampleRate; // unsigned 4 bytes, little endian
+    private float byteRate; // unsigned 4 bytes, little endian
     private int blockAlign; // unsigned 2 bytes, little endian
     private int bitsPerSample; // unsigned 2 bytes, little endian
     private String subChunk2Id;    // 4 bytes
@@ -115,7 +115,9 @@ public class CustomWaveHeader implements WaveHeader {
     }
 
     private void calculateTrimSample() {
-        trimSample = getSampleRate() * getSampleSize() / 8 * getChannels();
+
+        // TOOD do we need this??
+        // trimSample = getSampleRate() * getSampleSize() / 8 * getChannels();
     }
 
     public String getChunkId() {
@@ -126,10 +128,6 @@ public class CustomWaveHeader implements WaveHeader {
         return chunkSize;
     }
 
-    public String getFormat() {
-        return format;
-    }
-
     public String getSubChunk1Id() {
         return subChunk1Id;
     }
@@ -138,20 +136,20 @@ public class CustomWaveHeader implements WaveHeader {
         return subChunk1Size;
     }
 
-    public int getAudioFormat() {
-        return audioFormat;
+    public String getFormatName() {
+        return format;
     }
 
     public int getChannels() {
         return channels;
     }
 
-    public int getSampleRate() {
-        return (int) sampleRate;
+    public float getSampleRate() {
+        return sampleRate;
     }
 
-    public int getByteRate() {
-        return (int) byteRate;
+    public float getByteRate() {
+        return byteRate;
     }
 
     public int getBlockAlign() {
@@ -170,7 +168,7 @@ public class CustomWaveHeader implements WaveHeader {
         return subChunk2Size;
     }
 
-    public void setSampleRate(int sampleRate) {
+    public void setSampleRate(float sampleRate) {
         int newSubChunk2Size = (int) (this.subChunk2Size * sampleRate / this.sampleRate);
         // if num bytes for each sample is even, the size of newSubChunk2Size also needed to be in even number
         if ((bitsPerSample / 8) % 2 == 0) {

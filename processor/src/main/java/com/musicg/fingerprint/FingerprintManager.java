@@ -20,8 +20,9 @@ import com.musicg.dsp.Resampler;
 import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.properties.FingerprintProperties;
 import com.musicg.wave.Wave;
+import com.musicg.wave.WaveFactory;
 import com.musicg.wave.WaveHeader;
-import com.musicg.wave.extension.Spectrogram;
+import com.musicg.spectrogram.Spectrogram;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -35,20 +36,15 @@ import java.util.List;
  * Audio fingerprint manager, handle fingerprint operations
  *
  * @author jacquet
+ * @author Scott Mangan
  */
 public class FingerprintManager {
-
-    private FingerprintProperties fingerprintProperties = FingerprintProperties.getInstance();
-    private int sampleSizePerFrame = fingerprintProperties.getSampleSizePerFrame();
-    private int overlapFactor = fingerprintProperties.getOverlapFactor();
-    private int numRobustPointsPerFrame = fingerprintProperties.getNumRobustPointsPerFrame();
-    private int numFilterBanks = fingerprintProperties.getNumFilterBanks();
 
     /**
      * Constructor
      */
-    public FingerprintManager() {
-
+    private FingerprintManager() {
+        super();
     }
 
     /**
@@ -57,30 +53,40 @@ public class FingerprintManager {
      * @param wave Wave Object to be extracted fingerprint
      * @return fingerprint in bytes
      */
-    public List<Byte> extractFingerprint(Wave wave) {
+    public static List<Byte> extractFingerprint(Wave wave, FingerprintProperties fingerprintProperties) throws IOException {
+
+        int sampleSizePerFrame = fingerprintProperties.getSampleSizePerFrame();
+        int overlapFactor = fingerprintProperties.getOverlapFactor();
+        int numRobustPointsPerFrame = fingerprintProperties.getNumRobustPointsPerFrame();
+        int numFilterBanks = fingerprintProperties.getNumFilterBanks();
 
         int[][] coordinates;    // coordinates[x][0..3]=y0..y3
 
         // resample to target rate
         Resampler resampler = new Resampler();
-        int sourceRate = wave.getWaveHeader().getSampleRate();
+        float sourceRate = wave.getWaveHeader().getSampleRate();
         int targetRate = fingerprintProperties.getSampleRate();
 
-        byte[] resampledWaveData = resampler.reSample(wave.getBytes(), wave.getWaveHeader().getSampleSize(), sourceRate, targetRate);
+
+        byte[] resampledWaveData = resampler.reSample(wave, wave.getWaveHeader().getSampleSize(), wave.getWaveHeader().getSampleRate(), targetRate);
 
         // update the wave header
-        WaveHeader resampledWaveHeader = wave.getWaveHeader();
+        Wave resampledWave = WaveFactory.createWave(wave);
+        WaveHeader resampledWaveHeader = resampledWave.getWaveHeader();
         resampledWaveHeader.setSampleRate(targetRate);
 
+
+// TODO fix me
         // make resampled wave
-        Wave resampledWave = new Wave(resampledWaveHeader, resampledWaveData);
+        //Wave resampledWave = new Wave(resampledWaveHeader, resampledWaveData);
         // end resample to target rate
 
         // get spectrogram's data
-        Spectrogram spectrogram = resampledWave.getSpectrogram(sampleSizePerFrame, overlapFactor);
+        Spectrogram spectrogram = new Spectrogram(resampledWave, sampleSizePerFrame, overlapFactor);
+        spectrogram.buildSpectrogram(-1);
         double[][] spectorgramData = spectrogram.getNormalizedSpectrogramData();
 
-        List<Integer>[] pointsLists = getRobustPointList(spectorgramData);
+        List<Integer>[] pointsLists = getRobustPointList(spectorgramData, numFilterBanks);
         int numFrames = pointsLists.length;
 
         // prepare fingerprint bytes
@@ -128,13 +134,18 @@ public class FingerprintManager {
         return byteList;
     }
 
+    public static FingerprintSimilarity getFingerprintSimilarity(Wave wave1, Wave wave2) throws IOException {
+        return new FingerprintSimilarityComputer(getFingerprint(wave1.getAudioStream()),
+                getFingerprint(wave2.getAudioStream())).getFingerprintsSimilarity();
+    }
+
     /**
      * Get bytes from fingerprint file
      *
      * @param fingerprintFile fingerprint filename
      * @return fingerprint in bytes
      */
-    public byte[] getFingerprintFromFile(String fingerprintFile) throws IOException, URISyntaxException {
+    public static byte[] getFingerprint(String fingerprintFile) throws IOException, URISyntaxException {
         URL input = Thread.currentThread().getContextClassLoader().getResource(fingerprintFile);
         if (input == null) {
             throw new IOException("File not found.");
@@ -143,7 +154,7 @@ public class FingerprintManager {
         InputStream fis = null;
         try {
             fis = new FileInputStream(new File(input.toURI()));
-            return getFingerprintFromInputStream(fis);
+            return getFingerprint(fis);
         } finally {
             if (fis != null) {
                 fis.close();
@@ -157,7 +168,7 @@ public class FingerprintManager {
      * @param inputStream fingerprint inputstream
      * @return fingerprint in bytes
      */
-    public byte[] getFingerprintFromInputStream(InputStream inputStream) throws IOException {
+    public static byte[] getFingerprint(InputStream inputStream) throws IOException {
         byte[] fingerprint = new byte[inputStream.available()];
         int bytesRead = inputStream.read(fingerprint);
         // TODO verify that bytesRead == fingerprint.length
@@ -183,7 +194,7 @@ public class FingerprintManager {
     }
 
     // robustLists[x]=y1,y2,y3,...
-    private List<Integer>[] getRobustPointList(double[][] spectrogramData) {
+    private static List<Integer>[] getRobustPointList(double[][] spectrogramData, int numFilterBanks) {
 
         int numX = spectrogramData.length;
         int numY = spectrogramData[0].length;

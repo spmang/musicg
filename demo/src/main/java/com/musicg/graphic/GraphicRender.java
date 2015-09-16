@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.musicg.wave.Wave;
-import com.musicg.wave.extension.Spectrogram;
+import com.musicg.spectrogram.Spectrogram;
 
 public class GraphicRender{
 	

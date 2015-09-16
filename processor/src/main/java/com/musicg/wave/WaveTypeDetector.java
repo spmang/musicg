@@ -30,7 +30,7 @@ public class WaveTypeDetector {
 
         // fft size 1024, no overlap
         int fftSignalByteLength = fftSampleSize * wavHeader.getSampleSize() / 8;
-        InputStream inputStream = wave.getBytes();
+        InputStream inputStream = wave.getAudioStream();
 
         WhistleApi whistleApi = new WhistleApi(wavHeader);
 

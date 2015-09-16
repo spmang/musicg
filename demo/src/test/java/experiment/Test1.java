@@ -6,7 +6,7 @@ import com.musicg.math.statistics.SpectralCentroid;
 import com.musicg.math.statistics.StandardDeviation;
 import com.musicg.pitch.PitchHandler;
 import com.musicg.wave.Wave;
-import com.musicg.wave.extension.Spectrogram;
+import com.musicg.spectrogram.Spectrogram;
 
 import java.net.URISyntaxException;
 

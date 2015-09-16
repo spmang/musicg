@@ -16,6 +16,11 @@
 
 package com.musicg.dsp;
 
+import com.musicg.wave.Wave;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * Resample signal data (base on bytes)
  * 
@@ -36,19 +41,21 @@ public class Resampler {
 	 * @param targetRate	Sample rate of the target data
 	 * @return re-sampled data
 	 */
-	public byte[] reSample(byte[] sourceData, int bitsPerSample, int sourceRate, int targetRate) {
+	public byte[] reSample(Wave wave, int bitsPerSample, float sourceRate, int targetRate) throws IOException {
+
+		InputStream sourceData = wave.getAudioStream();
 
 		// make the bytes to amplitudes first
 		int bytePerSample = bitsPerSample / 8;
-		int numSamples = sourceData.length / bytePerSample;
+		int numSamples = sourceData.available() / bytePerSample;
 		short[] amplitudes = new short[numSamples];	// 16 bit, use a short to store
-		
+
 		int pointer = 0;
 		for (int i = 0; i < numSamples; i++) {
 			short amplitude = 0;
 			for (int byteNumber = 0; byteNumber < bytePerSample; byteNumber++) {
 				// little endian
-				amplitude |= (short) ((sourceData[pointer++] & 0xFF) << (byteNumber * 8));
+				amplitude |= (short) ((sourceData.read() & 0xFF) << (byteNumber * 8));
 			}
 			amplitudes[i] = amplitude;
 		}

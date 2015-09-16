@@ -16,41 +16,41 @@
 
 package com.musicg.api;
 
+import com.musicg.wave.Wave;
 import com.musicg.wave.WaveHeader;
 
 /**
  * Api for detecting whistle
- * 
+ *
  * @author Jacquet Wong
- * 
  */
-public class WhistleApi extends DetectionApi{
-	
-	public WhistleApi(WaveHeader waveHeader) {
-		super(waveHeader);
-	}
+public class WhistleApi extends DetectionApi {
 
-	protected void init(){
-		// settings for detecting a whistle
-		minFrequency = 600.0f;
-		maxFrequency = Double.MAX_VALUE;
-		
-		minIntensity = 100.0f;
-		maxIntensity = 100000.0f;
-		
-		minStandardDeviation = 0.1f;
-		maxStandardDeviation = 1.0f;
-		
-		highPass = 100;
-		lowPass = 10000;
-		
-		minNumZeroCross = 50;
-		maxNumZeroCross = 200;
-		
-		numRobust = 10;
-	}
-		
-	public boolean isWhistle(byte[] audioBytes){
-		return isSpecificSound(audioBytes);
-	}
+    public WhistleApi(Wave wave) {
+        super(wave);
+    }
+
+    protected void init() {
+        // settings for detecting a whistle
+        minFrequency = 600.0f;
+        maxFrequency = Double.MAX_VALUE;
+
+        minIntensity = 100.0f;
+        maxIntensity = 100000.0f;
+
+        minStandardDeviation = 0.1f;
+        maxStandardDeviation = 1.0f;
+
+        highPass = 100;
+        lowPass = 10000;
+
+        minNumZeroCross = 50;
+        maxNumZeroCross = 200;
+
+        numRobust = 10;
+    }
+
+    public boolean isWhistle(byte[] audioBytes) {
+        return isSpecificSound(audioBytes);
+    }
 }
