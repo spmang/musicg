@@ -1,0 +1,31 @@
+sourceCompatibility = 1.7
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    group='org.mmm.musicg'
+    version = '0.1'
+}
+
+subprojects {
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testCompile group: 'junit', name: 'junit', version: '4.+'
+    }
+
+    manifest {
+        attributes 'Implementation-Title': 'musicg',
+                'Implementation-Version': version
+    }
+}
+
+project(':demo') {
+    dependencies {
+        compile group: 'com.github.wendykierp', name: 'JTransforms' , version: '3.1'
+        compile project(':processor')
+    }
+}
