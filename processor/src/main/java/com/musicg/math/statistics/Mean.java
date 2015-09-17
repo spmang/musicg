@@ -18,23 +18,22 @@ package com.musicg.math.statistics;
 
 /**
  * Evaluate the mean of an array
- * @author Jacquet Wong
  *
+ * @author Jacquet Wong
  */
-public class Mean extends MathStatistics{
-	
-	private Sum sum=new Sum();
-	
-	public Mean(){
-	}
-	
-	public Mean(double[] values){
-		setValues(values);
-	}
-	
-	public double evaluate(){	
-		sum.setValues(values);
-		double mean=sum.evaluate()/sum.size();
-		return mean;
-	}
+public class Mean extends MathStatistics {
+
+    private Sum sum = new Sum();
+
+    public Mean() {
+    }
+
+    public Mean(double[] values) {
+        setValues(values);
+    }
+
+    public double evaluate() {
+        sum.setValues(values);
+        return sum.evaluate() / sum.size();
+    }
 }

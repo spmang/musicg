@@ -17,7 +17,8 @@
 package com.musicg.api;
 
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveHeader;
+
+import java.io.IOException;
 
 /**
  * Api for detecting clap
@@ -25,7 +26,7 @@ import com.musicg.wave.WaveHeader;
  * @author Jacquet Wong
  */
 public class ClapApi extends DetectionApi {
-	
+
     public ClapApi(Wave wave) {
         super(wave);
     }
@@ -51,7 +52,7 @@ public class ClapApi extends DetectionApi {
         numRobust = 4;
     }
 
-    public boolean isClap(byte[] audioBytes) {
+    public boolean isClap(byte[] audioBytes) throws IOException {
         return isSpecificSound(audioBytes);
     }
 }

@@ -18,33 +18,28 @@ public class CustomWaveHeader implements WaveHeader {
     public static final String DATA_HEADER = "data";
     public static final int HEADER_BYTE_LENGTH = 44;    // 44 bytes for header
 
-    private String chunkId;    // 4 bytes
-    private long chunkSize; // unsigned 4 bytes, little endian
-    private String format;    // 4 bytes
-    private String subChunk1Id;    // 4 bytes
-    private long subChunk1Size; // unsigned 4 bytes, little endian
     private int audioFormat; // unsigned 2 bytes, little endian
-    private int channels; // unsigned 2 bytes, little endian
-    private float sampleRate; // unsigned 4 bytes, little endian
     private float byteRate; // unsigned 4 bytes, little endian
-    private int blockAlign; // unsigned 2 bytes, little endian
-    private int bitsPerSample; // unsigned 2 bytes, little endian
-    private String subChunk2Id;    // 4 bytes
-    private long subChunk2Size; // unsigned 4 bytes, little endian
+    private int frameSize; // unsigned 2 bytes, little endian
+    private float frameRate; // matches sample rate for wav.
 
-    private int trimSample;
+    private String format;    // 4 bytes
+
+    private int sampleSize;
+    private float sampleRate; // unsigned 4 bytes, little endian
+    private int bitsPerSample; // unsigned 2 bytes, little endian
+
+    private int channels; // unsigned 2 bytes, little endian
 
     public CustomWaveHeader() {
         // init a 8k 16bit mono wav
-        chunkSize = 36;
-        subChunk1Size = 16;
         audioFormat = 1;
         channels = 1;
         sampleRate = 8000;
         byteRate = 16000;
-        blockAlign = 2;
+        frameSize = 2;
         bitsPerSample = 16;
-        subChunk2Size = 0;
+        sampleSize = 2;
     }
 
     public CustomWaveHeader(InputStream inputStream) throws IOException {
@@ -59,81 +54,32 @@ public class CustomWaveHeader implements WaveHeader {
             bytesRead += inputStream.read(headerBuffer);
         }
 
-        // read header
-        int pointer = 0;
-        chunkId = new String(new byte[]{headerBuffer[pointer++],
-                headerBuffer[pointer++], headerBuffer[pointer++],
-                headerBuffer[pointer++]});
+        // read header  - skip over data we don't care about.
+        int pointer = 8;
         // little endian
-        chunkSize = (long) (headerBuffer[pointer++] & 0xff)
-                | (long) (headerBuffer[pointer++] & 0xff) << 8
-                | (long) (headerBuffer[pointer++] & 0xff) << 16
-                | (long) (headerBuffer[pointer++] & 0xff << 24);
         format = new String(new byte[]{headerBuffer[pointer++],
                 headerBuffer[pointer++], headerBuffer[pointer++],
                 headerBuffer[pointer++]});
-        subChunk1Id = new String(new byte[]{headerBuffer[pointer++],
-                headerBuffer[pointer++], headerBuffer[pointer++],
-                headerBuffer[pointer++]});
-        subChunk1Size = (long) (headerBuffer[pointer++] & 0xff)
-                | (long) (headerBuffer[pointer++] & 0xff) << 8
-                | (long) (headerBuffer[pointer++] & 0xff) << 16
-                | (long) (headerBuffer[pointer++] & 0xff) << 24;
+        pointer += 8;
         audioFormat = ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
         channels = ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
         sampleRate = (long) (headerBuffer[pointer++] & 0xff)
                 | (long) (headerBuffer[pointer++] & 0xff) << 8
                 | (long) (headerBuffer[pointer++] & 0xff) << 16
                 | (long) (headerBuffer[pointer++] & 0xff) << 24;
+        frameRate = sampleRate;
         byteRate = (long) (headerBuffer[pointer++] & 0xff)
                 | (long) (headerBuffer[pointer++] & 0xff) << 8
                 | (long) (headerBuffer[pointer++] & 0xff) << 16
                 | (long) (headerBuffer[pointer++] & 0xff) << 24;
-        blockAlign = ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
-        bitsPerSample = ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
-        subChunk2Id = new String(new byte[]{headerBuffer[pointer++],
-                headerBuffer[pointer++], headerBuffer[pointer++],
-                headerBuffer[pointer++]});
-        subChunk2Size = (long) (headerBuffer[pointer++] & 0xff)
-                | (long) (headerBuffer[pointer++] & 0xff) << 8
-                | (long) (headerBuffer[pointer++] & 0xff) << 16
-                | (long) (headerBuffer[pointer] & 0xff) << 24;
+        frameSize = ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer++] & 0xff) << 8);
+        bitsPerSample = ((headerBuffer[pointer++] & 0xff) | (headerBuffer[pointer] & 0xff) << 8);
+        sampleSize = bitsPerSample / 8;
         // end read header
 
         if (bitsPerSample != 8 && bitsPerSample != 16) {
             throw new WaveException("WaveHeader: only supports bitsPerSample 8 or 16");
         }
-
-        calculateTrimSample();
-
-        // check the format is support
-        if (chunkId.toUpperCase().equals(RIFF_HEADER)
-                && format.toUpperCase().equals(WAVE_HEADER) && audioFormat == 1) {
-            return;
-        }
-        throw new WaveException("WaveHeader: Unsupported header format");
-    }
-
-    private void calculateTrimSample() {
-
-        // TOOD do we need this??
-        // trimSample = getSampleRate() * getSampleSize() / 8 * getChannels();
-    }
-
-    public String getChunkId() {
-        return chunkId;
-    }
-
-    public long getChunkSize() {
-        return chunkSize;
-    }
-
-    public String getSubChunk1Id() {
-        return subChunk1Id;
-    }
-
-    public long getSubChunk1Size() {
-        return subChunk1Size;
     }
 
     public String getFormatName() {
@@ -144,116 +90,68 @@ public class CustomWaveHeader implements WaveHeader {
         return channels;
     }
 
+    public void setChannels(int channels) {
+        this.channels = channels;
+    }
+
     public float getSampleRate() {
         return sampleRate;
+    }
+
+    public void setSampleRate(float sampleRate) {
+        this.sampleRate = sampleRate;
+        this.byteRate = sampleRate * bitsPerSample / 8;
     }
 
     public float getByteRate() {
         return byteRate;
     }
 
-    public int getBlockAlign() {
-        return blockAlign;
+    public void setByteRate(long byteRate) {
+        this.byteRate = byteRate;
     }
 
-    public int getSampleSize() {
+    public int getFrameSize() {
+        return frameSize;
+    }
+
+    public void setFrameSize(int frameSize) {
+        this.frameSize = frameSize;
+    }
+
+    public float getFrameRate() {
+        return frameRate;
+    }
+
+    public void setFrameRate(final float rate) {
+        frameRate = rate;
+    }
+
+    public int getBitsPerSample() {
         return bitsPerSample;
     }
 
-    public String getSubChunk2Id() {
-        return subChunk2Id;
+    public void setBitsPerSample(int bitsPerSample) {
+        this.bitsPerSample = bitsPerSample;
+        this.sampleSize = bitsPerSample / 8;
     }
 
-    public long getSubChunk2Size() {
-        return subChunk2Size;
-    }
-
-    public void setSampleRate(float sampleRate) {
-        int newSubChunk2Size = (int) (this.subChunk2Size * sampleRate / this.sampleRate);
-        // if num bytes for each sample is even, the size of newSubChunk2Size also needed to be in even number
-        if ((bitsPerSample / 8) % 2 == 0) {
-            if (newSubChunk2Size % 2 != 0) {
-                newSubChunk2Size++;
-            }
-        }
-
-        this.sampleRate = sampleRate;
-        this.byteRate = sampleRate * bitsPerSample / 8;
-        this.chunkSize = newSubChunk2Size + 36;
-        this.subChunk2Size = newSubChunk2Size;
-        calculateTrimSample();
-    }
-
-    public void setChunkId(String chunkId) {
-        this.chunkId = chunkId;
-    }
-
-    public void setChunkSize(long chunkSize) {
-        this.chunkSize = chunkSize;
+    public int getSampleSize() {
+        return sampleSize;
     }
 
     public void setFormat(String format) {
         this.format = format;
     }
 
-    public void setSubChunk1Id(String subChunk1Id) {
-        this.subChunk1Id = subChunk1Id;
-    }
-
-    public void setSubChunk1Size(long subChunk1Size) {
-        this.subChunk1Size = subChunk1Size;
-    }
-
     public void setAudioFormat(int audioFormat) {
         this.audioFormat = audioFormat;
     }
 
-    public void setChannels(int channels) {
-        this.channels = channels;
-        calculateTrimSample();
-    }
-
-    public void setByteRate(long byteRate) {
-        this.byteRate = byteRate;
-    }
-
-    public void setBlockAlign(int blockAlign) {
-        this.blockAlign = blockAlign;
-    }
-
-    public void setBitsPerSample(int bitsPerSample) {
-        this.bitsPerSample = bitsPerSample;
-        calculateTrimSample();
-    }
-
-    public void setSubChunk2Id(String subChunk2Id) {
-        this.subChunk2Id = subChunk2Id;
-    }
-
-    public void setSubChunk2Size(long subChunk2Size) {
-        this.subChunk2Size = subChunk2Size;
-    }
-
-    public int getTrimSample() {
-        return trimSample;
-    }
-
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("chunkId: ");
-        sb.append(chunkId);
-        sb.append("\n");
-        sb.append("chunkSize: ");
-        sb.append(chunkSize);
-        sb.append("\n");
         sb.append("format: ");
         sb.append(format);
-        sb.append("\n");
-        sb.append("subChunk1Id: ");
-        sb.append(subChunk1Id);
-        sb.append("\n");
-        sb.append("subChunk1Size: ");
-        sb.append(subChunk1Size);
         sb.append("\n");
         sb.append("audioFormat: ");
         sb.append(audioFormat);
@@ -267,17 +165,12 @@ public class CustomWaveHeader implements WaveHeader {
         sb.append("byteRate: ");
         sb.append(byteRate);
         sb.append("\n");
-        sb.append("blockAlign: ");
-        sb.append(blockAlign);
+        sb.append("frameSize: ");
+        sb.append(frameSize);
         sb.append("\n");
         sb.append("bitsPerSample: ");
         sb.append(bitsPerSample);
         sb.append("\n");
-        sb.append("subChunk2Id: ");
-        sb.append(subChunk2Id);
-        sb.append("\n");
-        sb.append("subChunk2Size: ");
-        sb.append(subChunk2Size);
         return sb.toString();
     }
 }

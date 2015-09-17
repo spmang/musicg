@@ -16,9 +16,10 @@
 package com.musicg.main.demo;
 
 import com.musicg.wave.Wave;
+import com.musicg.wave.WaveFactory;
 import com.musicg.wave.WaveTypeDetector;
 
-import java.net.URISyntaxException;
+import java.io.IOException;
 
 public class WhistleApiDemo {
     public static void main(String[] args) {
@@ -26,12 +27,13 @@ public class WhistleApiDemo {
 
         // create a wave object
         try {
-            Wave wave = new Wave(filename);
+            Wave wave = WaveFactory.createWave(filename);
 
             WaveTypeDetector waveTypeDetector = new WaveTypeDetector(wave);
-            System.out.println("Is whistle probability: " + waveTypeDetector.getWhistleProbability());
-        } catch (URISyntaxException urie) {
-            System.out.println("The input file could not be found.");
+            System.out.println("Is whistle probability: " + waveTypeDetector.getWhistleProbability(10, -1));
+        } catch (IOException ioe) {
+            System.out.println("Could not load input file");
+            ioe.printStackTrace();
         }
     }
 }

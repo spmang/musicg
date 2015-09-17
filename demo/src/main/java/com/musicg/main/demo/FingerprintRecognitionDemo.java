@@ -15,10 +15,12 @@
  */
 package com.musicg.main.demo;
 
+import com.musicg.fingerprint.FingerprintManager;
 import com.musicg.fingerprint.FingerprintSimilarity;
 import com.musicg.wave.Wave;
+import com.musicg.wave.WaveFactory;
 
-import java.net.URISyntaxException;
+import java.io.IOException;
 
 public class FingerprintRecognitionDemo {
 
@@ -32,48 +34,48 @@ public class FingerprintRecognitionDemo {
 
         // create a wave object
         try {
-            Wave waveA = new Wave(songA);
-            Wave waveB = new Wave(songB);
-            Wave waveC = new Wave(songC);
-            Wave waveD = new Wave(songD);
-            Wave waveE = new Wave(songE);
+            Wave waveA = WaveFactory.createWave(songA);
+            Wave waveB = WaveFactory.createWave(songB);
+            Wave waveC = WaveFactory.createWave(songC);
+            Wave waveD = WaveFactory.createWave(songD);
+            Wave waveE = WaveFactory.createWave(songE);
 
             String recordedClip = "audio_work/songs/top_of_the_world_rec.wav";
-            Wave waveRec = new Wave(recordedClip);
+            Wave waveRec = WaveFactory.createWave(recordedClip);
 
             FingerprintSimilarity similarity;
 
             // song A:
-            similarity = waveA.getFingerprintSimilarity(waveRec);
+            similarity = FingerprintManager.getFingerprintSimilarity(waveA, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songA + " with similarity " + similarity.getSimilarity());
 
             // song B:
-            similarity = waveB.getFingerprintSimilarity(waveRec);
+            similarity = FingerprintManager.getFingerprintSimilarity(waveB, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songB + " with similarity " + similarity.getSimilarity());
 
             // song C:
-            similarity = waveC.getFingerprintSimilarity(waveRec);
+            similarity = FingerprintManager.getFingerprintSimilarity(waveC, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songC + " with similarity " + similarity.getSimilarity());
 
             // song D:
-            similarity = waveD.getFingerprintSimilarity(waveRec);
+            similarity = FingerprintManager.getFingerprintSimilarity(waveD, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songD + " with similarity " + similarity.getSimilarity());
 
             // song E:
-            similarity = waveE.getFingerprintSimilarity(waveRec);
+            similarity = FingerprintManager.getFingerprintSimilarity(waveE, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songE + " with similarity " + similarity.getSimilarity());
-        } catch (URISyntaxException urie) {
-            System.out.println("One or more files could not be loaded.");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 }

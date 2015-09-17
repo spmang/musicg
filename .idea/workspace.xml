@@ -1,72 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c8156ec-ee4b-4882-919a-b8c87ae5df21" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/SpectrogramFactory.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/target/classes/com/musicg/graphic/GraphicRender.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/target/classes/com/musicg/main/demo/FingerprintDemo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/target/classes/com/musicg/main/demo/FingerprintRecognitionDemo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/target/classes/com/musicg/main/demo/PitchDemo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/target/classes/com/musicg/main/demo/RenderSpectrogramDemo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/target/classes/com/musicg/main/demo/RenderWaveformDemo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/target/classes/com/musicg/main/demo/WaveDemo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/target/classes/com/musicg/main/demo/WhistleApiDemo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/demo/target/test-classes/experiment/Test1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/Spectrogram.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/dsp/FastFourierTransform.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/dsp/LinearInterpolation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/dsp/Resampler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/dsp/WindowFunction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/experiment/math/cluster/Segment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/experiment/math/cluster/SegmentCluster.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/fingerprint/FingerprintSimilarity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/quicksort/QuickSort.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/quicksort/QuickSortDouble.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/quicksort/QuickSortIndexPreserved.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/quicksort/QuickSortInteger.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/quicksort/QuickSortShort.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/rank/ArrayRankDouble.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/rank/MapRank.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/rank/MapRankDouble.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/rank/MapRankInteger.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/rank/MapRankShort.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/statistics/DataCentroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/statistics/MathStatistics.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/statistics/Mean.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/statistics/SpectralCentroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/statistics/StandardDeviation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/statistics/Sum.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/math/statistics/ZeroCrossingRate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/pitch/PitchHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/processor/IntensityProcessor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/processor/ProcessorChain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/processor/RobustIntensityProcessor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/processor/TopManyPointsProcessorChain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/properties/FingerprintProperties.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/serialization/ObjectSerializer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/version/Version.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/NormalizedSampleAmplitudes.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/SampleAmplitudes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/target/classes/com/musicg/wave/WaveTypeDetector.class" afterPath="$PROJECT_DIR$/processor/target/classes/com/musicg/wave/WaveTypeDetector.class" />
+    <list default="true" id="5c8156ec-ee4b-4882-919a-b8c87ae5df21" name="Default" comment="Conversion to streaming api.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/test/resources/audio_work/songs/canon_d_major.wav" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/test/resources/audio_work/whistle.wav" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/AbstractStreamRunnable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/test/java/com/musicg/wave/CustomWaveHeaderTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/StreamFactory.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/StreamedRunnable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/test/java/com/musicg/wave/WaveFactoryTest.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/properties/FingerprintProperties.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintProperties.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/ArrayRankDouble.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/ArrayRankDouble.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/ClapApi.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/ClapApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/CustomWaveHeader.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/CustomWaveHeader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/DataCentroid.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/DataCentroid.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/DetectionApi.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/DetectionApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/FastFourierTransform.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/FastFourierTransform.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintDemo.java" afterPath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintDemo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintManager.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintRecognitionDemo.java" afterPath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintRecognitionDemo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintSimilarity.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintSimilarity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintSimilarityComputer.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintSimilarityComputer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/main/java/com/musicg/graphic/GraphicRender.java" afterPath="$PROJECT_DIR$/demo/src/main/java/com/musicg/graphic/GraphicRender.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/IntensityProcessor.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/IntensityProcessor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/LinearInterpolation.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/LinearInterpolation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRank.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRank.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRankDouble.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRankDouble.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRankInteger.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRankInteger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRankShort.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRankShort.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/MathStatistics.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/MathStatistics.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/Mean.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/Mean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/serialization/ObjectSerializer.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/serialization/ObjectSerializer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/PairManager.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/PairManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/PitchDemo.java" afterPath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/PitchDemo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/pitch/PitchHandler.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/pitch/PitchHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/ProcessorChain.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/ProcessorChain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSort.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSort.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortDouble.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortDouble.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortIndexPreserved.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortIndexPreserved.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortInteger.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortInteger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortShort.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortShort.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderSpectrogramDemo.java" afterPath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderSpectrogramDemo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderWaveformDemo.java" afterPath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderWaveformDemo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/Resampler.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/Resampler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/RobustIntensityProcessor.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/RobustIntensityProcessor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/SampleAmplitudes.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/SampleAmplitudes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/experiment/math/cluster/Segment.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/experiment/math/cluster/Segment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/experiment/math/cluster/SegmentCluster.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/experiment/math/cluster/SegmentCluster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/SpectralCentroid.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/SpectralCentroid.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/SpectrogramFactory.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/SpectrogramFactory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/StandardDeviation.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/StandardDeviation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/Sum.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/Sum.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/SystemWaveHeader.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/SystemWaveHeader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/test/java/experiment/Test1.java" afterPath="$PROJECT_DIR$/demo/src/test/java/experiment/Test1.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/TopManyPointsProcessorChain.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/TopManyPointsProcessorChain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/version/Version.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/version/Version.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/Wave.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/Wave.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WaveDemo.java" afterPath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WaveDemo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFactory.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFileManager.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFileManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveHeader.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveHeader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveTypeDetector.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveTypeDetector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/WhistleApi.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/WhistleApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WhistleApiDemo.java" afterPath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WhistleApiDemo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/WindowFunction.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/WindowFunction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/ZeroCrossingRate.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/ZeroCrossingRate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/demo.iml" afterPath="$PROJECT_DIR$/demo/demo.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicg.iml" afterPath="$PROJECT_DIR$/musicg.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/pom.xml" afterPath="$PROJECT_DIR$/processor/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/processor.iml" afterPath="$PROJECT_DIR$/processor/processor.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="musicg.iws" />
@@ -93,50 +97,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DetectionApi.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/api/DetectionApi.java">
+      <file leaf-file-name="SampleAmplitudes.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/SampleAmplitudes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.75150603">
+              <caret line="122" column="82" selection-start-line="122" selection-start-column="82" selection-end-line="122" selection-end-column="82" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WhistleApi.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/api/WhistleApi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#832#833#0" expanded="true" />
-                <element signature="e#859#860#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClapApi.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/api/ClapApi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23353294">
-              <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WaveFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="109" column="98" selection-start-line="109" selection-start-column="98" selection-end-line="109" selection-end-column="98" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -146,7 +112,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit3 Test Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -161,44 +130,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/processor/build.gradle" />
-        <option value="$PROJECT_DIR$/demo/pom.xml" />
-        <option value="$PROJECT_DIR$/ui/pom.xml" />
-        <option value="$PROJECT_DIR$/ui/src/test/java/experiment/Test1.java" />
-        <option value="$PROJECT_DIR$/processor/pom.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/demo/settings.gradle" />
-        <option value="$PROJECT_DIR$/settings.gradle" />
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderWaveformDemo.java" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintRecognitionDemo.java" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WhistleApiDemo.java" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderSpectrogramDemo.java" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/PitchDemo.java" />
-        <option value="$PROJECT_DIR$/demo/src/test/java/experiment/Test1.java" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintDemo.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveHeaderException.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveException.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveTypeDetector.java" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WaveDemo.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFileManager.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveHeader.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/CustomWaveHeader.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintSimilarityComputer.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/Resampler.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/LinearInterpolation.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/Spectrogram.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/SpectrogramFactory.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/Wave.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/SystemWaveHeader.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/NormalizedSampleAmplitudes.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/SampleAmplitudes.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintManager.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFactory.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/DetectionApi.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/WhistleApi.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/ClapApi.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/WhistleApi.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WaveDemo.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WhistleApiDemo.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderWaveformDemo.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderSpectrogramDemo.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/PitchDemo.java" />
+        <option value="$PROJECT_DIR$/processor/pom.xml" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintRecognitionDemo.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/SampleAmplitudes.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintDemo.java" />
+        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/graphic/GraphicRender.java" />
+        <option value="$PROJECT_DIR$/demo/src/test/java/experiment/Test1.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/SystemWaveHeader.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/StreamFactory.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/AbstractStreamRunnable.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/StreamedRunnable.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/IntensityProcessor.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRank.java" />
+        <option value="$PROJECT_DIR$/processor/src/test/java/com/musicg/wave/CustomWaveHeaderTest.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/ProcessorChain.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/TopManyPointsProcessorChain.java" />
+        <option value="$PROJECT_DIR$/processor/src/test/java/com/musicg/wave/WaveFactoryTest.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveTypeDetector.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/Sum.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/Mean.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/Resampler.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/StandardDeviation.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/pitch/PitchHandler.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/DataCentroid.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/experiment/math/cluster/SegmentCluster.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/FastFourierTransform.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveHeader.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/LinearInterpolation.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/Wave.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintSimilarity.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/DetectionApi.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/CustomWaveHeader.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintManager.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/SpectralCentroid.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/ArrayRankDouble.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/SpectrogramFactory.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFactory.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFileManager.java" />
       </list>
     </option>
   </component>
@@ -246,6 +228,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -296,15 +279,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="musicg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="musicg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="processor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -345,10 +346,6 @@
               <option name="myItemId" value="wave" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="extension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -410,41 +407,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spectrogram" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="processor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
+              <option name="myItemId" value="streams" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -499,74 +462,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="demo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="musicg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="graphic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -611,34 +506,47 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ImageProcessor" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.41954023" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="FullScreen" value="false" />
+    <property name="FullScreen" value="true" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\workspace\musicg\processor\src\main\java\com\musicg\wave" />
-      <recent name="C:\workspace\musicg\demo\src\main\resources" />
-      <recent name="C:\workspace\musicg\processor\src\test\java" />
-      <recent name="C:\workspace\musicg\processor\src\main\java" />
-      <recent name="C:\workspace\musicg\ui\src\main\java\com\musicg" />
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+      <recent name="junit.framework.TestCase" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.musicg.wave" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/processor/src/test/resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.musicg" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/processor/src" />
+      <recent name="C:\workspace\musicg\processor\src\main\java\com\musicg\wave" />
+      <recent name="C:\workspace\musicg\demo\src\main\resources" />
+      <recent name="C:\workspace\musicg\processor\src\test\java" />
+      <recent name="C:\workspace\musicg\processor\src\main\java" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.RenderWaveformDemo">
+  <component name="RunManager" selected="JUnit.WaveFactoryTest">
     <configuration default="false" name="RenderWaveformDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -657,6 +565,58 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="demo" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="WaveFactoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.musicg.wave.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="processor" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.musicg.wave" />
+      <option name="MAIN_CLASS_NAME" value="com.musicg.wave.WaveFactoryTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="CustomWaveHeaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.musicg.wave.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="processor" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.musicg.wave" />
+      <option name="MAIN_CLASS_NAME" value="com.musicg.wave.CustomWaveHeaderTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -863,12 +823,16 @@
       <envs />
       <method />
     </configuration>
-    <list size="1">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.RenderWaveformDemo" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.WaveFactoryTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.CustomWaveHeaderTest" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.RenderWaveformDemo" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.WaveFactoryTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CustomWaveHeaderTest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.RenderWaveformDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -890,33 +854,42 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="-216" width="1920" height="1200" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36426714" sideWeight="0.47291666" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36426714" sideWeight="0.46875" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25151777" sideWeight="0.52916664" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25151777" sideWeight="0.47083333" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39895925" sideWeight="0.6375" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39982653" sideWeight="0.50208336" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36253253" sideWeight="0.57708335" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32957503" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26822916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24895833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39982653" sideWeight="0.49791667" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.399137" sideWeight="0.7161458" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -930,17 +903,51 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Conversion to streaming api." />
+    <option name="LAST_COMMIT_MESSAGE" value="Conversion to streaming api." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderWaveformDemo.java</url>
-          <line>32</line>
+          <line>33</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WaveDemo.java</url>
+          <line>32</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/src.zip!/java/io/BufferedInputStream.java</url>
+          <line>326</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/processor/src/test/java/com/musicg/wave/CustomWaveHeaderTest.java</url>
+          <line>18</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/processor/src/test/java/com/musicg/wave/WaveFactoryTest.java</url>
+          <line>58</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/CustomWaveHeader.java</url>
+          <line>63</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -953,119 +960,231 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WaveDemo.java">
+    <entry file="file://$PROJECT_DIR$/processor/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.39520958">
+          <caret line="22" column="28" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveHeader.java">
+    <entry file="file://$PROJECT_DIR$/demo/src/test/java/experiment/Test1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="231" column="5" selection-start-line="231" selection-start-column="5" selection-end-line="231" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="22" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/Wave.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="251" column="25" selection-start-line="251" selection-start-column="25" selection-end-line="251" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveHeader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveTypeDetector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="78" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/Wave.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5329341">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.35928145">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/jre/lib/rt.jar!/sun/misc/IoTrace.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.47368422">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#648#649#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/version/Version.java">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/src.zip!/java/io/FileInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/serialization/ObjectSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4040747">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <caret line="225" column="23" selection-start-line="225" selection-start-column="23" selection-end-line="225" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/graphic/GraphicRender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37521222">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/processor.iml">
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/src.zip!/java/io/BufferedInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="328" column="21" selection-start-line="328" selection-start-column="21" selection-end-line="328" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/pom.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/JUnit38ClassRunner.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46179965">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="35" />
+        <state vertical-scroll-proportion="-7.851852">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/runner/JUnitCore.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6473354">
+          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/SystemWaveHeader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.86466163">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding>
+            <element signature="e#560#561#0" expanded="false" />
+            <element signature="e#614#615#0" expanded="false" />
+            <element signature="e#646#647#0" expanded="false" />
+            <element signature="e#689#690#0" expanded="false" />
+            <element signature="e#881#882#0" expanded="false" />
+            <element signature="e#925#926#0" expanded="false" />
+            <element signature="e#960#961#0" expanded="false" />
+            <element signature="e#1004#1005#0" expanded="false" />
+            <element signature="e#1038#1039#0" expanded="false" />
+            <element signature="e#1071#1072#0" expanded="false" />
+            <element signature="e#1108#1109#0" expanded="false" />
+            <element signature="e#1159#1160#0" expanded="false" />
+            <element signature="e#1108#1109#0" expanded="false" />
+            <element signature="e#1159#1160#0" expanded="false" />
+            <element signature="e#1108#1109#0" expanded="false" />
+            <element signature="e#1159#1160#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/StreamFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/AbstractStreamRunnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/StreamedRunnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/IntensityProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRank.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/wave/CustomWaveHeaderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/ProcessorChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#709#710#0" expanded="true" />
+            <element signature="e#743#744#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/TopManyPointsProcessorChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#759#760#0" expanded="true" />
+            <element signature="e#793#794#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/wave/WaveFactoryTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveTypeDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/Sum.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="35" column="25" selection-start-line="35" selection-start-column="25" selection-end-line="35" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/Mean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRankInteger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/Resampler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="48" selection-start-line="36" selection-start-column="48" selection-end-line="36" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRankDouble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortInteger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1073,142 +1192,98 @@
     <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderWaveformDemo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="14" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="115" />
+          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/StandardDeviation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/pitch/PitchHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/DataCentroid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/experiment/math/cluster/SegmentCluster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="51" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/FastFourierTransform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveHeader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/LinearInterpolation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/Wave.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#1366#1367#0" expanded="true" />
+            <element signature="e#1410#1411#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintRecognitionDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="53" selection-start-line="67" selection-start-column="53" selection-end-line="67" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WhistleApiDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="69" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderSpectrogramDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.40625">
-          <caret line="47" column="69" selection-start-line="47" selection-start-column="69" selection-end-line="47" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/PitchDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/test/java/experiment/Test1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSortDouble.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.13578275">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/quicksort/QuickSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0543131">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08658744">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="27" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71137524">
-          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WaveDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30973452">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34042552">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveTypeDetector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2127659">
-          <caret line="59" column="37" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="1" selection-start-line="34" selection-start-column="1" selection-end-line="34" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/properties/FingerprintProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08510638">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintSimilarity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <caret line="88" column="44" selection-start-line="88" selection-start-column="44" selection-end-line="88" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/src/main/java/com/musicg/graphic/GraphicRender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.060240965">
+          <caret line="59" column="12" selection-start-line="59" selection-start-column="12" selection-end-line="59" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1216,41 +1291,14 @@
     <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/CustomWaveHeader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="58" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
+          <caret line="167" column="31" selection-start-line="167" selection-start-column="31" selection-end-line="167" selection-end-column="31" />
           <folding>
-            <element signature="e#5393#5394#0" expanded="false" />
-            <element signature="e#5427#5428#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintSimilarityComputer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29671717">
-          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/Resampler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51111114">
-          <caret line="65" column="48" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/LinearInterpolation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41287878">
-          <caret line="42" column="8" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/src.zip!/java/io/FilterInputStream.java">
+    <entry file="file://$PROJECT_DIR$/processor/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1258,149 +1306,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/src.zip!/java/io/DataInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.109848484">
-          <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
-          <folding>
-            <element signature="e#1026#1027#0" expanded="true" />
-            <element signature="e#1051#1052#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/SystemWaveHeader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding>
-            <element signature="e#1065#1066#0" expanded="true" />
-            <element signature="e#1098#1099#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/Wave.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <element signature="e#1153#1154#0" expanded="true" />
-            <element signature="e#1278#1279#0" expanded="true" />
-            <element signature="e#1305#1306#0" expanded="true" />
-            <element signature="e#1482#1483#0" expanded="true" />
-            <element signature="e#1569#1570#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/SampleAmplitudes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="140" column="9" selection-start-line="140" selection-start-column="9" selection-end-line="140" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#838#839#0" expanded="true" />
-            <element signature="e#861#862#0" expanded="true" />
-            <element signature="e#1807#2219#0" expanded="true" />
-            <element signature="e#2218#2219#0" expanded="true" />
-            <element signature="e#3863#4279#0" expanded="true" />
-            <element signature="e#4278#4279#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/SpectrogramFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6555#7375#0" expanded="true" />
-            <element signature="e#7374#7375#0" expanded="true" />
-            <element signature="e#7635#7636#0" expanded="true" />
-            <element signature="e#7669#7670#0" expanded="true" />
-            <element signature="e#7845#7846#0" expanded="true" />
-            <element signature="e#7887#7888#0" expanded="true" />
-            <element signature="e#7920#7921#0" expanded="true" />
-            <element signature="e#7952#7953#0" expanded="true" />
-            <element signature="e#7991#7992#0" expanded="true" />
-            <element signature="e#8029#8030#0" expanded="true" />
-            <element signature="e#8069#8070#0" expanded="true" />
-            <element signature="e#8108#8109#0" expanded="true" />
-            <element signature="e#8148#8149#0" expanded="true" />
-            <element signature="e#8184#8185#0" expanded="true" />
-            <element signature="e#8221#8222#0" expanded="true" />
-            <element signature="e#8257#8258#0" expanded="true" />
-            <element signature="e#8294#8295#0" expanded="true" />
-            <element signature="e#8330#8331#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9520958">
-          <caret line="83" column="33" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.7153614">
+          <caret line="252" column="53" selection-start-line="252" selection-start-column="53" selection-end-line="252" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveHeader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19760479">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFactory.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="109" column="98" selection-start-line="109" selection-start-column="98" selection-end-line="109" selection-end-column="98" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/statistics/SpectralCentroid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5421687">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/ArrayRankDouble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33283132">
+          <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/api/DetectionApi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/api/WhistleApi.java">
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.68373495">
+          <caret line="118" column="26" selection-start-line="118" selection-start-column="26" selection-end-line="118" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveFileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38403615">
+          <caret line="31" column="12" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/SpectrogramFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintSimilarityComputer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/math/rank/MapRankShort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33283132">
+          <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18072289">
+          <caret line="22" column="39" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#832#833#0" expanded="true" />
-            <element signature="e#859#860#0" expanded="true" />
+            <element signature="e#3220#3221#0" expanded="true" />
+            <element signature="e#3260#3261#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/api/ClapApi.java">
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/extension/SampleAmplitudes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23353294">
-          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.75150603">
+          <caret line="122" column="82" selection-start-line="122" selection-start-column="82" selection-end-line="122" selection-end-column="82" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1457,7 +1458,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>musicg</last-edited>
+          <last-edited>processor</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

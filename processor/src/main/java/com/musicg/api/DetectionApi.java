@@ -19,10 +19,10 @@ package com.musicg.api;
 import com.musicg.math.rank.ArrayRankDouble;
 import com.musicg.math.statistics.StandardDeviation;
 import com.musicg.math.statistics.ZeroCrossingRate;
+import com.musicg.spectrogram.Spectrogram;
 import com.musicg.wave.Wave;
 import com.musicg.wave.WaveFactory;
 import com.musicg.wave.WaveHeader;
-import com.musicg.spectrogram.Spectrogram;
 import com.musicg.wave.extension.SampleAmplitudes;
 
 import java.io.DataInputStream;
@@ -51,8 +51,7 @@ public class DetectionApi {
      * Constructor, support mono Wav only, 4096 sample byte size for 44100Hz
      * 16bit mono wav
      *
-     * @param sampleRate    Sample rate of the input audio byte
-     * @param bitsPerSample Bit size of a sample of the input audio byte
+     * @param wave The wave to process.
      */
     public DetectionApi(Wave wave) {
         if (wave.getWaveHeader().getChannels() == 1) {
@@ -74,7 +73,7 @@ public class DetectionApi {
      * Determine the audio bytes contains a specific sound or not
      *
      * @param audioBytes input audio byte
-     * @return
+     * @return True if the bytes match the sound.
      */
     public boolean isSpecificSound(byte[] audioBytes) throws IOException {
 
@@ -219,9 +218,7 @@ public class DetectionApi {
         double sd = standardDeviation.evaluate();
 
         // range of standard deviation
-        boolean result = (sd >= minStandardDeviation && sd <= maxStandardDeviation);
-        //System.out.println("sd: " + sd + " " + result);
-        return result;
+        return (sd >= minStandardDeviation && sd <= maxStandardDeviation);
     }
 
     protected boolean isPassedFrequency(double[] spectrum) {
@@ -230,9 +227,7 @@ public class DetectionApi {
         double robustFrequency = arrayRankDouble.getMaxValueIndex(spectrum) * unitFrequency;
 
         // frequency of the sound should not be too low or too high
-        boolean result = (robustFrequency >= minFrequency && robustFrequency <= maxFrequency);
-        //System.out.println("freq: " + robustFrequency + " " + result);
-        return result;
+        return robustFrequency >= minFrequency && robustFrequency <= maxFrequency;
     }
 
     protected boolean isPassedIntensity(double[] spectrum) {
@@ -245,10 +240,7 @@ public class DetectionApi {
         // end get the average intensity of the signal
 
         // intensity of the whistle should not be too soft
-        boolean result = (intensity > minIntensity && intensity <= maxIntensity);
-        //System.out.println("intensity: " + intensity + " " + result);
-
-        return result;
+        return (intensity > minIntensity && intensity <= maxIntensity);
     }
 
     protected boolean isPassedZeroCrossingRate(short[] amplitudes) {
@@ -258,10 +250,7 @@ public class DetectionApi {
         // different sound has different range of zero crossing value
         // when lengthInSecond=1, zero crossing rate is the num
         // of zero crosses
-        boolean result = (numZeroCrosses >= minNumZeroCross && numZeroCrosses <= maxNumZeroCross);
-        //System.out.println("zcr: " + numZeroCrosses + " " +result);
-
-        return result;
+        return (numZeroCrosses >= minNumZeroCross && numZeroCrosses <= maxNumZeroCross);
     }
 
 }

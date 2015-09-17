@@ -16,12 +16,12 @@
 
 package com.musicg.wave;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.Serializable;
 
 /**
  * Read WAVE headers and data from wave input stream
  *
- * @author Jacquet Wong
  * @author Scott Mangan
  */
 public class Wave implements Serializable {
@@ -54,47 +54,8 @@ public class Wave implements Serializable {
         return data;
     }
 
-    /**
-     * Length of the wave in second
-     * <p/>
-     * TODO fix this to be based on samples.
-     *
-     * @return length in second
-     */
-    public float length() {
-        return (float) waveHeader.getSubChunk2Size() / waveHeader.getByteRate();
-    }
-
-    /**
-     * Timestamp of the wave length
-     * <p/>
-     * TODO do we need this?
-     *
-     * @return timestamp
-     */
-    public String timestamp() {
-        float totalSeconds = this.length();
-        float second = totalSeconds % 60;
-        int minute = (int) totalSeconds / 60 % 60;
-        int hour = (int) (totalSeconds / 3600);
-
-        StringBuilder sb = new StringBuilder();
-        if (hour > 0) {
-            sb.append(hour + ":");
-        }
-        if (minute > 0) {
-            sb.append(minute + ":");
-        }
-        sb.append(second);
-
-        return sb.toString();
-    }
-
+    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(waveHeader.toString());
-        sb.append("\n");
-        sb.append("length: ");
-        sb.append(timestamp());
-        return sb.toString();
+        return waveHeader.toString();
     }
 }

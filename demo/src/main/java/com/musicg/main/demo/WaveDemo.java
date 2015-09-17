@@ -16,10 +16,10 @@
 package com.musicg.main.demo;
 
 import com.musicg.wave.Wave;
+import com.musicg.wave.WaveFactory;
 import com.musicg.wave.WaveFileManager;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class WaveDemo {
 
@@ -30,14 +30,14 @@ public class WaveDemo {
 
         // create a wave object
         try {
-            Wave wave =  Wave.createWaveHeader(filename);
+            Wave wave = WaveFactory.createWave(filename);
 
             // print the wave header and info
             System.out.println(wave);
 
             // trim the wav
-            wave.leftTrim(1);
-            wave.rightTrim(0.5F);
+            //wave.leftTrim(1);
+            //wave.rightTrim(0.5F);
 
             // save the trimmed wav
             WaveFileManager.saveWaveAsFile(wave, outFolder + "/out.wav");

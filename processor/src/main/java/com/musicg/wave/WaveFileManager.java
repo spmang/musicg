@@ -16,11 +16,6 @@
 
 package com.musicg.wave;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-
 public class WaveFileManager {
 
     /**
@@ -29,7 +24,28 @@ public class WaveFileManager {
      * @param wave     The Wave to save to the file.
      * @param filename filename to be saved
      */
-    public static void saveWaveAsFile(final WaveHeader header, Wave wave, String filename) throws IOException {
+    public static void saveWaveAsFile(final Wave wave, String filename) {
+        // TODO
+    }
 
+    /**
+     * Save he given Wave to a file.
+     *
+     * @param wave     The Wave to save.
+     * @param filename The name of the file to create.
+     * @param offset   The number of offset samples into the stream to start saving at.
+     */
+    public static void saveWaveAsFile(final Wave wave, String filename, long offset) {
+        // TODO
+    }
+
+    /**
+     * @param wave     The wave to save to the output.
+     * @param filename The name of the file to create.
+     * @param offset   The number of offset samples into the stream to start saving at.
+     * @param length   The number of samples to save.
+     */
+    public static void saveWaveAsFile(final Wave wave, String filename, long offset, long length) {
+        // TODO
     }
 }

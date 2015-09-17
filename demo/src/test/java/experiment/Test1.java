@@ -5,10 +5,13 @@ import com.musicg.math.rank.ArrayRankDouble;
 import com.musicg.math.statistics.SpectralCentroid;
 import com.musicg.math.statistics.StandardDeviation;
 import com.musicg.pitch.PitchHandler;
-import com.musicg.wave.Wave;
 import com.musicg.spectrogram.Spectrogram;
+import com.musicg.wave.Wave;
+import com.musicg.wave.WaveFactory;
+import com.musicg.wave.extension.SampleAmplitudes;
 
-import java.net.URISyntaxException;
+import java.io.DataInputStream;
+import java.io.IOException;
 
 public class Test1 {
 
@@ -18,7 +21,7 @@ public class Test1 {
 
         // create a wave object
         try {
-            Wave wave = new Wave(filename);
+            Wave wave = WaveFactory.createWave(filename);
 
             // TimeDomainRepresentations
             int fftSampleSize = 1024;
@@ -44,8 +47,8 @@ public class Test1 {
             ArrayRankDouble arrayRankDouble = new ArrayRankDouble();
 
             // zrc
-            short[] amps = wave.getSampleAmplitudes();
-            int numFrame = amps.length / 1024;
+            DataInputStream amps = SampleAmplitudes.getSampleAmplitudes(wave, -1);
+            /*
             double[] zcrs = new double[numFrame];
 
             for (int i = 0; i < numFrame; i++) {
@@ -63,6 +66,7 @@ public class Test1 {
 
                 zcrs[i] = numZC;
             }
+            */
 
             // end zcr
 
@@ -75,7 +79,7 @@ public class Test1 {
                 sd.setValues(temp);
                 double sdValue = sd.evaluate();
 
-                System.out.println(i + " " + (double) i / fps + "s\t" + maxIndex + "\t" + sdValue + "\t" + zcrs[i]);
+                //System.out.println(i + " " + (double) i / fps + "s\t" + maxIndex + "\t" + sdValue + "\t" + zcrs[i]);
                 boundedSpectrogramData[i] = temp;
             }
 
@@ -127,11 +131,11 @@ public class Test1 {
                         System.out.print(" P: " + p);
                     }
                 }
-                System.out.print(" zcr:" + zcrs[frame]);
+                //System.out.print(" zcr:" + zcrs[frame]);
                 System.out.println();
             }
-        } catch (URISyntaxException urie) {
-            System.out.println("The input file could not be found.");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 }

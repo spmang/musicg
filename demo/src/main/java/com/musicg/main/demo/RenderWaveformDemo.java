@@ -17,33 +17,36 @@ package com.musicg.main.demo;
 
 import com.musicg.graphic.GraphicRender;
 import com.musicg.wave.Wave;
-
+import com.musicg.wave.WaveFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class RenderWaveformDemo {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		String filename = "audio_work/cock_a_1.wav";
-		String outFolder = "out";
+        String filename = "audio_work/cock_a_1.wav";
+        String outFolder = "out";
 
-		// create a wave object
-		try {
-			File location = new File(Thread.currentThread().getContextClassLoader().getResource(filename).toURI());
-			Wave wave = new Wave(location);
+        // create a wave object
+        try {
+            File location = new File(Thread.currentThread().getContextClassLoader().getResource(filename).toURI());
+            Wave wave = WaveFactory.createWave(location);
 
-			// Graphic render
-			GraphicRender render = new GraphicRender();
-			//render.setHorizontalMarker(1);
-			//render.setVerticalMarker(1);
-			render.renderWaveform(wave, outFolder + "/waveform.jpg");
+            // Graphic render
+            GraphicRender render = new GraphicRender();
+            //render.setHorizontalMarker(1);
+            //render.setVerticalMarker(1);
+            render.renderWaveform(wave, outFolder + "/waveform.jpg");
 
-			// change the amplitude representation
-			float timeStep = 0.1F;
-			render.renderWaveform(wave, timeStep, outFolder + "/waveform2.jpg");
-		} catch( URISyntaxException urie) {
-
-		}
-	}
+            // change the amplitude representation
+            float timeStep = 0.1F;
+            render.renderWaveform(wave, timeStep, outFolder + "/waveform2.jpg");
+        } catch (URISyntaxException urie) {
+            urie.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
 }

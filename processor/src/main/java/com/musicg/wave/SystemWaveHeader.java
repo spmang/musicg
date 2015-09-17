@@ -20,50 +20,35 @@ public class SystemWaveHeader implements WaveHeader {
         sampleSize = format.getSampleSizeInBits() / 8;
     }
 
-    public long getChunkSize() {
-        return 0;
-
-    }
-
-    public long getSubChunk1Size() {
-        return 0;
-    }
-
     public String getFormatName() {
         return format.getEncoding().toString();
     }
 
     public int getChannels() {
         return format.getChannels();
-
     }
 
     public float getSampleRate() {
         return format.getSampleRate();
-
     }
 
     public float getByteRate() {
         return format.getFrameRate();
-
     }
 
-    public int getBlockAlign() {
-        return 0;
+    public int getFrameSize() {
+        return format.getFrameSize();
+    }
 
+    public float getFrameRate() {
+        return format.getFrameRate();
     }
 
     public int getSampleSize() {
         return sampleSize;
     }
 
-    public long getSubChunk2Size() {
-        return 0;
-
+    public int getBitsPerSample() {
+        return format.getSampleSizeInBits();
     }
-
-    public void setSampleRate(float newSampleRate) {
-        throw new UnsupportedOperationException("Cannot set sample rate for SystemWaveHeader");
-    }
-
 }

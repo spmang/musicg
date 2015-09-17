@@ -16,6 +16,8 @@
 
 package com.musicg.wave.extension;
 
+import com.musicg.streams.AbstractStreamRunnable;
+import com.musicg.streams.StreamFactory;
 import com.musicg.wave.Wave;
 
 import java.io.*;
@@ -40,30 +42,18 @@ public final class SampleAmplitudes {
      * @return amplitudes array (signed 16-bit)
      */
     public static DataInputStream getSampleAmplitudes(final Wave wave, final int maxSamples) throws IOException {
-        PipedInputStream pipedInput = new PipedInputStream();
-        PipedOutputStream pipedOutput = new PipedOutputStream();
+        return StreamFactory.getStreamedTarget(new AbstractStreamRunnable() {
+            @Override
+            public void run() {
+                try {
+                    getSampleAmplitudes(wave, maxSamples, outputStream);
+                } catch (IOException e) {
 
-        pipedInput.connect(pipedOutput);
-
-        DataInputStream input = new DataInputStream(new BufferedInputStream(pipedInput));
-        final DataOutputStream output = new DataOutputStream(pipedOutput);
-
-        new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            getSampleAmplitudes(wave, maxSamples, output);
-                        } catch (IOException e) {
-
-                            // TODO send notification.
-                            e.printStackTrace();
-                        }
-                    }
+                    // TODO send notification.
+                    e.printStackTrace();
                 }
-        ).start();
-
-        return input;
+            }
+        });
     }
 
     /**
@@ -94,30 +84,19 @@ public final class SampleAmplitudes {
     }
 
     public static DataInputStream getNormalizedAmplitudes(final Wave wave, final int maxSamples) throws IOException {
-        PipedInputStream pipedInput = new PipedInputStream();
-        PipedOutputStream pipedOutput = new PipedOutputStream();
+        return StreamFactory.getStreamedTarget(new AbstractStreamRunnable() {
+            @Override
+            public void run() {
+                try {
+                    getNormalizedAmplitudes(wave, maxSamples, outputStream);
+                } catch (IOException e) {
 
-        pipedInput.connect(pipedOutput);
-
-        DataInputStream input = new DataInputStream(new BufferedInputStream(pipedInput));
-        final DataOutputStream output = new DataOutputStream(pipedOutput);
-
-        new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            getNormalizedAmplitudes(wave, maxSamples, output);
-                        } catch (IOException e) {
-
-                            // TODO send notification.
-                            e.printStackTrace();
-                        }
-                    }
+                    // TODO send notification.
+                    e.printStackTrace();
                 }
-        ).start();
 
-        return input;
+            }
+        });
     }
 
     /**

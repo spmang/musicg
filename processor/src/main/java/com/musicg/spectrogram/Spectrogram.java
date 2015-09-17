@@ -47,7 +47,7 @@ public class Spectrogram {
     /**
      * Constructor
      *
-     * @param wave
+     * @param wave The source Wave to process.
      */
     public Spectrogram(Wave wave) {
         this.wave = wave;
@@ -59,7 +59,7 @@ public class Spectrogram {
     /**
      * Constructor
      *
-     * @param wave
+     * @param wave          The source Wave to process.
      * @param fftSampleSize number of sample in fft, the value needed to be a number to power of 2
      * @param overlapFactor 1/overlapFactor overlapping, e.g. 1/4=25% overlapping, 0 for no overlapping
      */
@@ -95,7 +95,6 @@ public class Spectrogram {
         int numSamples = 0;
 
         numFrames = numSamples / fftSampleSize;
-        framesPerSecond = (int) (numFrames / wave.length());
 
         // set signals for fft
         WindowFunction window = new WindowFunction();

@@ -17,8 +17,10 @@ package com.musicg.main.demo;
 
 import com.musicg.fingerprint.FingerprintManager;
 import com.musicg.wave.Wave;
+import com.musicg.wave.WaveFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 
 public class FingerprintDemo {
@@ -29,34 +31,35 @@ public class FingerprintDemo {
 
         // create a wave object
         try {
-            Wave wave = new Wave("audio_work/" + filename);
+            Wave wave = WaveFactory.createWave("audio_work/" + filename);
 
             // get the fingerprint
-            byte[] fingerprint = wave.getFingerprint();
+            InputStream fingerprint = FingerprintManager.extractFingerprint(wave, null);
 
             // dump the fingerprint
-            FingerprintManager fingerprintManager = new FingerprintManager();
             try {
-                fingerprintManager.saveFingerprintAsFile(fingerprint, "out/" + filename + ".fingerprint");
+                FingerprintManager.saveFingerprintAsFile(fingerprint, "out/" + filename + ".fingerprint");
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             // load fingerprint from file
             try {
-                byte[] loadedFp = fingerprintManager.getFingerprintFromFile("out/" + filename + ".fingerprint");
+                byte[] fingerprintFile = FingerprintManager.getFingerprint("out/" + filename + ".fingerprint");
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
 		/*
-		// fingerprint bytes checking
+        // fingerprint bytes checking
 		for (int i=0; i<fingerprint.length; i++){
 			System.out.println(fingerprint[i]+" vs "+loadedFp[i]);
 		}
 		*/
         } catch (URISyntaxException urie) {
             System.out.println("The test file could not be loaded.");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 }

@@ -16,36 +16,37 @@
 package com.musicg.main.demo;
 
 import com.musicg.graphic.GraphicRender;
-import com.musicg.wave.Wave;
 import com.musicg.spectrogram.Spectrogram;
+import com.musicg.wave.Wave;
+import com.musicg.wave.WaveFactory;
 
-import java.net.URISyntaxException;
+import java.io.IOException;
 
 public class RenderSpectrogramDemo {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		String inFolder = "audio_work";		
-		String outFolder = "out";
-		String filename = "cock_a_1.wav";
+        String inFolder = "audio_work";
+        String outFolder = "out";
+        String filename = "cock_a_1.wav";
 
-		// create a wave object
-		try {
-			Wave wave = new Wave(inFolder + "/" + filename);
-			Spectrogram spectrogram = new Spectrogram(wave);
+        // create a wave object
+        try {
+            Wave wave = WaveFactory.createWave(inFolder + "/" + filename);
+            Spectrogram spectrogram = new Spectrogram(wave);
 
-			// Graphic render
-			GraphicRender render = new GraphicRender();
-			// render.setHorizontalMarker(1);
-			// render.setVerticalMarker(1);
-			render.renderSpectrogram(spectrogram, outFolder + "/" + filename + ".jpg");
+            // Graphic render
+            GraphicRender render = new GraphicRender();
+            // render.setHorizontalMarker(1);
+            // render.setVerticalMarker(1);
+            render.renderSpectrogram(spectrogram, outFolder + "/" + filename + ".jpg");
 
-			// change the spectrogram representation
-			int fftSampleSize = 1024;
-			int overlapFactor = 0;
-			spectrogram = new Spectrogram(wave, fftSampleSize, overlapFactor);
-			render.renderSpectrogram(spectrogram, outFolder + "/" + filename + "2.jpg");
-		} catch (URISyntaxException urie) {
-			System.out.println("The input file could not be found.");
-		}
-	}
+            // change the spectrogram representation
+            int fftSampleSize = 1024;
+            int overlapFactor = 0;
+            spectrogram = new Spectrogram(wave, fftSampleSize, overlapFactor);
+            render.renderSpectrogram(spectrogram, outFolder + "/" + filename + "2.jpg");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
 }

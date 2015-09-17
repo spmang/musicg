@@ -1,10 +1,11 @@
 package com.musicg.main.demo;
 
 import com.musicg.processor.TopManyPointsProcessorChain;
-import com.musicg.wave.Wave;
 import com.musicg.spectrogram.Spectrogram;
+import com.musicg.wave.Wave;
+import com.musicg.wave.WaveFactory;
 
-import java.net.URISyntaxException;
+import java.io.IOException;
 
 public class PitchDemo {
 
@@ -14,7 +15,7 @@ public class PitchDemo {
 
         // create a wave object
         try {
-            Wave wave = new Wave(filename);
+            Wave wave = WaveFactory.createWave(filename);
             Spectrogram spectrogram = new Spectrogram(wave);
 
             TopManyPointsProcessorChain processorChain = new TopManyPointsProcessorChain(spectrogram.getNormalizedSpectrogramData(), 1);
@@ -27,8 +28,8 @@ public class PitchDemo {
                     }
                 }
             }
-        } catch (URISyntaxException urie) {
-            System.out.println("The input file could not be found.");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 }

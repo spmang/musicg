@@ -18,16 +18,16 @@ package com.musicg.fingerprint;
 
 import com.musicg.dsp.Resampler;
 import com.musicg.processor.TopManyPointsProcessorChain;
-import com.musicg.properties.FingerprintProperties;
+import com.musicg.spectrogram.Spectrogram;
+import com.musicg.streams.AbstractStreamRunnable;
+import com.musicg.streams.StreamFactory;
+import com.musicg.wave.CustomWaveHeader;
 import com.musicg.wave.Wave;
 import com.musicg.wave.WaveFactory;
-import com.musicg.wave.WaveHeader;
-import com.musicg.spectrogram.Spectrogram;
 
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class FingerprintManager {
      * @param wave Wave Object to be extracted fingerprint
      * @return fingerprint in bytes
      */
-    public static List<Byte> extractFingerprint(Wave wave, FingerprintProperties fingerprintProperties) throws IOException {
+    public static InputStream extractFingerprint(Wave wave, FingerprintProperties fingerprintProperties) throws IOException {
 
         int sampleSizePerFrame = fingerprintProperties.getSampleSizePerFrame();
         int overlapFactor = fingerprintProperties.getOverlapFactor();
@@ -72,8 +72,8 @@ public class FingerprintManager {
 
         // update the wave header
         Wave resampledWave = WaveFactory.createWave(wave);
-        WaveHeader resampledWaveHeader = resampledWave.getWaveHeader();
-        resampledWaveHeader.setSampleRate(targetRate);
+        CustomWaveHeader resampledWaveHeader = (CustomWaveHeader) resampledWave.getWaveHeader();
+        resampledWaveHeader.setBitsPerSample(targetRate);
 
 
 // TODO fix me
@@ -107,31 +107,55 @@ public class FingerprintManager {
         }
         // end make fingerprint
 
+
+        // end for each valid coordinate, append with its intensity
+        return createIntensityStream(numFrames, numRobustPointsPerFrame, coordinates, spectorgramData);
+    }
+
+
+    private static InputStream createIntensityStream(final int numFrames, final int numRobustPointsPerFrame,
+                                                     final int[][] coordinates,
+                                                     final double[][] spectorgramData) throws IOException {
         // for each valid coordinate, append with its intensity
-        List<Byte> byteList = new ArrayList<>();
+        return StreamFactory.getStreamedTarget(new AbstractStreamRunnable() {
+            @Override
+            public void run() {
+                try {
+                    createIntensityStream(numFrames, numRobustPointsPerFrame, coordinates, spectorgramData, outputStream);
+                } catch (IOException ioe) {
+                    // TODO send notification
+                    ioe.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+    public static void createIntensityStream(final int numFrames, final int numRobustPointsPerFrame,
+                                             final int[][] coordinates, final double[][] spectorgramData,
+                                             final OutputStream outputStream) throws IOException {
         for (int i = 0; i < numFrames; i++) {
             for (int j = 0; j < numRobustPointsPerFrame; j++) {
                 if (coordinates[i][j] != -1) {
                     // first 2 bytes is x
-                    byteList.add((byte) (i >> 8));
-                    byteList.add((byte) i);
+                    outputStream.write((byte) (i >> 8));
+                    outputStream.write((byte) i);
 
                     // next 2 bytes is y
                     int y = coordinates[i][j];
-                    byteList.add((byte) (y >> 8));
-                    byteList.add((byte) y);
+                    outputStream.write((byte) (y >> 8));
+                    outputStream.write((byte) y);
 
                     // next 4 bytes is intensity
-                    int intensity = (int) (spectorgramData[i][y] * Integer.MAX_VALUE);    // spectorgramData is ranged from 0~1
-                    byteList.add((byte) (intensity >> 24));
-                    byteList.add((byte) (intensity >> 16));
-                    byteList.add((byte) (intensity >> 8));
-                    byteList.add((byte) intensity);
+                    // spectorgramData is ranged from 0~1
+                    int intensity = (int) (spectorgramData[i][y] * Integer.MAX_VALUE);
+                    outputStream.write((byte) (intensity >> 24));
+                    outputStream.write((byte) (intensity >> 16));
+                    outputStream.write((byte) (intensity >> 8));
+                    outputStream.write((byte) intensity);
                 }
             }
         }
-        // end for each valid coordinate, append with its intensity
-        return byteList;
     }
 
     public static FingerprintSimilarity getFingerprintSimilarity(Wave wave1, Wave wave2) throws IOException {
@@ -181,11 +205,14 @@ public class FingerprintManager {
      * @param fingerprint fingerprint bytes
      * @param filename    fingerprint filename
      */
-    public void saveFingerprintAsFile(byte[] fingerprint, String filename) throws IOException {
+    public static void saveFingerprintAsFile(final InputStream fingerprint, final String filename) throws IOException {
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(filename);
-            fileOutputStream.write(fingerprint);
+            byte[] data = new byte[1024];
+            for (int read = fingerprint.read(data); read > -1; read = fingerprint.read(data)) {
+                fileOutputStream.write(data, 0, read);
+            }
         } finally {
             if (fileOutputStream != null) {
                 fileOutputStream.close();
@@ -271,7 +298,6 @@ public class FingerprintManager {
         }
 
         // get the last x-coordinate (length-8&length-7)bytes from fingerprint
-        int numFrames = ((int) (fingerprint[fingerprint.length - 8] & 0xff) << 8 | (int) (fingerprint[fingerprint.length - 7] & 0xff)) + 1;
-        return numFrames;
+        return ((fingerprint[fingerprint.length - 8] & 0xff) << 8 | fingerprint[fingerprint.length - 7] & 0xff) + 1;
     }
 }

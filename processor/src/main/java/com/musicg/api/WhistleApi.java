@@ -17,7 +17,8 @@
 package com.musicg.api;
 
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveHeader;
+
+import java.io.IOException;
 
 /**
  * Api for detecting whistle
@@ -50,7 +51,7 @@ public class WhistleApi extends DetectionApi {
         numRobust = 10;
     }
 
-    public boolean isWhistle(byte[] audioBytes) {
+    public boolean isWhistle(byte[] audioBytes) throws IOException {
         return isSpecificSound(audioBytes);
     }
 }

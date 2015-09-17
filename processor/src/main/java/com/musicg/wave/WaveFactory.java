@@ -107,7 +107,7 @@ public final class WaveFactory {
         return AudioSystem.getAudioInputStream(inputStream);
     }
 
-    private static InputStream createCustomInputStream(InputStream inputStream) throws IOException {
+    private static InputStream createCustomInputStream(InputStream inputStream) {
         if (!inputStream.markSupported()) {
             inputStream = new BufferedInputStream(inputStream);
         }
@@ -115,8 +115,13 @@ public final class WaveFactory {
     }
 
     private static WaveHeader createCustomHeader(final WaveHeader sourceHeader) {
+        CustomWaveHeader newHeader = new CustomWaveHeader();
+        newHeader.setBitsPerSample(sourceHeader.getBitsPerSample());
+        newHeader.setChannels(sourceHeader.getChannels());
+        newHeader.setFrameSize(sourceHeader.getFrameSize());
+        newHeader.setSampleRate(sourceHeader.getSampleRate());
+        newHeader.setFrameRate(sourceHeader.getFrameRate());
 
-        // TODO create custom header here.
-        return sourceHeader;
+        return newHeader;
     }
 }

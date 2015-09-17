@@ -1,10 +1,10 @@
 package com.musicg.wave;
 
+import com.musicg.api.WhistleApi;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
-import com.musicg.api.WhistleApi;
 
 public class WaveTypeDetector {
 
@@ -19,7 +19,7 @@ public class WaveTypeDetector {
      *
      * @param maxFrames Maximum number of frames to consider.
      *                  A value of -1 will consider all data available in the stream up to Long.MAX_LONG.
-     * @return
+     * @return The probability.
      * @throws IOException
      */
     public double getWhistleProbability(int fftSampleSize, long maxFrames) throws IOException {
@@ -32,7 +32,7 @@ public class WaveTypeDetector {
         int fftSignalByteLength = fftSampleSize * wavHeader.getSampleSize() / 8;
         InputStream inputStream = wave.getAudioStream();
 
-        WhistleApi whistleApi = new WhistleApi(wavHeader);
+        WhistleApi whistleApi = new WhistleApi(wave);
 
         // read the byte signals
         byte[] bytes = new byte[fftSignalByteLength];

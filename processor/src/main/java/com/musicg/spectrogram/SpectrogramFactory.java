@@ -2,9 +2,9 @@ package com.musicg.spectrogram;
 
 import com.musicg.wave.Wave;
 
-import java.io.IOException;
-
 /**
+ * Factory to create Spectrogram instances.
+ *
  * Created by scottmangan on 9/16/15.
  */
 public class SpectrogramFactory {
@@ -16,7 +16,7 @@ public class SpectrogramFactory {
      * @param overlapFactor 1/overlapFactor overlapping, e.g. 1/4=25% overlapping, 0 for no overlapping
      * @return spectrogram
      */
-    public Spectrogram getSpectrogram(final Wave wave, int fftSampleSize, int overlapFactor) throws IOException {
+    public Spectrogram getSpectrogram(final Wave wave, int fftSampleSize, int overlapFactor) {
         return new Spectrogram(wave, fftSampleSize, overlapFactor);
     }
 

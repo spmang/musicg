@@ -18,32 +18,55 @@ package com.musicg.wave;
 
 /**
  * WAV File Specification. This is used as a fallback if the system cannot read the AudioFormat.
- * https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
  *
- * @author Jacquet Wong
  * @author Scott Mangan
  */
 public interface WaveHeader {
 
-    long getChunkSize();
-
-    long getSubChunk1Size();
-
+    /**
+     * Get the name of the format.
+     *
+     * @return The format name.
+     */
     String getFormatName();
 
+    /**
+     * Get the nubmer of channels in the stream.
+     *
+     * @return The number of channels in the stream.
+     */
     int getChannels();
 
+    /**
+     * Get the number of samples per frame.
+     *
+     * @return The number of samples per frame. e.g. 44100.
+     */
     float getSampleRate();
 
-    float getByteRate();
+    /**
+     * Get the size of the frame.
+     *
+     * @return The Frame size.
+     */
+    int getFrameSize();
 
-    int getBlockAlign();
+    /**
+     * @return The Frame rate.
+     */
+    float getFrameRate();
 
+    /**
+     * Get the size of the sample in bytes.
+     *
+     * @return The number of bytes per sample.
+     */
     int getSampleSize();
 
-    long getSubChunk2Size();
-
-
-    void setSampleRate(float newSampleRate);
-
+    /**
+     * Get the size of the sample in bits.
+     *
+     * @return The number of bits per sample.
+     */
+    int getBitsPerSample();
 }
