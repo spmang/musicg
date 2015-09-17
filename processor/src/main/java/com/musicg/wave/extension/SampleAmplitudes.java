@@ -120,7 +120,7 @@ public final class SampleAmplitudes {
         }
 
         try {
-            while (true) normalizedAmplitudes.writeDouble((double) amplitudes.readShort() / maxAmplitude);
+            while (true) normalizedAmplitudes.writeDouble(amplitudes.readShort() / (double) maxAmplitude);
         } catch (EOFException eofe) {
             // ignore, done reading.
         }

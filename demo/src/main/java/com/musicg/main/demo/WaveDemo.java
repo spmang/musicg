@@ -35,12 +35,8 @@ public class WaveDemo {
             // print the wave header and info
             System.out.println(wave);
 
-            // trim the wav
-            //wave.leftTrim(1);
-            //wave.rightTrim(0.5F);
-
             // save the trimmed wav
-            WaveFileManager.saveWaveAsFile(wave, outFolder + "/out.wav");
+            WaveFileManager.saveWaveAsFile(wave, outFolder + "/out.wav", 1.0, 0.5);
         } catch (IOException ioe) {
             System.out.println("The input file could not be found.");
         }

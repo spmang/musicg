@@ -23,12 +23,10 @@ import java.io.IOException;
 
 public class WhistleApiDemo {
     public static void main(String[] args) {
-        String filename = "audio_work/whistle.wav";
 
         // create a wave object
         try {
-            Wave wave = WaveFactory.createWave(filename);
-
+            Wave wave = WaveFactory.createWave("audio_work/whistle.wav");
             WaveTypeDetector waveTypeDetector = new WaveTypeDetector(wave);
             System.out.println("Is whistle probability: " + waveTypeDetector.getWhistleProbability(10, -1));
         } catch (IOException ioe) {

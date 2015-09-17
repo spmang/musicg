@@ -17,8 +17,9 @@ public class WaveTypeDetector {
     /**
      * Get the whistle probability for the given sample size and max number of frames.
      *
-     * @param maxFrames Maximum number of frames to consider.
-     *                  A value of -1 will consider all data available in the stream up to Long.MAX_LONG.
+     * @param maxFrames     Maximum number of frames to consider.
+     *                      A value of -1 will consider all data available in the stream up to Long.MAX_LONG.
+     * @param fftSampleSize The number of samples to check in each frame.
      * @return The probability.
      * @throws IOException
      */
@@ -26,10 +27,8 @@ public class WaveTypeDetector {
 
         double probability = 0;
 
-        WaveHeader wavHeader = wave.getWaveHeader();
-
         // fft size 1024, no overlap
-        int fftSignalByteLength = fftSampleSize * wavHeader.getSampleSize() / 8;
+        int fftSignalByteLength = fftSampleSize * wave.getWaveHeader().getSampleSize();
         InputStream inputStream = wave.getAudioStream();
 
         WhistleApi whistleApi = new WhistleApi(wave);

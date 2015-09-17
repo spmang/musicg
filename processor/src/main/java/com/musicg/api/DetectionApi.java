@@ -77,7 +77,7 @@ public class DetectionApi {
      */
     public boolean isSpecificSound(byte[] audioBytes) throws IOException {
 
-        int bytesPerSample = waveHeader.getSampleSize() / 8;
+        int bytesPerSample = waveHeader.getSampleSize();
         int numSamples = audioBytes.length / bytesPerSample;
 
         // numSamples required to be a power of 2

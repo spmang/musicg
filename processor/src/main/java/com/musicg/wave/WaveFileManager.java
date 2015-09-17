@@ -45,7 +45,7 @@ public class WaveFileManager {
      * @param offset   The number of offset samples into the stream to start saving at.
      * @param length   The number of samples to save.
      */
-    public static void saveWaveAsFile(final Wave wave, String filename, long offset, long length) {
+    public static void saveWaveAsFile(final Wave wave, String filename, double offset, double length) {
         // TODO
     }
 }
