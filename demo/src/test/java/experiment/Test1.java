@@ -7,7 +7,7 @@ import com.musicg.math.statistics.StandardDeviation;
 import com.musicg.pitch.PitchHandler;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 import com.musicg.wave.extension.SampleAmplitudes;
 
 import java.io.DataInputStream;
@@ -21,7 +21,7 @@ public class Test1 {
 
         // create a wave object
         try {
-            Wave wave = WaveFactory.createWave(filename);
+            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
 
             // TimeDomainRepresentations
             int fftSampleSize = 1024;

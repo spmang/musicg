@@ -18,7 +18,7 @@ package com.musicg.main.demo;
 import com.musicg.fingerprint.FingerprintManager;
 import com.musicg.fingerprint.FingerprintSimilarity;
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 
 import java.io.IOException;
 
@@ -34,14 +34,14 @@ public class FingerprintRecognitionDemo {
 
         // create a wave object
         try {
-            Wave waveA = WaveFactory.createWave(songA);
-            Wave waveB = WaveFactory.createWave(songB);
-            Wave waveC = WaveFactory.createWave(songC);
-            Wave waveD = WaveFactory.createWave(songD);
-            Wave waveE = WaveFactory.createWave(songE);
+            Wave waveA = AudioFormatInputStreamFactory.createAudioFormatInputStream(songA);
+            Wave waveB = AudioFormatInputStreamFactory.createAudioFormatInputStream(songB);
+            Wave waveC = AudioFormatInputStreamFactory.createAudioFormatInputStream(songC);
+            Wave waveD = AudioFormatInputStreamFactory.createAudioFormatInputStream(songD);
+            Wave waveE = AudioFormatInputStreamFactory.createAudioFormatInputStream(songE);
 
             String recordedClip = "audio_work/songs/top_of_the_world_rec.wav";
-            Wave waveRec = WaveFactory.createWave(recordedClip);
+            Wave waveRec = AudioFormatInputStreamFactory.createAudioFormatInputStream(recordedClip);
 
             FingerprintSimilarity similarity;
 

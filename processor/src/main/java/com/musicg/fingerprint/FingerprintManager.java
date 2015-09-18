@@ -20,10 +20,10 @@ import com.musicg.dsp.Resampler;
 import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.streams.AbstractStreamRunnable;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.StreamFactory;
-import com.musicg.wave.CustomWaveHeader;
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -53,7 +53,12 @@ public class FingerprintManager {
      * @param wave Wave Object to be extracted fingerprint
      * @return fingerprint in bytes
      */
-    public static InputStream extractFingerprint(Wave wave, FingerprintProperties fingerprintProperties) throws IOException {
+    public static InputStream extractFingerprint(final AudioFormatInputStream wave, FingerprintProperties fingerprintProperties) throws IOException {
+
+        if (fingerprintProperties == null) {
+            // use default
+            fingerprintProperties = FingerprintProperties.getInstance();
+        }
 
         int sampleSizePerFrame = fingerprintProperties.getSampleSizePerFrame();
         int overlapFactor = fingerprintProperties.getOverlapFactor();
@@ -71,7 +76,7 @@ public class FingerprintManager {
         byte[] resampledWaveData = resampler.reSample(wave, wave.getWaveHeader().getSampleSize(), wave.getWaveHeader().getSampleRate(), targetRate);
 
         // update the wave header
-        Wave resampledWave = WaveFactory.createWave(wave);
+        Wave resampledWave = AudioFormatInputStreamFactory.createWave(wave);
         CustomWaveHeader resampledWaveHeader = (CustomWaveHeader) resampledWave.getWaveHeader();
         resampledWaveHeader.setBitsPerSample(targetRate);
 

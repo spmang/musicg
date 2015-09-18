@@ -18,7 +18,7 @@ package com.musicg.main.demo;
 import com.musicg.graphic.GraphicRender;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ public class RenderSpectrogramDemo {
 
         // create a wave object
         try {
-            Wave wave = WaveFactory.createWave(inFolder + "/" + filename);
+            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(inFolder + "/" + filename);
             Spectrogram spectrogram = new Spectrogram(wave);
 
             // Graphic render

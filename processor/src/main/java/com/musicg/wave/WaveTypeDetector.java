@@ -1,16 +1,17 @@
 package com.musicg.wave;
 
 import com.musicg.api.WhistleApi;
+import com.musicg.streams.AudioException;
+import com.musicg.streams.AudioFormatInputStream;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class WaveTypeDetector {
 
-    private Wave wave;
+    private AudioFormatInputStream wave;
 
-    public WaveTypeDetector(Wave wave) {
+    public WaveTypeDetector(AudioFormatInputStream wave) {
         this.wave = wave;
     }
 
@@ -28,8 +29,7 @@ public class WaveTypeDetector {
         double probability = 0;
 
         // fft size 1024, no overlap
-        int fftSignalByteLength = fftSampleSize * wave.getWaveHeader().getSampleSize();
-        InputStream inputStream = wave.getAudioStream();
+        int fftSignalByteLength = fftSampleSize * wave.getAudioFormat().getSampleSizeInBits() / 8;
 
         WhistleApi whistleApi = new WhistleApi(wave);
 
@@ -47,7 +47,7 @@ public class WaveTypeDetector {
             int bytesRead = 0;
             int read = 0;
             while (bytesRead < fftSignalByteLength && read > -1) {
-                read = inputStream.read(bytes, bytesRead, fftSignalByteLength - bytesRead);
+                read = wave.read(bytes, bytesRead, fftSignalByteLength - bytesRead);
                 bytesRead += read;
             }
             if (bytesRead == fftSignalByteLength) {
@@ -60,7 +60,7 @@ public class WaveTypeDetector {
                     numPasses++;
                 }
             } else {
-                throw new WaveException("Error loading checkLength data.");
+                throw new AudioException("Error loading checkLength data.");
             }
         }
 
@@ -73,7 +73,7 @@ public class WaveTypeDetector {
             int bytesRead = 0;
             int read = 0;
             while (bytesRead < fftSignalByteLength && read > -1) {
-                read = inputStream.read(bytes, bytesRead, fftSignalByteLength - bytesRead);
+                read = wave.read(bytes, bytesRead, fftSignalByteLength - bytesRead);
                 bytesRead += read;
             }
             if (bytesRead == fftSignalByteLength) {

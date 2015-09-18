@@ -3,7 +3,7 @@ package com.musicg.main.demo;
 import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class PitchDemo {
 
         // create a wave object
         try {
-            Wave wave = WaveFactory.createWave(filename);
+            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
             Spectrogram spectrogram = new Spectrogram(wave);
 
             TopManyPointsProcessorChain processorChain = new TopManyPointsProcessorChain(spectrogram.getNormalizedSpectrogramData(), 1);

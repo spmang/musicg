@@ -16,8 +16,8 @@
 package com.musicg.main.demo;
 
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
-import com.musicg.wave.WaveFileManager;
+import com.musicg.streams.AudioFormatInputStreamFactory;
+import com.musicg.wave.AudioFileManager;
 
 import java.io.IOException;
 
@@ -30,13 +30,13 @@ public class WaveDemo {
 
         // create a wave object
         try {
-            Wave wave = WaveFactory.createWave(filename);
+            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
 
             // print the wave header and info
             System.out.println(wave);
 
             // save the trimmed wav
-            WaveFileManager.saveWaveAsFile(wave, outFolder + "/out.wav", 1.0, 0.5);
+            AudioFileManager.saveWaveAsFile(wave, outFolder + "/out.wav", 1.0, 0.5);
         } catch (IOException ioe) {
             System.out.println("The input file could not be found.");
         }

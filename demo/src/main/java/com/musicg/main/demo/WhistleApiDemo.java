@@ -16,7 +16,7 @@
 package com.musicg.main.demo;
 
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 import com.musicg.wave.WaveTypeDetector;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class WhistleApiDemo {
 
         // create a wave object
         try {
-            Wave wave = WaveFactory.createWave("audio_work/whistle.wav");
+            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream("audio_work/whistle.wav");
             WaveTypeDetector waveTypeDetector = new WaveTypeDetector(wave);
             System.out.println("Is whistle probability: " + waveTypeDetector.getWhistleProbability(10, -1));
         } catch (IOException ioe) {

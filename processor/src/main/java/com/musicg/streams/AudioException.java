@@ -1,4 +1,4 @@
-package com.musicg.wave;
+package com.musicg.streams;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import java.io.IOException;
  *
  * @author Scott Mangan
  */
-public class WaveException extends IOException {
+public class AudioException extends IOException {
 
     /**
      * Constructs an {@code IOException} with the specified detail message.
@@ -15,7 +15,7 @@ public class WaveException extends IOException {
      * @param message The detail message (which is saved for later retrieval
      *                by the {@link #getMessage()} method)
      */
-    public WaveException(String message) {
+    public AudioException(String message) {
         super(message);
     }
 
@@ -34,7 +34,7 @@ public class WaveException extends IOException {
      *                and indicates that the cause is nonexistent or unknown.)
      * @since 1.6
      */
-    public WaveException(String message, Throwable cause) {
+    public AudioException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -50,7 +50,7 @@ public class WaveException extends IOException {
      *              and indicates that the cause is nonexistent or unknown.)
      * @since 1.6
      */
-    public WaveException(Throwable cause) {
+    public AudioException(Throwable cause) {
         super(cause);
     }
 }

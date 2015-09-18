@@ -16,7 +16,9 @@
 
 package com.musicg.wave;
 
-public class WaveFileManager {
+import com.musicg.streams.AudioFormatInputStream;
+
+public class AudioFileManager {
 
     /**
      * Save the wave file
@@ -24,7 +26,7 @@ public class WaveFileManager {
      * @param wave     The Wave to save to the file.
      * @param filename filename to be saved
      */
-    public static void saveWaveAsFile(final Wave wave, String filename) {
+    public static void saveWaveAsFile(final AudioFormatInputStream wave, String filename) {
         // TODO
     }
 
@@ -35,7 +37,7 @@ public class WaveFileManager {
      * @param filename The name of the file to create.
      * @param offset   The number of offset samples into the stream to start saving at.
      */
-    public static void saveWaveAsFile(final Wave wave, String filename, long offset) {
+    public static void saveWaveAsFile(final AudioFormatInputStream wave, String filename, long offset) {
         // TODO
     }
 
@@ -45,7 +47,7 @@ public class WaveFileManager {
      * @param offset   The number of offset samples into the stream to start saving at.
      * @param length   The number of samples to save.
      */
-    public static void saveWaveAsFile(final Wave wave, String filename, double offset, double length) {
+    public static void saveWaveAsFile(final AudioFormatInputStream wave, String filename, double offset, double length) {
         // TODO
     }
 }

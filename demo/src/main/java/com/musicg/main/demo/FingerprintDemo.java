@@ -16,9 +16,10 @@
 package com.musicg.main.demo;
 
 import com.musicg.fingerprint.FingerprintManager;
-import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
+import com.musicg.streams.AudioFormatInputStream;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -31,7 +32,7 @@ public class FingerprintDemo {
 
         // create a wave object
         try {
-            Wave wave = WaveFactory.createWave("audio_work/" + filename);
+            AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream("audio_work/" + filename);
 
             // get the fingerprint
             InputStream fingerprint = FingerprintManager.extractFingerprint(wave, null);
@@ -60,6 +61,8 @@ public class FingerprintDemo {
             System.out.println("The test file could not be loaded.");
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        } catch (UnsupportedAudioFileException uafe) {
+            uafe.printStackTrace();
         }
     }
 }

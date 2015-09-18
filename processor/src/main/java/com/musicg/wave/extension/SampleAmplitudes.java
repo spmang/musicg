@@ -17,8 +17,8 @@
 package com.musicg.wave.extension;
 
 import com.musicg.streams.AbstractStreamRunnable;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.StreamFactory;
-import com.musicg.wave.Wave;
 
 import java.io.*;
 
@@ -41,7 +41,7 @@ public final class SampleAmplitudes {
      * @param maxSamples Maximum number of samples to consider. A value of -1 will consider all samples up to Integer.MAX_VALUE.
      * @return amplitudes array (signed 16-bit)
      */
-    public static DataInputStream getSampleAmplitudes(final Wave wave, final int maxSamples) throws IOException {
+    public static DataInputStream getSampleAmplitudes(final AudioFormatInputStream wave, final int maxSamples) throws IOException {
         return StreamFactory.getStreamedTarget(new AbstractStreamRunnable() {
             @Override
             public void run() {
@@ -62,9 +62,9 @@ public final class SampleAmplitudes {
      * @param maxSamples Maximum number of samples to consider. A value of -1 will consider all samples up to Integer.MAX_VALUE.
      * @param output     The stream to write the data into.
      */
-    public static void getSampleAmplitudes(final Wave wave, final int maxSamples, final DataOutputStream output) throws IOException {
-        int bytePerSample = wave.getWaveHeader().getSampleSize() / 8;
-        InputStream data = wave.getAudioStream();
+    public static void getSampleAmplitudes(final AudioFormatInputStream wave, final int maxSamples, final DataOutputStream output) throws IOException {
+        int bytePerSample = wave.getAudioFormat().getSampleSizeInBits() / 8;
+        InputStream data = wave;
         for (int i = 0; i < maxSamples; i++) {
             short amplitude = 0;
             for (int byteNumber = 0; byteNumber < bytePerSample; byteNumber++) {
@@ -83,7 +83,7 @@ public final class SampleAmplitudes {
         }
     }
 
-    public static DataInputStream getNormalizedAmplitudes(final Wave wave, final int maxSamples) throws IOException {
+    public static DataInputStream getNormalizedAmplitudes(final AudioFormatInputStream wave, final int maxSamples) throws IOException {
         return StreamFactory.getStreamedTarget(new AbstractStreamRunnable() {
             @Override
             public void run() {
@@ -102,18 +102,18 @@ public final class SampleAmplitudes {
     /**
      * Get normalized amplitude of each frame
      */
-    public static void getNormalizedAmplitudes(final Wave wave, final int maxSamples, final DataOutputStream normalizedAmplitudes) throws IOException {
+    public static void getNormalizedAmplitudes(final AudioFormatInputStream wave, final int maxSamples, final DataOutputStream normalizedAmplitudes) throws IOException {
 
         boolean signed = true;
 
         // usually 8bit is unsigned
-        if (wave.getWaveHeader().getSampleSize() == 8) {
+        if (wave.getAudioFormat().getSampleSizeInBits() == 8) {
             signed = false;
         }
 
         DataInputStream amplitudes = getSampleAmplitudes(wave, maxSamples);
 
-        int maxAmplitude = 1 << (wave.getWaveHeader().getSampleSize() - 1);
+        int maxAmplitude = 1 << (wave.getAudioFormat().getSampleSizeInBits() - 1);
 
         if (!signed) {    // one more bit for unsigned value
             maxAmplitude <<= 1;

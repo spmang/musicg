@@ -20,11 +20,11 @@ import com.musicg.math.rank.ArrayRankDouble;
 import com.musicg.math.statistics.StandardDeviation;
 import com.musicg.math.statistics.ZeroCrossingRate;
 import com.musicg.spectrogram.Spectrogram;
-import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
-import com.musicg.wave.WaveHeader;
+import com.musicg.streams.AudioFormatInputStream;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 import com.musicg.wave.extension.SampleAmplitudes;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.DataInputStream;
 import java.io.IOException;
 
@@ -35,7 +35,7 @@ import java.io.IOException;
  */
 public class DetectionApi {
 
-    protected WaveHeader waveHeader;
+    protected AudioFormatInputStream wave;
     protected int fftSampleSize;
     protected int numFrequencyUnit;
     protected double unitFrequency;
@@ -53,9 +53,9 @@ public class DetectionApi {
      *
      * @param wave The wave to process.
      */
-    public DetectionApi(Wave wave) {
-        if (wave.getWaveHeader().getChannels() == 1) {
-            this.waveHeader = waveHeader;
+    public DetectionApi(AudioFormatInputStream wave) {
+        if (wave.getAudioFormat().getChannels() == 1) {
+            this.wave = wave;
             init();
         } else {
             System.err.println("DetectionAPI supports mono Wav only");
@@ -75,9 +75,9 @@ public class DetectionApi {
      * @param audioBytes input audio byte
      * @return True if the bytes match the sound.
      */
-    public boolean isSpecificSound(byte[] audioBytes) throws IOException {
+    public boolean isSpecificSound(byte[] audioBytes) throws IOException, UnsupportedAudioFileException {
 
-        int bytesPerSample = waveHeader.getSampleSize();
+        int bytesPerSample = wave.getAudioFormat().getSampleSizeInBits() / 8;
         int numSamples = audioBytes.length / bytesPerSample;
 
         // numSamples required to be a power of 2
@@ -86,18 +86,18 @@ public class DetectionApi {
             numFrequencyUnit = fftSampleSize / 2;
 
             // frequency could be caught within the half of nSamples according to Nyquist theory
-            unitFrequency = (double) waveHeader.getSampleRate() / 2 / numFrequencyUnit;
+            unitFrequency = (double) wave.getAudioFormat().getSampleRate() / 2 / numFrequencyUnit;
 
             // set boundary
             lowerBoundary = (int) (highPass / unitFrequency);
             upperBoundary = (int) (lowPass / unitFrequency);
             // end set boundary
 
-            Wave wave = WaveFactory.createWave(audioBytes);
+            AudioFormatInputStream sampleWave = AudioFormatInputStreamFactory.createAudioFormatInputStream(audioBytes);
             DataInputStream amplitudes = SampleAmplitudes.getSampleAmplitudes(wave, -1);
 
             // spectrum for the clip
-            Spectrogram spectrogram = new Spectrogram(wave, fftSampleSize, 0);
+            Spectrogram spectrogram = new Spectrogram(sampleWave, fftSampleSize, 0);
 
             double[][] spectrogramData = spectrogram.getAbsoluteSpectrogramData();
 

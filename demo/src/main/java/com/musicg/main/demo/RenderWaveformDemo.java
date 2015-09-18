@@ -17,7 +17,7 @@ package com.musicg.main.demo;
 
 import com.musicg.graphic.GraphicRender;
 import com.musicg.wave.Wave;
-import com.musicg.wave.WaveFactory;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class RenderWaveformDemo {
         // create a wave object
         try {
             File location = new File(Thread.currentThread().getContextClassLoader().getResource(filename).toURI());
-            Wave wave = WaveFactory.createWave(location);
+            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(location);
 
             // Graphic render
             GraphicRender render = new GraphicRender();

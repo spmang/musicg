@@ -16,8 +16,9 @@
 
 package com.musicg.api;
 
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 /**
@@ -27,7 +28,7 @@ import java.io.IOException;
  */
 public class WhistleApi extends DetectionApi {
 
-    public WhistleApi(Wave wave) {
+    public WhistleApi(AudioFormatInputStream wave) {
         super(wave);
     }
 
@@ -51,7 +52,7 @@ public class WhistleApi extends DetectionApi {
         numRobust = 10;
     }
 
-    public boolean isWhistle(byte[] audioBytes) throws IOException {
+    public boolean isWhistle(byte[] audioBytes) throws IOException, UnsupportedAudioFileException {
         return isSpecificSound(audioBytes);
     }
 }

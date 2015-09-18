@@ -18,7 +18,7 @@ package com.musicg.spectrogram;
 
 import com.musicg.dsp.FastFourierTransform;
 import com.musicg.dsp.WindowFunction;
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.wave.extension.SampleAmplitudes;
 
 import java.io.*;
@@ -34,7 +34,7 @@ public class Spectrogram {
     public static final int SPECTROGRAM_DEFAULT_FFT_SAMPLE_SIZE = 1024;
     public static final int SPECTROGRAM_DEFAULT_OVERLAP_FACTOR = 0;    // 0 for no overlapping
 
-    private Wave wave;
+    private AudioFormatInputStream wave;
     private double[][] spectrogram;    // relative spectrogram
     private double[][] absoluteSpectrogram;    // absolute spectrogram
     private int fftSampleSize;    // number of sample in fft, the value needed to be a number to power of 2
@@ -49,7 +49,7 @@ public class Spectrogram {
      *
      * @param wave The source Wave to process.
      */
-    public Spectrogram(Wave wave) {
+    public Spectrogram(AudioFormatInputStream wave) {
         this.wave = wave;
         // default
         this.fftSampleSize = SPECTROGRAM_DEFAULT_FFT_SAMPLE_SIZE;
@@ -63,7 +63,7 @@ public class Spectrogram {
      * @param fftSampleSize number of sample in fft, the value needed to be a number to power of 2
      * @param overlapFactor 1/overlapFactor overlapping, e.g. 1/4=25% overlapping, 0 for no overlapping
      */
-    public Spectrogram(Wave wave, int fftSampleSize, int overlapFactor) {
+    public Spectrogram(AudioFormatInputStream wave, int fftSampleSize, int overlapFactor) {
         this.wave = wave;
 
         if (Integer.bitCount(fftSampleSize) == 1) {
@@ -121,7 +121,7 @@ public class Spectrogram {
         if (absoluteSpectrogram.length > 0) {
 
             numFrequencyUnit = absoluteSpectrogram[0].length;
-            unitFrequency = (double) wave.getWaveHeader().getSampleRate() / 2 / numFrequencyUnit;    // frequency could be caught within the half of nSamples according to Nyquist theory
+            unitFrequency = (double) wave.getAudioFormat().getSampleRate() / 2 / numFrequencyUnit;    // frequency could be caught within the half of nSamples according to Nyquist theory
 
             // normalization of absoultSpectrogram
             spectrogram = new double[numFrames][numFrequencyUnit];
