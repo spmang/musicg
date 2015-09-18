@@ -25,6 +25,7 @@ import com.musicg.streams.StreamFactory;
 import com.musicg.wave.Wave;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 
+import javax.sound.sampled.AudioFormat;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -68,26 +69,16 @@ public class FingerprintManager {
         int[][] coordinates;    // coordinates[x][0..3]=y0..y3
 
         // resample to target rate
-        Resampler resampler = new Resampler();
-        float sourceRate = wave.getWaveHeader().getSampleRate();
         int targetRate = fingerprintProperties.getSampleRate();
 
-
-        byte[] resampledWaveData = resampler.reSample(wave, wave.getWaveHeader().getSampleSize(), wave.getWaveHeader().getSampleRate(), targetRate);
-
-        // update the wave header
-        Wave resampledWave = AudioFormatInputStreamFactory.createWave(wave);
-        CustomWaveHeader resampledWaveHeader = (CustomWaveHeader) resampledWave.getWaveHeader();
-        resampledWaveHeader.setBitsPerSample(targetRate);
-
-
-// TODO fix me
-        // make resampled wave
-        //Wave resampledWave = new Wave(resampledWaveHeader, resampledWaveData);
+        AudioFormatInputStream resampledWaveData = AudioFormatInputStreamFactory.createResampleStream(wave, targetRate);
+        AudioFormat resampledWaveHeader = resampledWaveData.getAudioFormat();
         // end resample to target rate
 
+
+
         // get spectrogram's data
-        Spectrogram spectrogram = new Spectrogram(resampledWave, sampleSizePerFrame, overlapFactor);
+        Spectrogram spectrogram = new Spectrogram(resampledWaveData, sampleSizePerFrame, overlapFactor);
         spectrogram.buildSpectrogram(-1);
         double[][] spectorgramData = spectrogram.getNormalizedSpectrogramData();
 
@@ -111,8 +102,6 @@ public class FingerprintManager {
             }
         }
         // end make fingerprint
-
-
         // end for each valid coordinate, append with its intensity
         return createIntensityStream(numFrames, numRobustPointsPerFrame, coordinates, spectorgramData);
     }

@@ -68,7 +68,7 @@ public final class AudioFormatInputStreamFactory {
      * @param samples       original samples
      * @return interpolated samples
      */
-    public static AudioFormatInputStream createResampleStream(float newSampleRate, AudioFormatInputStream samples) throws IOException {
+    public static AudioFormatInputStream createResampleStream(AudioFormatInputStream samples, float newSampleRate) throws IOException {
         AudioFormat format = samples.getAudioFormat();
 
         // create a new AudioFormat with the new sample rate.

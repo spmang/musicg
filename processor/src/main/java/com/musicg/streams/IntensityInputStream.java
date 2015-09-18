@@ -2,15 +2,17 @@ package com.musicg.streams;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * Created by scottmangan on 9/18/15.
  */
 public class IntensityInputStream extends AudioFormatInputStream {
 
+    int numFrames;
+    int numRobustPointsPerFrame;
+    int[][] coordinates;
+    double[][] spectorgramData;
 
     public IntensityInputStream(AudioInputStream input) {
         super(input);
@@ -20,27 +22,9 @@ public class IntensityInputStream extends AudioFormatInputStream {
         super(in, format);
     }
 
-    private static InputStream createIntensityStream(final int numFrames, final int numRobustPointsPerFrame,
-                                                     final int[][] coordinates,
-                                                     final double[][] spectorgramData) throws IOException {
-        // for each valid coordinate, append with its intensity
-        return StreamFactory.getStreamedTarget(new AbstractStreamRunnable() {
-            @Override
-            public void run() {
-                try {
-                    createIntensityStream(numFrames, numRobustPointsPerFrame, coordinates, spectorgramData, outputStream);
-                } catch (IOException ioe) {
-                    // TODO send notification
-                    ioe.printStackTrace();
-                }
-            }
-        });
-    }
+    public short readValue(OutputStream outputStream) throws IOException {
 
-
-    public static void createIntensityStream(final int numFrames, final int numRobustPointsPerFrame,
-                                             final int[][] coordinates, final double[][] spectorgramData,
-                                             final OutputStream outputStream) throws IOException {
+        // TODO this should read the spectrogram data from the underlying stream
         for (int i = 0; i < numFrames; i++) {
             for (int j = 0; j < numRobustPointsPerFrame; j++) {
                 if (coordinates[i][j] != -1) {
@@ -63,5 +47,17 @@ public class IntensityInputStream extends AudioFormatInputStream {
                 }
             }
         }
+        return -1;
+    }
+
+    /**
+     * Stream the content of this stream to the given output stream.
+     *
+     * @param output
+     */
+    public void connect(OutputStream output) throws IOException {
+        short value;
+        while ((value = readValue(output)) > -1);
+        throw new EOFException("Stream closed");
     }
 }

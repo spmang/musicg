@@ -96,11 +96,13 @@ public class Spectrogram {
 
         numFrames = numSamples / fftSampleSize;
 
+       // 1) create window.
         // set signals for fft
         WindowFunction window = new WindowFunction();
         window.setWindowType("Hamming");
         double[] win = window.generate(fftSampleSize);
 
+        // 2) modify data with window data
         double[][] signals = new double[numFrames][];
         for (int f = 0; f < numFrames; f++) {
             signals[f] = new double[fftSampleSize];
@@ -111,6 +113,8 @@ public class Spectrogram {
         }
         // end set signals for fft
 
+        // 3) use FFT to generate spectrogram from modified data.
+        // This can be multi-threaded.
         absoluteSpectrogram = new double[numFrames][];
         // for each frame in signals, do fft on it
         FastFourierTransform fft = new FastFourierTransform();
@@ -126,7 +130,7 @@ public class Spectrogram {
             // normalization of absoultSpectrogram
             spectrogram = new double[numFrames][numFrequencyUnit];
 
-            // set max and min amplitudes
+            // 4) Find max and min amplitudes
             double maxAmp = Double.MIN_VALUE;
             double minAmp = Double.MAX_VALUE;
             for (int i = 0; i < numFrames; i++) {
