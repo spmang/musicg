@@ -1,6 +1,7 @@
 package com.musicg.streams;
 
 import com.musicg.fingerprint.FingerprintProperties;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.DataOutputStream;
@@ -22,10 +23,15 @@ public class ResampleInputStreamTest {
         int targetRate = fingerprintProperties.getSampleRate();
 
         AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream("audio_work/" + filename);
-        PipedAudioFormatInputStream resampledWaveData = AudioFormatInputStreamFactory.createResampleStream(wave, targetRate);
-        resampledWaveData.setLittleEndian(true);
-        resampledWaveData.connect(new DataOutputStream(System.out));
+        PipedAudioFormatInputStream resampledWaveData = new ResampleInputStream(wave.getAudioInputStream(), targetRate, true);
 
+        Pipe pipe = new Pipe(resampledWaveData.getAudioFormat());
+        resampledWaveData.connect(pipe.getOutput());
+
+        resampledWaveData.readValue();
+        Assert.assertEquals("Resampled value is incorrect.", 259, pipe.getInput().readShort());
+        resampledWaveData.readValue();
+        Assert.assertEquals("Resampled value is incorrect.", 505, pipe.getInput().readShort());
         resampledWaveData.readValue();
     }
 }

@@ -3,10 +3,7 @@ package com.musicg.streams;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
-import java.io.EOFException;
-import java.io.FilterInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * Custom stream read to simplify the reading of audio data from InputStreams.
@@ -33,6 +30,17 @@ public class AudioFormatInputStream extends FilterInputStream {
     }
 
     /**
+     * Create a new Stream from the given stream.
+     *
+     * @param input The stream to wrap.
+     */
+    public AudioFormatInputStream(AudioInputStream input, boolean useLittleEndian) {
+        super(input);
+        audioFormat = input.getFormat();
+        littleEndian = useLittleEndian;
+    }
+
+    /**
      * Create a new instance of the input stream.
      *
      * @param in The stream to wrap.
@@ -40,6 +48,16 @@ public class AudioFormatInputStream extends FilterInputStream {
     public AudioFormatInputStream(InputStream in, AudioFormat format) {
         super(new AudioInputStream(in, format, AudioSystem.NOT_SPECIFIED));
         audioFormat = format;
+    }
+
+    /**
+     * Create a new instance of the input stream.
+     *
+     * @param in The stream to wrap.
+     */
+    public AudioFormatInputStream(InputStream in, AudioFormat format, boolean useLittleEndian) {
+        this(in, format);
+        littleEndian = useLittleEndian;
     }
 
     /**
@@ -202,7 +220,7 @@ public class AudioFormatInputStream extends FilterInputStream {
     public final short readShort() throws IOException {
         byte[] shortBytes = new byte[2];
         this.readFully(shortBytes, 0, 2);
-        return (short) (littleEndian ? ((shortBytes[1] << 8) + (shortBytes[0] << 0)) :
+        return (short) (littleEndian ? (((shortBytes[1] & 0xFF) << 8) | ((shortBytes[0] & 0xFF))) :
                 ((shortBytes[0] << 8) + (shortBytes[1] << 0)));
     }
 
@@ -226,7 +244,7 @@ public class AudioFormatInputStream extends FilterInputStream {
     public final int readUnsignedShort() throws IOException {
         byte[] shortBytes = new byte[2];
         readFully(shortBytes, 0, 2);
-        return littleEndian ? ((shortBytes[1] << 8) + (shortBytes[0] << 0)) :
+        return littleEndian ? (((shortBytes[1] & 0xFF) << 8) + (shortBytes[0] & 0xFF)) :
                 ((shortBytes[0] << 8) + (shortBytes[1] << 0));
     }
 
@@ -250,7 +268,8 @@ public class AudioFormatInputStream extends FilterInputStream {
     public final int readInt() throws IOException {
         byte[] intBytes = new byte[4];
         readFully(intBytes, 0, 4);
-        return littleEndian ? ((intBytes[3] << 24) + (intBytes[2] << 16) + (intBytes[1] << 8) + (intBytes[0] << 0)) :
+        return littleEndian ? (((intBytes[3] & 0xFF) << 24) + ((intBytes[2] & 0xFF) << 16) +
+                ((intBytes[1] & 0xFF) << 8) + ((intBytes[0] & 0xFF) << 0)) :
                 ((intBytes[0] << 24) + (intBytes[1] << 16) + (intBytes[2] << 8) + (intBytes[3] << 0));
     }
 

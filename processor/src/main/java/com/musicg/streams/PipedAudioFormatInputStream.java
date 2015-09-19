@@ -12,15 +12,36 @@ public abstract class PipedAudioFormatInputStream extends AudioFormatInputStream
     /**
      * The Stream to write data to
      */
-    protected DataOutputStream outputStream;
+    protected AudioFormatOutputStream outputStream;
 
     /**
      * Create a new Stream from the given stream.
      *
      * @param input The stream to wrap.
      */
-    public PipedAudioFormatInputStream(AudioInputStream input) {
+    public PipedAudioFormatInputStream(final AudioInputStream input) {
         super(input);
+    }
+
+    /**
+     * Create a new Stream from the given stream.
+     *
+     * @param input The stream to wrap.
+     */
+    public PipedAudioFormatInputStream(final AudioInputStream input, final boolean useLittleEndian) {
+        super(input);
+        littleEndian = useLittleEndian;
+    }
+
+    /**
+     * Create a new Stream from the given stream.
+     *
+     * @param input           The stream to wrap.
+     * @param useLittleEndian
+     */
+    public PipedAudioFormatInputStream(final AudioInputStream input, final AudioFormatOutputStream outputStream, final boolean useLittleEndian) {
+        super(input, useLittleEndian);
+        this.outputStream = outputStream;
     }
 
     public abstract void readValue() throws IOException;
@@ -30,7 +51,7 @@ public abstract class PipedAudioFormatInputStream extends AudioFormatInputStream
      *
      * @param output The stream to write to during a read.
      */
-    public void connect(DataOutputStream output) {
+    public void connect(final AudioFormatOutputStream output) {
         outputStream = output;
     }
 }

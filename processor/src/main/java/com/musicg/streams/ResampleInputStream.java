@@ -4,7 +4,8 @@ import javax.sound.sampled.AudioInputStream;
 import java.io.IOException;
 
 /**
- * Resample the audio stream.
+ * Resample the audio stream. Currenly only works for short type on wave.
+ * <p/>
  * <p/>
  * Created by Scott on 9/18/2015.
  */
@@ -21,6 +22,12 @@ public class ResampleInputStream extends PipedAudioFormatInputStream {
         lengthMultiplier = (float) sampleRate / audioFormat.getSampleRate();
     }
 
+    public ResampleInputStream(AudioInputStream input, float newSampleRate, boolean useLittleEndian) {
+        super(input, useLittleEndian);
+        sampleRate = newSampleRate;
+        lengthMultiplier = (float) sampleRate / audioFormat.getSampleRate();
+    }
+
     public void readValue() throws IOException {
         // do interpolation
         // TODO currently only works up to Long.MAX_VALUE. Fix to stream indefinitely.
@@ -30,7 +37,7 @@ public class ResampleInputStream extends PipedAudioFormatInputStream {
         int nearestLeftPosition = (int) currentPosition;
         int nearestRightPosition = nearestLeftPosition + 1;
 
-        skipBytes(nearestLeftPosition);
+        skipBytes((nearestLeftPosition - 2) * 2);
         short nearestLeft = readShort();
 
         outputStream.writeShort((short) ((readShort() - nearestLeft) * (currentPosition - nearestLeftPosition) + nearestLeft));    // y=mx+c

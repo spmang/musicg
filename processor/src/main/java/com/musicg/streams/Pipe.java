@@ -11,7 +11,7 @@ import java.io.*;
 public class Pipe {
 
     private AudioFormatInputStream input;
-    private DataOutputStream output;
+    private AudioFormatOutputStream output;
 
     public Pipe(final AudioFormat header) throws IOException {
         PipedInputStream pipedInput = new PipedInputStream();
@@ -19,15 +19,15 @@ public class Pipe {
 
         pipedInput.connect(pipedOutput);
 
-        input = new AudioFormatInputStream(new BufferedInputStream(pipedInput), header);
-        output = new DataOutputStream(pipedOutput);
+        input = new AudioFormatInputStream(new BufferedInputStream(pipedInput), header, !header.isBigEndian());
+        output = new AudioFormatOutputStream(pipedOutput, header, !header.isBigEndian());
     }
 
     public AudioFormatInputStream getInput() {
         return input;
     }
 
-    public DataOutputStream getOutput() {
+    public AudioFormatOutputStream getOutput() {
         return output;
     }
 }
