@@ -23,15 +23,9 @@ public class ResampleInputStreamTest {
         int targetRate = fingerprintProperties.getSampleRate();
 
         AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream("audio_work/" + filename);
-        PipedAudioFormatInputStream resampledWaveData = new ResampleInputStream(wave.getAudioInputStream(), targetRate, true);
+        AudioFormatInputStream resampledWaveData = new ResampleInputStream(wave, wave.getAudioFormat(), true, targetRate);
 
-        Pipe pipe = new Pipe(resampledWaveData.getAudioFormat());
-        resampledWaveData.connect(pipe.getOutput());
-
-        resampledWaveData.readValue();
-        Assert.assertEquals("Resampled value is incorrect.", 259, pipe.getInput().readShort());
-        resampledWaveData.readValue();
-        Assert.assertEquals("Resampled value is incorrect.", 505, pipe.getInput().readShort());
-        resampledWaveData.readValue();
+        Assert.assertEquals("Resampled value is incorrect.", 259, resampledWaveData.readShort());
+        Assert.assertEquals("Resampled value is incorrect.", 505, resampledWaveData.readShort());
     }
 }

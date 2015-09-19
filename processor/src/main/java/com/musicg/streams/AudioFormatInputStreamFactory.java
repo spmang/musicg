@@ -61,18 +61,6 @@ public final class AudioFormatInputStreamFactory {
         return new AudioFormatInputStream(createInputStream(new ByteArrayInputStream(audioBytes)));
     }
 
-    /**
-     * Create a stream that performs resampling.
-     *
-     * @param newSampleRate sample rate of the interpolated samples
-     * @param samples       original samples
-     * @return interpolated samples
-     */
-    public static PipedAudioFormatInputStream createResampleStream(AudioFormatInputStream samples, float newSampleRate) throws IOException {
-        return new ResampleInputStream(samples.getAudioInputStream(), newSampleRate);
-    }
-
-
     private static AudioFormatInputStream initWaveFromFile(final File inputFile) throws IOException, UnsupportedAudioFileException {
         return initWaveWithInputStream(new FileInputStream(inputFile));
     }
@@ -87,11 +75,5 @@ public final class AudioFormatInputStreamFactory {
             inputStream = new BufferedInputStream(inputStream);
         }
         return AudioSystem.getAudioInputStream(inputStream);
-    }
-
-    private static AudioFormat createAudioFormat(final AudioFormat sourceHeader) {
-        return new AudioFormat(sourceHeader.getEncoding(), sourceHeader.getSampleRate(),
-                sourceHeader.getSampleSizeInBits(), sourceHeader.getChannels(),
-                sourceHeader.getFrameSize(), sourceHeader.getFrameRate(), sourceHeader.isBigEndian());
     }
 }

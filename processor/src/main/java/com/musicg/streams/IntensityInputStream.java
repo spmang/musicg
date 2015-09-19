@@ -7,7 +7,7 @@ import java.io.*;
 /**
  * Created by scottmangan on 9/18/15.
  */
-public class IntensityInputStream extends AudioFormatInputStream {
+public class IntensityInputStream extends PipedAudioFormatInputStream {
 
     int numFrames;
     int numRobustPointsPerFrame;
@@ -22,7 +22,7 @@ public class IntensityInputStream extends AudioFormatInputStream {
         super(in, format);
     }
 
-    public short readValue(OutputStream outputStream) throws IOException {
+    public void readValue() throws IOException {
 
         // TODO this should read the spectrogram data from the underlying stream
         for (int i = 0; i < numFrames; i++) {
@@ -47,17 +47,5 @@ public class IntensityInputStream extends AudioFormatInputStream {
                 }
             }
         }
-        return -1;
-    }
-
-    /**
-     * Stream the content of this stream to the given output stream.
-     *
-     * @param output
-     */
-    public void connect(OutputStream output) throws IOException {
-        short value;
-        while ((value = readValue(output)) > -1);
-        throw new EOFException("Stream closed");
     }
 }

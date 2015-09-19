@@ -19,7 +19,9 @@ package com.musicg.spectrogram;
 import com.musicg.dsp.FastFourierTransform;
 import com.musicg.dsp.WindowFunction;
 import com.musicg.streams.AudioFormatInputStream;
+import com.musicg.streams.HammingInputStream;
 import com.musicg.streams.OverlapAmplitudeInputStream;
+import com.musicg.streams.Pipe;
 
 import java.io.IOException;
 
@@ -83,34 +85,18 @@ public class Spectrogram {
      */
     public void buildSpectrogram(int maxSamples) throws IOException {
         OverlapAmplitudeInputStream overlapAmp = new OverlapAmplitudeInputStream(wave.getAudioInputStream(), overlapFactor, fftSampleSize);
+        Pipe pipe = new Pipe(overlapAmp.getAudioFormat());
+        overlapAmp.connect(pipe.getOutput());
+        HammingInputStream hamming = new HammingInputStream(pipe.getInput(), pipe.getAudioFormat(), true, fftSampleSize);
 
-        // TODO the rest
-        int numSamples = 0;
-
-        numFrames = numSamples / fftSampleSize;
-
-        // 1) create window.
-        // set signals for fft
-        WindowFunction window = new WindowFunction();
-        window.setWindowType("Hamming");
-        double[] win = window.generate(fftSampleSize);
-
-        // 2) modify data with window data
-        double[][] signals = new double[numFrames][];
-        for (int f = 0; f < numFrames; f++) {
-            signals[f] = new double[fftSampleSize];
-            int startSample = f * fftSampleSize;
-            for (int n = 0; n < fftSampleSize; n++) {
-                signals[f][n] = overlapAmp.readShort() * win[n];
-            }
-        }
-        // end set signals for fft
-
-        // 3) use FFT to generate spectrogram from modified data.
+        // use FFT to generate spectrogram from modified data.
         // This can be multi-threaded.
         absoluteSpectrogram = new double[numFrames][];
+
         // for each frame in signals, do fft on it
         FastFourierTransform fft = new FastFourierTransform();
+
+        double[][] signals=new double[numFrames][];
         for (int i = 0; i < numFrames; i++) {
             absoluteSpectrogram[i] = fft.getMagnitudes(signals[i]);
         }

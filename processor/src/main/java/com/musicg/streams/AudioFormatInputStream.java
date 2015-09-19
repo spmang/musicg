@@ -143,7 +143,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      *                     the contained input stream does not support
      *                     reading after close, or another I/O error occurs.
      */
-    public final int skipBytes(int n) throws IOException {
+    public  int skipBytes(int n) throws IOException {
         int total = 0;
         int cur = 0;
 
@@ -170,7 +170,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      *                      another I/O error occurs.
      * @see java.io.FilterInputStream#in
      */
-    public final byte readByte() throws IOException {
+    public  byte readByte() throws IOException {
         int ch = in.read();
         if (ch < 0)
             throw new EOFException();
@@ -193,7 +193,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      *                      another I/O error occurs.
      * @see java.io.FilterInputStream#in
      */
-    public final int readUnsignedByte() throws IOException {
+    public  int readUnsignedByte() throws IOException {
         int ch = in.read();
         if (ch < 0)
             throw new EOFException();
@@ -217,7 +217,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      *                      another I/O error occurs.
      * @see java.io.FilterInputStream#in
      */
-    public final short readShort() throws IOException {
+    public  short readShort() throws IOException {
         byte[] shortBytes = new byte[2];
         this.readFully(shortBytes, 0, 2);
         return (short) (littleEndian ? (((shortBytes[1] & 0xFF) << 8) | ((shortBytes[0] & 0xFF))) :
@@ -241,7 +241,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      *                      another I/O error occurs.
      * @see java.io.FilterInputStream#in
      */
-    public final int readUnsignedShort() throws IOException {
+    public  int readUnsignedShort() throws IOException {
         byte[] shortBytes = new byte[2];
         readFully(shortBytes, 0, 2);
         return littleEndian ? (((shortBytes[1] & 0xFF) << 8) + (shortBytes[0] & 0xFF)) :
@@ -265,7 +265,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      *                      another I/O error occurs.
      * @see java.io.FilterInputStream#in
      */
-    public final int readInt() throws IOException {
+    public  int readInt() throws IOException {
         byte[] intBytes = new byte[4];
         readFully(intBytes, 0, 4);
         return littleEndian ? (((intBytes[3] & 0xFF) << 24) + ((intBytes[2] & 0xFF) << 16) +
@@ -290,7 +290,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      *                      another I/O error occurs.
      * @see java.io.FilterInputStream#in
      */
-    public final long readLong() throws IOException {
+    public  long readLong() throws IOException {
         byte[] readBuffer = new byte[8];
         readFully(readBuffer, 0, 8);
         return littleEndian ?
@@ -330,7 +330,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      * @see java.io.DataInputStream#readInt()
      * @see java.lang.Float#intBitsToFloat(int)
      */
-    public final float readFloat() throws IOException {
+    public  float readFloat() throws IOException {
         return Float.intBitsToFloat(readInt());
     }
 
@@ -352,7 +352,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      * @see java.io.DataInputStream#readLong()
      * @see java.lang.Double#longBitsToDouble(long)
      */
-    public final double readDouble() throws IOException {
+    public  double readDouble() throws IOException {
         return Double.longBitsToDouble(readLong());
     }
 

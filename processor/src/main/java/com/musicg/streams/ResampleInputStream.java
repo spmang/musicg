@@ -1,7 +1,9 @@
 package com.musicg.streams;
 
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Resample the audio stream. Currenly only works for short type on wave.
@@ -22,13 +24,38 @@ public class ResampleInputStream extends PipedAudioFormatInputStream {
         lengthMultiplier = (float) sampleRate / audioFormat.getSampleRate();
     }
 
-    public ResampleInputStream(AudioInputStream input, float newSampleRate, boolean useLittleEndian) {
+    public ResampleInputStream(AudioInputStream input, boolean useLittleEndian, float newSampleRate) {
         super(input, useLittleEndian);
         sampleRate = newSampleRate;
         lengthMultiplier = (float) sampleRate / audioFormat.getSampleRate();
     }
 
-    public void readValue() throws IOException {
+    /**
+     * Create a new instance of the input stream.
+     *
+     * @param in     The stream to wrap.
+     * @param format
+     */
+    public ResampleInputStream(InputStream in, AudioFormat format, float sampleRate) {
+        super(in, format);
+        this.sampleRate = sampleRate;
+        lengthMultiplier = (float) sampleRate / audioFormat.getSampleRate();
+    }
+
+    /**
+     * Create a new instance of the input stream.
+     *
+     * @param in              The stream to wrap.
+     * @param format
+     * @param useLittleEndian
+     */
+    public ResampleInputStream(InputStream in, AudioFormat format, boolean useLittleEndian, float sampleRate) {
+        super(in, format, useLittleEndian);
+        this.sampleRate = sampleRate;
+        lengthMultiplier = (float) sampleRate / audioFormat.getSampleRate();
+    }
+
+    public short readShort() throws IOException {
         // do interpolation
         // TODO currently only works up to Long.MAX_VALUE. Fix to stream indefinitely.
 
@@ -38,12 +65,17 @@ public class ResampleInputStream extends PipedAudioFormatInputStream {
         int nearestRightPosition = nearestLeftPosition + 1;
 
         skipBytes((nearestLeftPosition - 2) * 2);
-        short nearestLeft = readShort();
+        short nearestLeft = super.readShort();
 
-        outputStream.writeShort((short) ((readShort() - nearestLeft) * (currentPosition - nearestLeftPosition) + nearestLeft));    // y=mx+c
+        short value = (short) ((super.readShort() - nearestLeft) * (currentPosition - nearestLeftPosition) + nearestLeft);    // y=mx+c
         lastPosition = currentPosition;
         // end do interpolation
 
         // TODO: Remove the high frequency signals with a digital filter, leaving a signal containing only half-sample-rated frequency information, but still sampled at a rate of target sample rate. Usually FIR is used
+        return value;
+    }
+
+    public void readValue() throws IOException {
+        outputStream.writeShort(readShort());
     }
 }

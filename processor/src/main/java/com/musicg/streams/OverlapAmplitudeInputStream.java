@@ -1,8 +1,10 @@
 package com.musicg.streams;
 
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import java.io.EOFException;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Create overlap amplitude values.
@@ -25,6 +27,47 @@ public class OverlapAmplitudeInputStream extends PipedAudioFormatInputStream {
      */
     public OverlapAmplitudeInputStream(AudioInputStream input, int overlapFactor, int fftSampleSize) {
         super(input);
+        initialize(overlapFactor, fftSampleSize);
+    }
+
+    /**
+     * Create a new Stream from the given stream.
+     *
+     * @param input           The stream to wrap.
+     * @param useLittleEndian
+     */
+    public OverlapAmplitudeInputStream(AudioInputStream input, boolean useLittleEndian, int overlapFactor, int fftSampleSize) {
+        super(input, useLittleEndian);
+        initialize(overlapFactor, fftSampleSize);
+    }
+
+    /**
+     * Create a new instance of the input stream.
+     *
+     * @param in     The stream to wrap.
+     * @param format
+     */
+    public OverlapAmplitudeInputStream(InputStream in, AudioFormat format, int overlapFactor, int fftSampleSize) {
+        super(in, format);
+        this.overlapFactor = overlapFactor;
+        this.fftSampleSize = fftSampleSize;
+    }
+
+    /**
+     * Create a new instance of the input stream.
+     *
+     * @param in              The stream to wrap.
+     * @param format
+     * @param useLittleEndian
+     */
+    public OverlapAmplitudeInputStream(InputStream in, AudioFormat format, boolean useLittleEndian, int overlapFactor, int fftSampleSize) {
+        super(in, format, useLittleEndian);
+        this.overlapFactor = overlapFactor;
+        this.fftSampleSize = fftSampleSize;
+    }
+
+
+    private void initialize(int overlapFactor, int fftSampleSize) {
         this.overlapFactor = overlapFactor;
         this.fftSampleSize = fftSampleSize;
         backSamples = fftSampleSize * (overlapFactor - 1) / overlapFactor;
@@ -32,14 +75,13 @@ public class OverlapAmplitudeInputStream extends PipedAudioFormatInputStream {
         markposition = fftSampleSize = backSamples;
     }
 
-    public void readValue() throws IOException {
+    public short readShort() throws IOException {
         // overlapping
+        short value = super.readShort();
         if (overlapFactor > 1) {
-            short value = readShort();
             if (value == -1) {
                 throw new EOFException("End of stream.");
             }
-            outputStream.writeShort(value);
             if (++numSamples % fftSampleSize == fftSampleSize_1) {
                 // overlap
                 this.reset();
@@ -49,5 +91,10 @@ public class OverlapAmplitudeInputStream extends PipedAudioFormatInputStream {
                 this.mark(backSamples);
             }
         }
+        return value;
+    }
+
+    public void readValue() throws IOException {
+        outputStream.writeShort(readShort());
     }
 }

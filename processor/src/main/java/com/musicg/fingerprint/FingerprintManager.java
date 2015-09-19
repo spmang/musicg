@@ -20,6 +20,7 @@ import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
+import com.musicg.streams.ResampleInputStream;
 
 import javax.sound.sampled.AudioFormat;
 import java.io.*;
@@ -58,7 +59,6 @@ public class FingerprintManager {
         }
 
         int sampleSizePerFrame = fingerprintProperties.getSampleSizePerFrame();
-        int overlapFactor = fingerprintProperties.getOverlapFactor();
         int numRobustPointsPerFrame = fingerprintProperties.getNumRobustPointsPerFrame();
         int numFilterBanks = fingerprintProperties.getNumFilterBanks();
 
@@ -66,14 +66,11 @@ public class FingerprintManager {
 
         // resample to target rate
         int targetRate = fingerprintProperties.getSampleRate();
-
-        AudioFormatInputStream resampledWaveData = AudioFormatInputStreamFactory.createResampleStream(wave, targetRate);
-        AudioFormat resampledWaveHeader = resampledWaveData.getAudioFormat();
+        AudioFormatInputStream resampledWaveData = new ResampleInputStream(wave, wave.getAudioFormat(), targetRate);
         // end resample to target rate
 
-
         // get spectrogram's data
-        Spectrogram spectrogram = new Spectrogram(resampledWaveData, sampleSizePerFrame, overlapFactor);
+        Spectrogram spectrogram = new Spectrogram(resampledWaveData, sampleSizePerFrame, fingerprintProperties.getOverlapFactor());
         spectrogram.buildSpectrogram(-1);
         double[][] spectorgramData = spectrogram.getNormalizedSpectrogramData();
 
