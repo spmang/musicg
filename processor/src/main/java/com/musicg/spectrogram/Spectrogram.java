@@ -19,9 +19,9 @@ package com.musicg.spectrogram;
 import com.musicg.dsp.FastFourierTransform;
 import com.musicg.dsp.WindowFunction;
 import com.musicg.streams.AudioFormatInputStream;
-import com.musicg.wave.extension.SampleAmplitudes;
+import com.musicg.streams.OverlapAmplitudeInputStream;
 
-import java.io.*;
+import java.io.IOException;
 
 /**
  * Handles the wave data in frequency-time domain.
@@ -82,21 +82,14 @@ public class Spectrogram {
      * @param maxSamples The maximum number of samples to process.
      */
     public void buildSpectrogram(int maxSamples) throws IOException {
-
-        // create a stream to generate the amplitudes.
-        DataInputStream amplitudes = SampleAmplitudes.getSampleAmplitudes(wave, -1);
-        if (maxSamples < 0) {
-            maxSamples = Integer.MAX_VALUE;
-        }
-
-        DataInputStream overlapAmp = createOverlapAmplitudes(maxSamples, amplitudes);
+        OverlapAmplitudeInputStream overlapAmp = new OverlapAmplitudeInputStream(wave.getAudioInputStream(), overlapFactor, fftSampleSize);
 
         // TODO the rest
         int numSamples = 0;
 
         numFrames = numSamples / fftSampleSize;
 
-       // 1) create window.
+        // 1) create window.
         // set signals for fft
         WindowFunction window = new WindowFunction();
         window.setWindowType("Hamming");
@@ -163,44 +156,6 @@ public class Spectrogram {
             }
             // end normalization
         }
-    }
-
-    public DataInputStream createOverlapAmplitudes(final int maxSamples, final DataInputStream amplitudes) throws IOException {
-
-        // overlapping
-        if (overlapFactor > 1) {
-            PipedInputStream pipedInput = new PipedInputStream();
-            PipedOutputStream pipedOutput = new PipedOutputStream();
-
-            pipedInput.connect(pipedOutput);
-
-            DataInputStream input = new DataInputStream(new BufferedInputStream(pipedInput));
-            final DataOutputStream overlapAmp = new DataOutputStream(pipedOutput);
-
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    int numSamples = 0;
-                    int backSamples = fftSampleSize * (overlapFactor - 1) / overlapFactor;
-                    int fftSampleSize_1 = fftSampleSize - 1;
-                    try {
-                        for (int i = 0; i < maxSamples; i++) {
-                            overlapAmp.writeShort(amplitudes.readShort());
-
-                            if (++numSamples % fftSampleSize == fftSampleSize_1) {
-                                // overlap
-                                i -= backSamples;
-                            }
-                        }
-                    } catch (IOException eofe) {
-                        // ignore, end of stream.
-                    }
-                }
-            });
-            return input;
-        }
-        return amplitudes;
     }
 
     /**

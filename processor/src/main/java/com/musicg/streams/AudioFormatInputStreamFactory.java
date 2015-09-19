@@ -68,16 +68,8 @@ public final class AudioFormatInputStreamFactory {
      * @param samples       original samples
      * @return interpolated samples
      */
-    public static AudioFormatInputStream createResampleStream(AudioFormatInputStream samples, float newSampleRate) throws IOException {
-        AudioFormat format = samples.getAudioFormat();
-
-        // create a new AudioFormat with the new sample rate.
-        AudioFormat newFormat = new AudioFormat(format.getEncoding(), newSampleRate, format.getSampleSizeInBits(),
-                format.getChannels(), format.getFrameSize(), format.getFrameRate(), format.isBigEndian());
-
-        Pipe pipe = new Pipe(newFormat);
-        AudioSystem.write(samples.getAudioInputStream(), AudioFileFormat.Type.WAVE, pipe.getOutput());
-        return pipe.getInput();
+    public static PipedAudioFormatInputStream createResampleStream(AudioFormatInputStream samples, float newSampleRate) throws IOException {
+        return new ResampleInputStream(samples.getAudioInputStream(), newSampleRate);
     }
 
 

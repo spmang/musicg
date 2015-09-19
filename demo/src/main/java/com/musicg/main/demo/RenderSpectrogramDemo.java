@@ -17,9 +17,10 @@ package com.musicg.main.demo;
 
 import com.musicg.graphic.GraphicRender;
 import com.musicg.spectrogram.Spectrogram;
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class RenderSpectrogramDemo {
@@ -31,7 +32,7 @@ public class RenderSpectrogramDemo {
 
         // create a wave object
         try {
-            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(inFolder + "/" + filename);
+            AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(inFolder + "/" + filename);
             Spectrogram spectrogram = new Spectrogram(wave);
 
             // Graphic render
@@ -47,6 +48,8 @@ public class RenderSpectrogramDemo {
             render.renderSpectrogram(spectrogram, outFolder + "/" + filename + "2.jpg");
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        } catch (UnsupportedAudioFileException uafe) {
+            uafe.printStackTrace();
         }
     }
 }

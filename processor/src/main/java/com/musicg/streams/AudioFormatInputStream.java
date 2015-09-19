@@ -10,11 +10,17 @@ import java.io.InputStream;
 
 /**
  * Custom stream read to simplify the reading of audio data from InputStreams.
+ * Setting littleEndian to true will cause the stream to read littleEndian, but still write bigEndian.
+ * <p/>
+ * // TODO fix the stream to write littleEndian.
+ * <p/>
  * Created by scottmangan on 9/18/15.
  */
 public class AudioFormatInputStream extends FilterInputStream {
 
-    private AudioFormat audioFormat;
+    protected AudioFormat audioFormat;
+
+    protected boolean littleEndian;
 
     /**
      * Create a new Stream from the given stream.
@@ -196,7 +202,8 @@ public class AudioFormatInputStream extends FilterInputStream {
     public final short readShort() throws IOException {
         byte[] shortBytes = new byte[2];
         this.readFully(shortBytes, 0, 2);
-        return (short) ((shortBytes[0] << 8) + (shortBytes[1] << 0));
+        return (short) (littleEndian ? ((shortBytes[1] << 8) + (shortBytes[0] << 0)) :
+                ((shortBytes[0] << 8) + (shortBytes[1] << 0)));
     }
 
     /**
@@ -219,7 +226,8 @@ public class AudioFormatInputStream extends FilterInputStream {
     public final int readUnsignedShort() throws IOException {
         byte[] shortBytes = new byte[2];
         readFully(shortBytes, 0, 2);
-        return (shortBytes[0] << 8) + (shortBytes[1] << 0);
+        return littleEndian ? ((shortBytes[1] << 8) + (shortBytes[0] << 0)) :
+                ((shortBytes[0] << 8) + (shortBytes[1] << 0));
     }
 
     /**
@@ -242,7 +250,8 @@ public class AudioFormatInputStream extends FilterInputStream {
     public final int readInt() throws IOException {
         byte[] intBytes = new byte[4];
         readFully(intBytes, 0, 4);
-        return ((intBytes[0] << 24) + (intBytes[1] << 16) + (intBytes[2] << 8) + (intBytes[3] << 0));
+        return littleEndian ? ((intBytes[3] << 24) + (intBytes[2] << 16) + (intBytes[1] << 8) + (intBytes[0] << 0)) :
+                ((intBytes[0] << 24) + (intBytes[1] << 16) + (intBytes[2] << 8) + (intBytes[3] << 0));
     }
 
     /**
@@ -265,14 +274,23 @@ public class AudioFormatInputStream extends FilterInputStream {
     public final long readLong() throws IOException {
         byte[] readBuffer = new byte[8];
         readFully(readBuffer, 0, 8);
-        return (((long) readBuffer[0] << 56) +
-                ((long) (readBuffer[1] & 255) << 48) +
-                ((long) (readBuffer[2] & 255) << 40) +
-                ((long) (readBuffer[3] & 255) << 32) +
-                ((long) (readBuffer[4] & 255) << 24) +
-                ((readBuffer[5] & 255) << 16) +
-                ((readBuffer[6] & 255) << 8) +
-                ((readBuffer[7] & 255) << 0));
+        return littleEndian ?
+                (((long) readBuffer[7] << 56) +
+                        ((long) (readBuffer[6] & 255) << 48) +
+                        ((long) (readBuffer[5] & 255) << 40) +
+                        ((long) (readBuffer[4] & 255) << 32) +
+                        ((long) (readBuffer[3] & 255) << 24) +
+                        ((readBuffer[2] & 255) << 16) +
+                        ((readBuffer[1] & 255) << 8) +
+                        ((readBuffer[0] & 255) << 0)) :
+                (((long) readBuffer[0] << 56) +
+                        ((long) (readBuffer[1] & 255) << 48) +
+                        ((long) (readBuffer[2] & 255) << 40) +
+                        ((long) (readBuffer[3] & 255) << 32) +
+                        ((long) (readBuffer[4] & 255) << 24) +
+                        ((readBuffer[5] & 255) << 16) +
+                        ((readBuffer[6] & 255) << 8) +
+                        ((readBuffer[7] & 255) << 0));
     }
 
     /**
@@ -317,5 +335,13 @@ public class AudioFormatInputStream extends FilterInputStream {
      */
     public final double readDouble() throws IOException {
         return Double.longBitsToDouble(readLong());
+    }
+
+    public boolean isLittleEndian() {
+        return littleEndian;
+    }
+
+    public void setLittleEndian(boolean littleEndian) {
+        this.littleEndian = littleEndian;
     }
 }

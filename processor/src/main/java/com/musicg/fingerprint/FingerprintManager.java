@@ -16,13 +16,9 @@
 
 package com.musicg.fingerprint;
 
-import com.musicg.dsp.Resampler;
 import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.spectrogram.Spectrogram;
-import com.musicg.streams.AbstractStreamRunnable;
 import com.musicg.streams.AudioFormatInputStream;
-import com.musicg.streams.StreamFactory;
-import com.musicg.wave.Wave;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 
 import javax.sound.sampled.AudioFormat;
@@ -76,7 +72,6 @@ public class FingerprintManager {
         // end resample to target rate
 
 
-
         // get spectrogram's data
         Spectrogram spectrogram = new Spectrogram(resampledWaveData, sampleSizePerFrame, overlapFactor);
         spectrogram.buildSpectrogram(-1);
@@ -111,17 +106,7 @@ public class FingerprintManager {
                                                      final int[][] coordinates,
                                                      final double[][] spectorgramData) throws IOException {
         // for each valid coordinate, append with its intensity
-        return StreamFactory.getStreamedTarget(new AbstractStreamRunnable() {
-            @Override
-            public void run() {
-                try {
-                    createIntensityStream(numFrames, numRobustPointsPerFrame, coordinates, spectorgramData, outputStream);
-                } catch (IOException ioe) {
-                    // TODO send notification
-                    ioe.printStackTrace();
-                }
-            }
-        });
+        return null;
     }
 
 
@@ -152,9 +137,9 @@ public class FingerprintManager {
         }
     }
 
-    public static FingerprintSimilarity getFingerprintSimilarity(Wave wave1, Wave wave2) throws IOException {
-        return new FingerprintSimilarityComputer(getFingerprint(wave1.getAudioStream()),
-                getFingerprint(wave2.getAudioStream())).getFingerprintsSimilarity();
+    public static FingerprintSimilarity getFingerprintSimilarity(AudioFormatInputStream wave1, AudioFormatInputStream wave2) throws IOException {
+        return new FingerprintSimilarityComputer(getFingerprint(wave1),
+                getFingerprint(wave2)).getFingerprintsSimilarity();
     }
 
     /**

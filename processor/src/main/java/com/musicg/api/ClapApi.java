@@ -16,8 +16,10 @@
 
 package com.musicg.api;
 
-import com.musicg.wave.Wave;
 
+import com.musicg.streams.AudioFormatInputStream;
+
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 /**
@@ -27,7 +29,7 @@ import java.io.IOException;
  */
 public class ClapApi extends DetectionApi {
 
-    public ClapApi(Wave wave) {
+    public ClapApi(AudioFormatInputStream wave) {
         super(wave);
     }
 
@@ -52,7 +54,7 @@ public class ClapApi extends DetectionApi {
         numRobust = 4;
     }
 
-    public boolean isClap(byte[] audioBytes) throws IOException {
+    public boolean isClap(byte[] audioBytes) throws IOException, UnsupportedAudioFileException {
         return isSpecificSound(audioBytes);
     }
 }

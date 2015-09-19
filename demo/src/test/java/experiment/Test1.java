@@ -6,10 +6,11 @@ import com.musicg.math.statistics.SpectralCentroid;
 import com.musicg.math.statistics.StandardDeviation;
 import com.musicg.pitch.PitchHandler;
 import com.musicg.spectrogram.Spectrogram;
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 import com.musicg.wave.extension.SampleAmplitudes;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.DataInputStream;
 import java.io.IOException;
 
@@ -21,7 +22,7 @@ public class Test1 {
 
         // create a wave object
         try {
-            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
+            AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
 
             // TimeDomainRepresentations
             int fftSampleSize = 1024;
@@ -136,6 +137,8 @@ public class Test1 {
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        } catch (UnsupportedAudioFileException uafe) {
+            uafe.printStackTrace();
         }
     }
 }

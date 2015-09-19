@@ -16,9 +16,7 @@
 
 package com.musicg.wave.extension;
 
-import com.musicg.streams.AbstractStreamRunnable;
 import com.musicg.streams.AudioFormatInputStream;
-import com.musicg.streams.StreamFactory;
 
 import java.io.*;
 
@@ -42,18 +40,7 @@ public final class SampleAmplitudes {
      * @return amplitudes array (signed 16-bit)
      */
     public static DataInputStream getSampleAmplitudes(final AudioFormatInputStream wave, final int maxSamples) throws IOException {
-        return StreamFactory.getStreamedTarget(new AbstractStreamRunnable() {
-            @Override
-            public void run() {
-                try {
-                    getSampleAmplitudes(wave, maxSamples, outputStream);
-                } catch (IOException e) {
-
-                    // TODO send notification.
-                    e.printStackTrace();
-                }
-            }
-        });
+        return null;
     }
 
     /**
@@ -84,19 +71,7 @@ public final class SampleAmplitudes {
     }
 
     public static DataInputStream getNormalizedAmplitudes(final AudioFormatInputStream wave, final int maxSamples) throws IOException {
-        return StreamFactory.getStreamedTarget(new AbstractStreamRunnable() {
-            @Override
-            public void run() {
-                try {
-                    getNormalizedAmplitudes(wave, maxSamples, outputStream);
-                } catch (IOException e) {
-
-                    // TODO send notification.
-                    e.printStackTrace();
-                }
-
-            }
-        });
+        return null;
     }
 
     /**

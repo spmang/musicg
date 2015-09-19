@@ -4,6 +4,7 @@ import com.musicg.api.WhistleApi;
 import com.musicg.streams.AudioException;
 import com.musicg.streams.AudioFormatInputStream;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ public class WaveTypeDetector {
      * @return The probability.
      * @throws IOException
      */
-    public double getWhistleProbability(int fftSampleSize, long maxFrames) throws IOException {
+    public double getWhistleProbability(int fftSampleSize, long maxFrames) throws IOException, UnsupportedAudioFileException {
 
         double probability = 0;
 

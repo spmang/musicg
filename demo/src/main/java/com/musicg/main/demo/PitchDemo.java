@@ -2,9 +2,10 @@ package com.musicg.main.demo;
 
 import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.spectrogram.Spectrogram;
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class PitchDemo {
@@ -15,7 +16,7 @@ public class PitchDemo {
 
         // create a wave object
         try {
-            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
+            AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
             Spectrogram spectrogram = new Spectrogram(wave);
 
             TopManyPointsProcessorChain processorChain = new TopManyPointsProcessorChain(spectrogram.getNormalizedSpectrogramData(), 1);
@@ -30,6 +31,8 @@ public class PitchDemo {
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        } catch (UnsupportedAudioFileException uafe) {
+            uafe.printStackTrace();
         }
     }
 }

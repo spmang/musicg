@@ -15,10 +15,11 @@
  */
 package com.musicg.main.demo;
 
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 import com.musicg.wave.AudioFileManager;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class WaveDemo {
@@ -30,7 +31,7 @@ public class WaveDemo {
 
         // create a wave object
         try {
-            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
+            AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
 
             // print the wave header and info
             System.out.println(wave);
@@ -39,6 +40,8 @@ public class WaveDemo {
             AudioFileManager.saveWaveAsFile(wave, outFolder + "/out.wav", 1.0, 0.5);
         } catch (IOException ioe) {
             System.out.println("The input file could not be found.");
+        } catch (UnsupportedAudioFileException uafe) {
+            uafe.printStackTrace();
         }
     }
 }

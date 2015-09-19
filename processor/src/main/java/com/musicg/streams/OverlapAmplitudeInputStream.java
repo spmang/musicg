@@ -1,18 +1,20 @@
 package com.musicg.streams;
 
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
-import java.io.*;
+import java.io.EOFException;
+import java.io.IOException;
 
 /**
+ * Create overlap amplitude values.
+ * <p/>
  * Created by Scott on 9/18/2015.
  */
-public class OverlapAmplitudeInputStream extends AudioFormatInputStream {
+public class OverlapAmplitudeInputStream extends PipedAudioFormatInputStream {
 
     private int overlapFactor;
     private int backSamples;
     private int fftSampleSize;
-    int fftSampleSize_1;
+    private int fftSampleSize_1;
     private int numSamples;
     private int markposition;
 
@@ -30,11 +32,14 @@ public class OverlapAmplitudeInputStream extends AudioFormatInputStream {
         markposition = fftSampleSize = backSamples;
     }
 
-    public short readValue() throws IOException {
+    public void readValue() throws IOException {
         // overlapping
-        short value = -1;
         if (overlapFactor > 1) {
-            value = readShort();
+            short value = readShort();
+            if (value == -1) {
+                throw new EOFException("End of stream.");
+            }
+            outputStream.writeShort(value);
             if (++numSamples % fftSampleSize == fftSampleSize_1) {
                 // overlap
                 this.reset();
@@ -44,19 +49,5 @@ public class OverlapAmplitudeInputStream extends AudioFormatInputStream {
                 this.mark(backSamples);
             }
         }
-        return value;
-    }
-
-    /**
-     * Stream the content of this stream to the given output stream.
-     *
-     * @param output
-     */
-    public void connect(DataOutputStream output) throws IOException {
-        short value;
-        while ((value = readValue()) > -1) {
-            output.writeShort(value);
-        }
-        throw new EOFException("Stream closed");
     }
 }

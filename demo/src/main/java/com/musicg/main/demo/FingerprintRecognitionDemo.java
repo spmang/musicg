@@ -17,9 +17,10 @@ package com.musicg.main.demo;
 
 import com.musicg.fingerprint.FingerprintManager;
 import com.musicg.fingerprint.FingerprintSimilarity;
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class FingerprintRecognitionDemo {
@@ -34,14 +35,14 @@ public class FingerprintRecognitionDemo {
 
         // create a wave object
         try {
-            Wave waveA = AudioFormatInputStreamFactory.createAudioFormatInputStream(songA);
-            Wave waveB = AudioFormatInputStreamFactory.createAudioFormatInputStream(songB);
-            Wave waveC = AudioFormatInputStreamFactory.createAudioFormatInputStream(songC);
-            Wave waveD = AudioFormatInputStreamFactory.createAudioFormatInputStream(songD);
-            Wave waveE = AudioFormatInputStreamFactory.createAudioFormatInputStream(songE);
+            AudioFormatInputStream waveA = AudioFormatInputStreamFactory.createAudioFormatInputStream(songA);
+            AudioFormatInputStream waveB = AudioFormatInputStreamFactory.createAudioFormatInputStream(songB);
+            AudioFormatInputStream waveC = AudioFormatInputStreamFactory.createAudioFormatInputStream(songC);
+            AudioFormatInputStream waveD = AudioFormatInputStreamFactory.createAudioFormatInputStream(songD);
+            AudioFormatInputStream waveE = AudioFormatInputStreamFactory.createAudioFormatInputStream(songE);
 
             String recordedClip = "audio_work/songs/top_of_the_world_rec.wav";
-            Wave waveRec = AudioFormatInputStreamFactory.createAudioFormatInputStream(recordedClip);
+            AudioFormatInputStream waveRec = AudioFormatInputStreamFactory.createAudioFormatInputStream(recordedClip);
 
             FingerprintSimilarity similarity;
 
@@ -76,6 +77,8 @@ public class FingerprintRecognitionDemo {
                     + songE + " with similarity " + similarity.getSimilarity());
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        } catch (UnsupportedAudioFileException uafe) {
+            uafe.printStackTrace();
         }
     }
 }

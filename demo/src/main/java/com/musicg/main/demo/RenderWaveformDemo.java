@@ -16,9 +16,10 @@
 package com.musicg.main.demo;
 
 import com.musicg.graphic.GraphicRender;
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -32,7 +33,7 @@ public class RenderWaveformDemo {
         // create a wave object
         try {
             File location = new File(Thread.currentThread().getContextClassLoader().getResource(filename).toURI());
-            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(location);
+            AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(location);
 
             // Graphic render
             GraphicRender render = new GraphicRender();
@@ -47,6 +48,8 @@ public class RenderWaveformDemo {
             urie.printStackTrace();
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        } catch (UnsupportedAudioFileException uafe) {
+            uafe.printStackTrace();
         }
     }
 }

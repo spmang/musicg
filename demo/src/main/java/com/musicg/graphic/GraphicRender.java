@@ -1,7 +1,7 @@
 package com.musicg.graphic;
 
 import com.musicg.spectrogram.Spectrogram;
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.wave.extension.SampleAmplitudes;
 
 import javax.imageio.ImageIO;
@@ -24,7 +24,7 @@ public class GraphicRender {
      * @param wave     Wave object
      * @param filename output file
      */
-    public void renderWaveform(Wave wave, String filename) throws IOException {
+    public void renderWaveform(AudioFormatInputStream wave, String filename) throws IOException {
         renderWaveform(wave, WAVEFORM_DEFAULT_TIMESTEP, filename);
     }
 
@@ -35,13 +35,13 @@ public class GraphicRender {
      * @param timeStep time interval in second, as known as 1/fps
      * @param filename output file
      */
-    public void renderWaveform(Wave wave, float timeStep, String filename) throws IOException {
+    public void renderWaveform(AudioFormatInputStream wave, float timeStep, String filename) throws IOException {
 
         // for signed signals, the middle is 0 (-1 ~ 1)
         double middleLine = 0;
 
         // usually 8bit is unsigned
-        if (wave.getWaveHeader().getSampleSize() == 8) {
+        if (wave.getAudioFormat().getSampleSizeInBits() == 8) {
             // for unsigned signals, the middle is 0.5 (0~1)
             middleLine = 0.5;
         }
@@ -58,7 +58,7 @@ public class GraphicRender {
         //int numSamples = nAmplitudes.length;
 
         if (width > 0) {
-            int numSamplePerTimeFrame = (int) wave.getWaveHeader().getSampleRate();
+            int numSamplePerTimeFrame = (int) wave.getAudioFormat().getSampleRate();
 
             ByteArrayOutputStream posAmplitudes = new ByteArrayOutputStream();
             ByteArrayOutputStream negAmplitudes = new ByteArrayOutputStream();

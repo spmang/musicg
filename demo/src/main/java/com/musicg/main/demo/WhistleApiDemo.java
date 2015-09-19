@@ -15,10 +15,11 @@
  */
 package com.musicg.main.demo;
 
-import com.musicg.wave.Wave;
+import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 import com.musicg.wave.WaveTypeDetector;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class WhistleApiDemo {
@@ -26,12 +27,14 @@ public class WhistleApiDemo {
 
         // create a wave object
         try {
-            Wave wave = AudioFormatInputStreamFactory.createAudioFormatInputStream("audio_work/whistle.wav");
+            AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream("audio_work/whistle.wav");
             WaveTypeDetector waveTypeDetector = new WaveTypeDetector(wave);
             System.out.println("Is whistle probability: " + waveTypeDetector.getWhistleProbability(10, -1));
         } catch (IOException ioe) {
             System.out.println("Could not load input file");
             ioe.printStackTrace();
+        } catch (UnsupportedAudioFileException uafe) {
+            uafe.printStackTrace();
         }
     }
 }
