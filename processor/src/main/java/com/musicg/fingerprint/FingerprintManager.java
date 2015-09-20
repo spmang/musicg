@@ -26,6 +26,7 @@ import javax.sound.sampled.AudioFormat;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -71,8 +72,7 @@ public class FingerprintManager {
 
         // get spectrogram's data
         Spectrogram spectrogram = new Spectrogram(resampledWaveData, sampleSizePerFrame, fingerprintProperties.getOverlapFactor());
-        spectrogram.buildSpectrogram();
-        double[][] spectorgramData = spectrogram.getNormalizedSpectrogramData();
+        List<double[]> spectorgramData = spectrogram.getNormalizedSpectrogram();
 
         List<Integer>[] pointsLists = getRobustPointList(spectorgramData, numFilterBanks);
         int numFrames = pointsLists.length;
@@ -101,7 +101,7 @@ public class FingerprintManager {
 
     private static InputStream createIntensityStream(final int numFrames, final int numRobustPointsPerFrame,
                                                      final int[][] coordinates,
-                                                     final double[][] spectorgramData) throws IOException {
+                                                     final List<double[]> spectorgramData) throws IOException {
         // for each valid coordinate, append with its intensity
         return null;
     }
@@ -197,31 +197,35 @@ public class FingerprintManager {
     }
 
     // robustLists[x]=y1,y2,y3,...
-    private static List<Integer>[] getRobustPointList(double[][] spectrogramData, int numFilterBanks) {
+    private static List<Integer>[] getRobustPointList(List<double[]> spectrogramData, int numFilterBanks) {
 
-        int numX = spectrogramData.length;
-        int numY = spectrogramData[0].length;
+        int numX = spectrogramData.size();
+        int numY = spectrogramData.get(0).length;
 
         double[][] allBanksIntensities = new double[numX][numY];
         int bandwidthPerBank = numY / numFilterBanks;
 
         for (int b = 0; b < numFilterBanks; b++) {
 
-            double[][] bankIntensities = new double[numX][bandwidthPerBank];
+            List<double[]> bankIntensities = new ArrayList<double[]>();
 
             for (int i = 0; i < numX; i++) {
+                double[] frame = spectrogramData.get(i);
+                double[] intensities = new double[bandwidthPerBank];
+                bankIntensities.add(intensities);
                 for (int j = 0; j < bandwidthPerBank; j++) {
-                    bankIntensities[i][j] = spectrogramData[i][j + b * bandwidthPerBank];
+                    intensities[j] = frame[j + b * bandwidthPerBank];
                 }
             }
 
             // get the most robust point in each filter bank
             TopManyPointsProcessorChain processorChain = new TopManyPointsProcessorChain(bankIntensities, 1);
-            double[][] processedIntensities = processorChain.getIntensities();
+            List<double[]> processedIntensities = processorChain.getIntensities();
 
             for (int i = 0; i < numX; i++) {
+                double[] frame = processedIntensities.get(i);
                 for (int j = 0; j < bandwidthPerBank; j++) {
-                    allBanksIntensities[i][j + b * bandwidthPerBank] = processedIntensities[i][j];
+                    allBanksIntensities[i][j + b * bandwidthPerBank] = frame[j];
                 }
             }
         }
@@ -241,15 +245,13 @@ public class FingerprintManager {
         }
         // end find robust points
 
-        List<Integer>[] robustLists = new LinkedList[spectrogramData.length];
+        List<Integer>[] robustLists = new LinkedList[spectrogramData.size()];
         for (int i = 0; i < robustLists.length; i++) {
             robustLists[i] = new LinkedList<Integer>();
         }
 
         // robustLists[x]=y1,y2,y3,...
-        Iterator<int[]> robustPointListIterator = robustPointList.iterator();
-        while (robustPointListIterator.hasNext()) {
-            int[] coor = robustPointListIterator.next();
+        for (int[] coor : robustPointList) {
             robustLists[coor[0]].add(coor[1]);
         }
 

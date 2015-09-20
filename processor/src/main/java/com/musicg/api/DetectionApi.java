@@ -22,6 +22,7 @@ import com.musicg.math.statistics.ZeroCrossingRate;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
+import com.musicg.streams.FftInputStream;
 import com.musicg.wave.extension.SampleAmplitudes;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -99,10 +100,10 @@ public class DetectionApi {
             // spectrum for the clip
             Spectrogram spectrogram = new Spectrogram(sampleWave, fftSampleSize, 0);
 
-            double[][] spectrogramData = spectrogram.getAbsoluteSpectrogramData();
+            FftInputStream spectrogramData = spectrogram.getSpectrogramInputStream();
 
             // since fftSampleSize==numSamples, there're only one spectrum which is thisFrameSpectrogramData[0]
-            double[] spectrum = spectrogramData[0];
+            double[] spectrum = spectrogramData.readFrame();
 
             int frequencyUnitRange = upperBoundary - lowerBoundary + 1;
             double[] rangedSpectrum = new double[frequencyUnitRange];
@@ -110,16 +111,16 @@ public class DetectionApi {
 
             if (frequencyUnitRange <= spectrum.length) {
 
-                if (isPassedIntensity(spectrum)) {
-                    if (isPassedStandardDeviation(spectrogramData)) {
-                        // TODO fix me
-                        //if (isPassedZeroCrossingRate(amplitudes)) {
-                        //    if (isPassedFrequency(rangedSpectrum)) {
-                        //        return true;
-                        //    }
-                        //}
-                    }
-                }
+                // if (isPassedIntensity(spectrum)) {
+                //    if (isPassedStandardDeviation(spectrogramData)) {
+                // TODO fix me
+                //if (isPassedZeroCrossingRate(amplitudes)) {
+                //    if (isPassedFrequency(rangedSpectrum)) {
+                //        return true;
+                //    }
+                //}
+                //    }
+                //}
 
 				/*
                 // run all checking for debug

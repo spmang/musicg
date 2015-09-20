@@ -6,9 +6,9 @@ import java.util.List;
 public class ProcessorChain {
 
     List<IntensityProcessor> processorList = new LinkedList<>();
-    private double[][] intensities;
+    private List<double[]> intensities;
 
-    public ProcessorChain(double[][] intensities) {
+    public ProcessorChain(List<double[]> intensities) {
         this.intensities = intensities;
         RobustIntensityProcessor robustProcessor = new RobustIntensityProcessor(intensities, 1);
         processorList.add(robustProcessor);
@@ -22,7 +22,7 @@ public class ProcessorChain {
         }
     }
 
-    public double[][] getIntensities() {
+    public List<double[]> getIntensities() {
         return intensities;
     }
 }

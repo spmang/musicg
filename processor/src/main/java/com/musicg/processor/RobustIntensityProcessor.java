@@ -2,25 +2,29 @@ package com.musicg.processor;
 
 import com.musicg.math.rank.ArrayRankDouble;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RobustIntensityProcessor implements IntensityProcessor {
 
-    private double[][] intensities;
+    private List<double[]> intensities;
     private int numPointsPerFrame;
 
-    public RobustIntensityProcessor(double[][] intensities, int numPointsPerFrame) {
+    public RobustIntensityProcessor(List<double[]> intensities, int numPointsPerFrame) {
         this.intensities = intensities;
         this.numPointsPerFrame = numPointsPerFrame;
     }
 
     public void execute() {
 
-        int numX = intensities.length;
-        int numY = intensities[0].length;
-        double[][] processedIntensities = new double[numX][numY];
+        int numX = intensities.size();
+        int numY = intensities.get(0).length;
+        List<double[]> processedIntensities = new ArrayList<double[]>(numY);
 
         for (int i = 0; i < numX; i++) {
             double[] tmpArray = new double[numY];
-            System.arraycopy(intensities[i], 0, tmpArray, 0, numY);
+            double[] frame = intensities.get(i);
+            System.arraycopy(frame, 0, tmpArray, 0, numY);
 
             // pass value is the last some elements in sorted array
             ArrayRankDouble arrayRankDouble = new ArrayRankDouble();
@@ -28,15 +32,15 @@ public class RobustIntensityProcessor implements IntensityProcessor {
 
             // only passed elements will be assigned a value
             for (int j = 0; j < numY; j++) {
-                if (intensities[i][j] >= passValue) {
-                    processedIntensities[i][j] = intensities[i][j];
+                if (frame[j] >= passValue) {
+                    frame[j] = frame[j];
                 }
             }
         }
         intensities = processedIntensities;
     }
 
-    public double[][] getIntensities() {
+    public List<double[]> getIntensities() {
         return intensities;
     }
 }

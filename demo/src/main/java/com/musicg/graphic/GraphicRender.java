@@ -131,8 +131,8 @@ public class GraphicRender {
      * @param spectrogram spectrogram object
      * @param filename    output file
      */
-    public void renderSpectrogram(Spectrogram spectrogram, String filename) {
-        renderSpectrogramData(spectrogram.getNormalizedSpectrogramData(), filename);
+    public void renderSpectrogram(Spectrogram spectrogram, String filename) throws IOException {
+        renderSpectrogramData(spectrogram.getNormalizedSpectrogram(), filename);
     }
 
     /**
@@ -141,14 +141,15 @@ public class GraphicRender {
      * @param spectrogramData spectrogramData[time][frequency]=intensity, which time is the x-axis, frequency is the y-axis, intensity is the color darkness
      * @param filename        output file
      */
-    public void renderSpectrogramData(double[][] spectrogramData, String filename) {
+    public void renderSpectrogramData(java.util.List<double[]> spectrogramData, String filename) {
 
         if (spectrogramData != null) {
-            int width = spectrogramData.length;
-            int height = spectrogramData[0].length;
+            int width = spectrogramData.size();
+            int height = spectrogramData.get(0).length;
 
             BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             for (int i = 0; i < width; i++) {
+                double[] frame = spectrogramData.get(i);
                 if (i == xMarker) {
                     for (int j = 0; j < height; j++) {
                         bufferedImage.setRGB(i, j, 0xFF00);    // green
@@ -159,7 +160,7 @@ public class GraphicRender {
                         if (j == yMarker) {
                             value = 0xFF0000;    // red
                         } else {
-                            value = 255 - (int) (spectrogramData[i][j] * 255);
+                            value = 255 - (int) (frame[i] * 255);
                         }
                         bufferedImage.setRGB(i, height - 1 - j, value << 16 | value << 8 | value);
                     }

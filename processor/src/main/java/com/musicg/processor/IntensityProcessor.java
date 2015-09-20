@@ -1,8 +1,10 @@
 package com.musicg.processor;
 
+import java.util.List;
+
 public interface IntensityProcessor {
 
     void execute();
 
-    double[][] getIntensities();
+    List<double[]> getIntensities();
 }

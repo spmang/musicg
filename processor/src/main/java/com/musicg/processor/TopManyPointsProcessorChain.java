@@ -7,9 +7,9 @@ import java.util.List;
 public class TopManyPointsProcessorChain {
 
     List<IntensityProcessor> processorList = new LinkedList<>();
-    private double[][] intensities;
+    private List<double[]> intensities;
 
-    public TopManyPointsProcessorChain(double[][] intensities, int numPoints) {
+    public TopManyPointsProcessorChain(List<double[]> intensities, int numPoints) {
         this.intensities = intensities;
         RobustIntensityProcessor robustProcessor = new RobustIntensityProcessor(intensities, numPoints);
         processorList.add(robustProcessor);
@@ -23,7 +23,7 @@ public class TopManyPointsProcessorChain {
         }
     }
 
-    public double[][] getIntensities() {
+    public List<double[]> getIntensities() {
         return intensities;
     }
 }

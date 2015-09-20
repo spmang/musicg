@@ -67,14 +67,14 @@ public class FftInputStream extends PipedAudioFormatInputStream {
         numFrequencyUnit = fftSampleSize / 4;
     }
 
-    public double[] processFrame() throws IOException {
+    public double[] readFrame() throws IOException {
 
         double[] signals = new double[fftSampleSize];
         for (int n = 0; n < fftSampleSize; n++) {
             signals[n] = readDouble();
         }
         // for each frame in signals, do fft on it
-        double[] magnitudes =  fft.getMagnitudes(signals);
+        double[] magnitudes = fft.getMagnitudes(signals);
         return magnitudes;
     }
 
@@ -85,7 +85,7 @@ public class FftInputStream extends PipedAudioFormatInputStream {
      */
     @Override
     public void readValue() throws IOException {
-        for (double value : processFrame()) {
+        for (double value : readFrame()) {
             outputStream.writeDouble(value);
         }
     }
