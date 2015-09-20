@@ -22,8 +22,13 @@ import com.sun.media.sound.FFT;
  * FFT object, transform amplitudes to frequency intensities
  *
  * @author Jacquet Wong
+ * @author Scott Mangan
  */
 public class FastFourierTransform {
+
+    // Find max and min amplitudes
+    private double maxAmp = Double.MIN_VALUE;
+    private double minAmp = Double.MAX_VALUE;
 
     /**
      * Get the frequency intensities
@@ -33,29 +38,38 @@ public class FastFourierTransform {
      */
     public double[] getMagnitudes(double[] amplitudes) {
 
-        int sampleSize = amplitudes.length;
+        int indexSize = amplitudes.length / 2;
 
         // call the fft and transform the complex numbers
-        FFT fft = new FFT(sampleSize / 2, -1);
+        FFT fft = new FFT(indexSize, -1);
         fft.transform(amplitudes);
         // end call the fft and transform the complex numbers
 
         // even indexes (0,2,4,6,...) are real parts
         // odd indexes (1,3,5,7,...) are img parts
-        int indexSize = sampleSize / 2;
 
         // FFT produces a transformed pair of arrays where the first half of the
         // values represent positive frequency components and the second half
         // represents negative frequency components.
         // we omit the negative ones
-        int positiveSize = indexSize / 2;
-
-        double[] mag = new double[positiveSize];
+        double[] mag = new double[indexSize / 2];
         for (int i = 0; i < indexSize; i += 2) {
-            mag[i / 2] = Math.sqrt(amplitudes[i] * amplitudes[i] + amplitudes[i + 1] * amplitudes[i + 1]);
+            double value = Math.sqrt(amplitudes[i] * amplitudes[i] + amplitudes[i + 1] * amplitudes[i + 1]);
+            mag[i / 2] = value;
+            if (value > maxAmp) {
+                maxAmp = value;
+            } else if (value < minAmp) {
+                minAmp = value;
+            }
         }
-
         return mag;
     }
 
+    public double getMaxAmp() {
+        return maxAmp;
+    }
+
+    public double getMinAmp() {
+        return minAmp;
+    }
 }

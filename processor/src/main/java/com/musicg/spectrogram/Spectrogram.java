@@ -18,10 +18,7 @@ package com.musicg.spectrogram;
 
 import com.musicg.dsp.FastFourierTransform;
 import com.musicg.dsp.WindowFunction;
-import com.musicg.streams.AudioFormatInputStream;
-import com.musicg.streams.HammingInputStream;
-import com.musicg.streams.OverlapAmplitudeInputStream;
-import com.musicg.streams.Pipe;
+import com.musicg.streams.*;
 
 import java.io.IOException;
 
@@ -80,68 +77,40 @@ public class Spectrogram {
 
     /**
      * Build spectrogram
-     *
-     * @param maxSamples The maximum number of samples to process.
      */
-    public void buildSpectrogram(int maxSamples) throws IOException {
+    public void buildSpectrogram() throws IOException {
         OverlapAmplitudeInputStream overlapAmp = new OverlapAmplitudeInputStream(wave.getAudioInputStream(), overlapFactor, fftSampleSize);
         Pipe pipe = new Pipe(overlapAmp.getAudioFormat());
         overlapAmp.connect(pipe.getOutput());
         HammingInputStream hamming = new HammingInputStream(pipe.getInput(), pipe.getAudioFormat(), true, fftSampleSize);
+        Pipe pipe1 = new Pipe(hamming.getAudioFormat());
+        hamming.connect(pipe1.getOutput());
+        FftInputStream fftInputStream = new FftInputStream(pipe.getInput(), pipe.getAudioFormat(), fftSampleSize);
 
-        // use FFT to generate spectrogram from modified data.
-        // This can be multi-threaded.
-        absoluteSpectrogram = new double[numFrames][];
+        numFrequencyUnit = fftInputStream.getNumFrequencyUnit();
+        unitFrequency = (double) wave.getAudioFormat().getSampleRate() / 2 / numFrequencyUnit;    // frequency could be caught within the half of nSamples according to Nyquist theory
 
-        // for each frame in signals, do fft on it
-        FastFourierTransform fft = new FastFourierTransform();
+        // The next part requires the entire spectrogram to be processed.
+        double minAmp = fftInputStream.getMinAmp();
+        double maxAmp = fftInputStream.getMaxAmp();
+        // normalization
+        // avoiding divided by zero
+        double minValidAmp = 0.00000000001F;
+        if (minAmp == 0) {
+            minAmp = minValidAmp;
+        }
 
-        double[][] signals=new double[numFrames][];
+        double diff = Math.log10(maxAmp / minAmp);    // perceptual difference
         for (int i = 0; i < numFrames; i++) {
-            absoluteSpectrogram[i] = fft.getMagnitudes(signals[i]);
-        }
-
-        if (absoluteSpectrogram.length > 0) {
-
-            numFrequencyUnit = absoluteSpectrogram[0].length;
-            unitFrequency = (double) wave.getAudioFormat().getSampleRate() / 2 / numFrequencyUnit;    // frequency could be caught within the half of nSamples according to Nyquist theory
-
-            // normalization of absoultSpectrogram
-            spectrogram = new double[numFrames][numFrequencyUnit];
-
-            // 4) Find max and min amplitudes
-            double maxAmp = Double.MIN_VALUE;
-            double minAmp = Double.MAX_VALUE;
-            for (int i = 0; i < numFrames; i++) {
-                for (int j = 0; j < numFrequencyUnit; j++) {
-                    if (absoluteSpectrogram[i][j] > maxAmp) {
-                        maxAmp = absoluteSpectrogram[i][j];
-                    } else if (absoluteSpectrogram[i][j] < minAmp) {
-                        minAmp = absoluteSpectrogram[i][j];
-                    }
+            for (int j = 0; j < numFrequencyUnit; j++) {
+                if (absoluteSpectrogram[i][j] < minValidAmp) {
+                    spectrogram[i][j] = 0;
+                } else {
+                    spectrogram[i][j] = (Math.log10(absoluteSpectrogram[i][j] / minAmp)) / diff;
                 }
             }
-            // end set max and min amplitudes
-
-            // normalization
-            // avoiding divided by zero
-            double minValidAmp = 0.00000000001F;
-            if (minAmp == 0) {
-                minAmp = minValidAmp;
-            }
-
-            double diff = Math.log10(maxAmp / minAmp);    // perceptual difference
-            for (int i = 0; i < numFrames; i++) {
-                for (int j = 0; j < numFrequencyUnit; j++) {
-                    if (absoluteSpectrogram[i][j] < minValidAmp) {
-                        spectrogram[i][j] = 0;
-                    } else {
-                        spectrogram[i][j] = (Math.log10(absoluteSpectrogram[i][j] / minAmp)) / diff;
-                    }
-                }
-            }
-            // end normalization
         }
+        // end normalization
     }
 
     /**
