@@ -71,7 +71,7 @@ public class FingerprintManager {
 
         // get spectrogram's data
         Spectrogram spectrogram = new Spectrogram(resampledWaveData, sampleSizePerFrame, fingerprintProperties.getOverlapFactor());
-        spectrogram.buildSpectrogram(-1);
+        spectrogram.buildSpectrogram();
         double[][] spectorgramData = spectrogram.getNormalizedSpectrogramData();
 
         List<Integer>[] pointsLists = getRobustPointList(spectorgramData, numFilterBanks);

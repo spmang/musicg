@@ -16,7 +16,7 @@
 
 package com.musicg.dsp;
 
-import com.sun.media.sound.FFT;
+import com.musicg.spectrogram.FFT;
 
 /**
  * FFT object, transform amplitudes to frequency intensities
