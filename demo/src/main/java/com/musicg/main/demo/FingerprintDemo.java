@@ -18,6 +18,7 @@ package com.musicg.main.demo;
 import com.musicg.fingerprint.FingerprintManager;
 import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
+import com.musicg.streams.filter.WaveInputFilter;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class FingerprintDemo {
             AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream("audio_work/" + filename);
 
             // get the fingerprint
-            InputStream fingerprint = FingerprintManager.extractFingerprint(wave, null);
+            InputStream fingerprint = FingerprintManager.extractFingerprint(new WaveInputFilter(wave), null);
 
             // dump the fingerprint
             try {

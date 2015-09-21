@@ -17,10 +17,13 @@
 package com.musicg.spectrogram;
 
 import com.musicg.streams.*;
+import com.musicg.streams.filter.FftInputStream;
+import com.musicg.streams.filter.HammingInputStream;
+import com.musicg.streams.filter.OverlapAmplitudeFilter;
+import com.musicg.streams.filter.PipedAudioFilter;
 
 import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +38,7 @@ public class Spectrogram {
     public static final int SPECTROGRAM_DEFAULT_FFT_SAMPLE_SIZE = 1024;
     public static final int SPECTROGRAM_DEFAULT_OVERLAP_FACTOR = 0;    // 0 for no overlapping
 
-    private AudioFormatInputStream wave;
+    private PipedAudioFilter wave;
     private List<double[]> normalizedSpectrogram;
 
     private int fftSampleSize;    // number of sample in fft, the value needed to be a number to power of 2
@@ -46,7 +49,7 @@ public class Spectrogram {
      *
      * @param wave The source Wave to process.
      */
-    public Spectrogram(AudioFormatInputStream wave) {
+    public Spectrogram(PipedAudioFilter wave) {
         this.wave = wave;
         // default
         this.fftSampleSize = SPECTROGRAM_DEFAULT_FFT_SAMPLE_SIZE;
@@ -60,7 +63,7 @@ public class Spectrogram {
      * @param fftSampleSize number of sample in fft, the value needed to be a number to power of 2
      * @param overlapFactor 1/overlapFactor overlapping, e.g. 1/4=25% overlapping, 0 for no overlapping
      */
-    public Spectrogram(AudioFormatInputStream wave, int fftSampleSize, int overlapFactor) {
+    public Spectrogram(PipedAudioFilter wave, int fftSampleSize, int overlapFactor) {
         this.wave = wave;
 
         if (Integer.bitCount(fftSampleSize) == 1) {
@@ -77,13 +80,9 @@ public class Spectrogram {
      * Build spectrogram.
      */
     public FftInputStream getSpectrogramInputStream() throws IOException {
-        OverlapAmplitudeInputStream overlapAmp = new OverlapAmplitudeInputStream(wave.getAudioInputStream(), overlapFactor, fftSampleSize);
-        Pipe pipe = new Pipe(overlapAmp.getAudioFormat());
-        overlapAmp.connect(pipe.getOutput());
-        HammingInputStream hamming = new HammingInputStream(pipe.getInput(), pipe.getAudioFormat(), true, fftSampleSize);
-        Pipe pipe1 = new Pipe(hamming.getAudioFormat());
-        hamming.connect(pipe1.getOutput());
-        return new FftInputStream(pipe.getInput(), pipe.getAudioFormat(), fftSampleSize);
+        OverlapAmplitudeFilter overlapAmp = new OverlapAmplitudeFilter(wave, overlapFactor, fftSampleSize);
+        HammingInputStream hamming = new HammingInputStream(overlapAmp, true, fftSampleSize);
+        return new FftInputStream(hamming, fftSampleSize);
     }
 
     /**
@@ -100,6 +99,19 @@ public class Spectrogram {
             int numFrequencyUnit = fftInputStream.getNumFrequencyUnit();
             // frequency could be caught within the half of nSamples according to Nyquist theory
 
+            // requires normalized data.
+            normalizedSpectrogram = new ArrayList<double[]>();
+
+            // read entire spectrogram
+            try {
+                do {
+                    normalizedSpectrogram.add(fftInputStream.readFrame());
+                } while (true);
+            } catch (EOFException eofe) {
+                // end of stream, read complete.
+                eofe.printStackTrace();
+            }
+
             // The next part requires the entire spectrogram to be processed.
             double minAmp = fftInputStream.getMinAmp();
             double maxAmp = fftInputStream.getMaxAmp();
@@ -112,29 +124,22 @@ public class Spectrogram {
             }
 
             // A frame in the spectrogram.
-            normalizedSpectrogram = new ArrayList<double[]>();
 
             double diff = Math.log10(maxAmp / minAmp);    // perceptual difference
 
-            double[] fftFrame;
-            try {
-                do {
-                    fftFrame = fftInputStream.readFrame();
-                    double[] frame = new double[numFrequencyUnit];
-                    for (int j = 0; j < numFrequencyUnit; j++) {
-                        if (fftFrame[j] < minValidAmp) {
-                            frame[j] = 0;
-                        } else {
-                            frame[j] = (Math.log10(fftFrame[j] / minAmp)) / diff;
-                        }
+            for (double[] fftFrame : normalizedSpectrogram) {
+                double[] frame = new double[numFrequencyUnit];
+                for (int j = 0; j < numFrequencyUnit; j++) {
+                    if (fftFrame[j] < minValidAmp) {
+                        frame[j] = 0;
+                    } else {
+                        frame[j] = (Math.log10(fftFrame[j] / minAmp)) / diff;
                     }
-                    normalizedSpectrogram.add(frame);
-                } while (fftFrame.length == fftSampleSize);
-            } catch (EOFException eofe) {
-                // end of stream. spectrogram complete.
+                }
+                normalizedSpectrogram.add(frame);
             }
+            // end normalization
         }
-        // end normalization
         return normalizedSpectrogram;
     }
 

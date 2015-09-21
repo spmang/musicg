@@ -1,28 +1,24 @@
 package com.musicg.streams;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
+import com.musicg.streams.filter.PipedAudioFilter;
+
 import java.io.*;
 
 /**
  * Created by scottmangan on 9/18/15.
  */
-public class IntensityInputStream extends PipedAudioFormatInputStream {
+public class IntensityInputStream extends PipedAudioFilter {
 
     int numFrames;
     int numRobustPointsPerFrame;
     int[][] coordinates;
     double[][] spectorgramData;
 
-    public IntensityInputStream(AudioInputStream input) {
+    public IntensityInputStream(PipedAudioFilter input) {
         super(input);
     }
 
-    public IntensityInputStream(InputStream in, AudioFormat format) {
-        super(in, format);
-    }
-
-    public void readValue() throws IOException {
+    public void pipeValue() throws IOException {
 
         // TODO this should read the spectrogram data from the underlying stream
         for (int i = 0; i < numFrames; i++) {

@@ -1,6 +1,7 @@
 package com.musicg.spectrogram;
 
 import com.musicg.streams.AudioFormatInputStream;
+import com.musicg.streams.filter.WaveInputFilter;
 
 /**
  * Factory to create Spectrogram instances.
@@ -17,7 +18,7 @@ public class SpectrogramFactory {
      * @return spectrogram
      */
     public Spectrogram getSpectrogram(final AudioFormatInputStream wave, int fftSampleSize, int overlapFactor) {
-        return new Spectrogram(wave, fftSampleSize, overlapFactor);
+        return new Spectrogram(new WaveInputFilter(wave), fftSampleSize, overlapFactor);
     }
 
 }

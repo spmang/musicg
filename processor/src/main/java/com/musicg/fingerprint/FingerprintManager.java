@@ -19,10 +19,9 @@ package com.musicg.fingerprint;
 import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.streams.AudioFormatInputStream;
-import com.musicg.streams.AudioFormatInputStreamFactory;
-import com.musicg.streams.ResampleInputStream;
+import com.musicg.streams.filter.PipedAudioFilter;
+import com.musicg.streams.filter.ResampleFilter;
 
-import javax.sound.sampled.AudioFormat;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -52,7 +51,7 @@ public class FingerprintManager {
      * @param wave Wave Object to be extracted fingerprint
      * @return fingerprint in bytes
      */
-    public static InputStream extractFingerprint(final AudioFormatInputStream wave, FingerprintProperties fingerprintProperties) throws IOException {
+    public static InputStream extractFingerprint(final PipedAudioFilter wave, FingerprintProperties fingerprintProperties) throws IOException {
 
         if (fingerprintProperties == null) {
             // use default
@@ -67,7 +66,7 @@ public class FingerprintManager {
 
         // resample to target rate
         int targetRate = fingerprintProperties.getSampleRate();
-        AudioFormatInputStream resampledWaveData = new ResampleInputStream(wave, wave.getAudioFormat(), targetRate);
+        PipedAudioFilter resampledWaveData = new ResampleFilter(wave, targetRate);
         // end resample to target rate
 
         // get spectrogram's data

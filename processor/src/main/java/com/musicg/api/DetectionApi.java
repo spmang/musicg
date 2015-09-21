@@ -22,7 +22,8 @@ import com.musicg.math.statistics.ZeroCrossingRate;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
-import com.musicg.streams.FftInputStream;
+import com.musicg.streams.filter.WaveInputFilter;
+import com.musicg.streams.filter.FftInputStream;
 import com.musicg.wave.extension.SampleAmplitudes;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -98,7 +99,7 @@ public class DetectionApi {
             DataInputStream amplitudes = SampleAmplitudes.getSampleAmplitudes(wave, -1);
 
             // spectrum for the clip
-            Spectrogram spectrogram = new Spectrogram(sampleWave, fftSampleSize, 0);
+            Spectrogram spectrogram = new Spectrogram(new WaveInputFilter(sampleWave), fftSampleSize, 0);
 
             FftInputStream spectrogramData = spectrogram.getSpectrogramInputStream();
 

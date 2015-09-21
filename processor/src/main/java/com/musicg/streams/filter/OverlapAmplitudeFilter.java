@@ -1,17 +1,14 @@
-package com.musicg.streams;
+package com.musicg.streams.filter;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
 import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Create overlap amplitude values.
  * <p/>
  * Created by Scott on 9/18/2015.
  */
-public class OverlapAmplitudeInputStream extends PipedAudioFormatInputStream {
+public class OverlapAmplitudeFilter extends PipedAudioFilter {
 
     private int overlapFactor;
     private int backSamples;
@@ -25,7 +22,7 @@ public class OverlapAmplitudeInputStream extends PipedAudioFormatInputStream {
      *
      * @param input The stream to wrap.
      */
-    public OverlapAmplitudeInputStream(AudioInputStream input, int overlapFactor, int fftSampleSize) {
+    public OverlapAmplitudeFilter(PipedAudioFilter input, int overlapFactor, int fftSampleSize) {
         super(input);
         initialize(overlapFactor, fftSampleSize);
     }
@@ -36,36 +33,10 @@ public class OverlapAmplitudeInputStream extends PipedAudioFormatInputStream {
      * @param input           The stream to wrap.
      * @param useLittleEndian
      */
-    public OverlapAmplitudeInputStream(AudioInputStream input, boolean useLittleEndian, int overlapFactor, int fftSampleSize) {
+    public OverlapAmplitudeFilter(PipedAudioFilter input, boolean useLittleEndian, int overlapFactor, int fftSampleSize) {
         super(input, useLittleEndian);
         initialize(overlapFactor, fftSampleSize);
     }
-
-    /**
-     * Create a new instance of the input stream.
-     *
-     * @param in     The stream to wrap.
-     * @param format
-     */
-    public OverlapAmplitudeInputStream(InputStream in, AudioFormat format, int overlapFactor, int fftSampleSize) {
-        super(in, format);
-        this.overlapFactor = overlapFactor;
-        this.fftSampleSize = fftSampleSize;
-    }
-
-    /**
-     * Create a new instance of the input stream.
-     *
-     * @param in              The stream to wrap.
-     * @param format
-     * @param useLittleEndian
-     */
-    public OverlapAmplitudeInputStream(InputStream in, AudioFormat format, boolean useLittleEndian, int overlapFactor, int fftSampleSize) {
-        super(in, format, useLittleEndian);
-        this.overlapFactor = overlapFactor;
-        this.fftSampleSize = fftSampleSize;
-    }
-
 
     private void initialize(int overlapFactor, int fftSampleSize) {
         this.overlapFactor = overlapFactor;
@@ -77,7 +48,7 @@ public class OverlapAmplitudeInputStream extends PipedAudioFormatInputStream {
 
     public short readShort() throws IOException {
         // overlapping
-        short value = super.readShort();
+        short value = inputStream.readShort();
         if (overlapFactor > 1) {
             if (value == -1) {
                 throw new EOFException("End of stream.");
@@ -94,7 +65,7 @@ public class OverlapAmplitudeInputStream extends PipedAudioFormatInputStream {
         return value;
     }
 
-    public void readValue() throws IOException {
+    public void pipeValue() throws IOException {
         outputStream.writeShort(readShort());
     }
 }

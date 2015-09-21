@@ -4,6 +4,7 @@ import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
+import com.musicg.streams.filter.WaveInputFilter;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class PitchDemo {
         // create a wave object
         try {
             AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
-            Spectrogram spectrogram = new Spectrogram(wave);
+            Spectrogram spectrogram = new Spectrogram(new WaveInputFilter(wave));
 
             TopManyPointsProcessorChain processorChain = new TopManyPointsProcessorChain(spectrogram.getNormalizedSpectrogram(), 1);
             List<double[]> processedIntensities = processorChain.getIntensities();

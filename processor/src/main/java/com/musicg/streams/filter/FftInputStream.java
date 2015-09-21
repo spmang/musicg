@@ -1,17 +1,15 @@
-package com.musicg.streams;
+package com.musicg.streams.filter;
 
 import com.musicg.dsp.FastFourierTransform;
+import com.musicg.streams.filter.PipedAudioFilter;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Stream that processes an entire FFT frame and writes it to an output stream.
  * Created by Scott on 9/19/2015.
  */
-public class FftInputStream extends PipedAudioFormatInputStream {
+public class FftInputStream extends PipedAudioFilter {
 
     private FastFourierTransform fft;
 
@@ -24,10 +22,11 @@ public class FftInputStream extends PipedAudioFormatInputStream {
      *
      * @param input The stream to wrap.
      */
-    public FftInputStream(AudioInputStream input, int fftSampleSize) {
+    public FftInputStream(PipedAudioFilter input, int fftSampleSize) {
         super(input);
         this.fftSampleSize = fftSampleSize;
         numFrequencyUnit = fftSampleSize / 4;
+        fft = new FastFourierTransform();
     }
 
     /**
@@ -36,42 +35,22 @@ public class FftInputStream extends PipedAudioFormatInputStream {
      * @param input           The stream to wrap.
      * @param useLittleEndian
      */
-    public FftInputStream(AudioInputStream input, boolean useLittleEndian, int fftSampleSize) {
+    public FftInputStream(PipedAudioFilter input, boolean useLittleEndian, int fftSampleSize) {
         super(input, useLittleEndian);
         this.fftSampleSize = fftSampleSize;
         numFrequencyUnit = fftSampleSize / 4;
     }
 
     /**
-     * Create a new instance of the input stream.
+     * Read an entire frame of data.
      *
-     * @param in     The stream to wrap.
-     * @param format
+     * @return
+     * @throws IOException
      */
-    public FftInputStream(InputStream in, AudioFormat format, int fftSampleSize) {
-        super(in, format);
-        this.fftSampleSize = fftSampleSize;
-        numFrequencyUnit = fftSampleSize / 4;
-    }
-
-    /**
-     * Create a new instance of the input stream.
-     *
-     * @param in              The stream to wrap.
-     * @param format
-     * @param useLittleEndian
-     */
-    public FftInputStream(InputStream in, AudioFormat format, boolean useLittleEndian, int fftSampleSize) {
-        super(in, format, useLittleEndian);
-        this.fftSampleSize = fftSampleSize;
-        numFrequencyUnit = fftSampleSize / 4;
-    }
-
     public double[] readFrame() throws IOException {
-
         double[] signals = new double[fftSampleSize];
         for (int n = 0; n < fftSampleSize; n++) {
-            signals[n] = readDouble();
+            signals[n] = inputStream.readDouble();
         }
         // for each frame in signals, do fft on it
         double[] magnitudes = fft.getMagnitudes(signals);
@@ -84,7 +63,7 @@ public class FftInputStream extends PipedAudioFormatInputStream {
      * @throws IOException
      */
     @Override
-    public void readValue() throws IOException {
+    public void pipeValue() throws IOException {
         for (double value : readFrame()) {
             outputStream.writeDouble(value);
         }
