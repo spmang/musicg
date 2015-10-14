@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Created by Scott on 9/19/2015.
  */
-public class HanningInputStream extends PipedAudioFilter {
+public class HanningFilter extends PipedAudioFilter {
 
     private int fftSampleSize = Spectrogram.SPECTROGRAM_DEFAULT_FFT_SAMPLE_SIZE;
     private double[] win;
@@ -19,7 +19,7 @@ public class HanningInputStream extends PipedAudioFilter {
      *
      * @param input The stream to wrap.
      */
-    public HanningInputStream(PipedAudioFilter input) {
+    public HanningFilter(PipedAudioFilter input) {
         super(input);
         createWindow();
     }
@@ -29,7 +29,7 @@ public class HanningInputStream extends PipedAudioFilter {
      *
      * @param input The stream to wrap.
      */
-    public HanningInputStream(PipedAudioFilter input, int fftSampleSize) {
+    public HanningFilter(PipedAudioFilter input, int fftSampleSize) {
         super(input);
         this.fftSampleSize = fftSampleSize;
         createWindow();
@@ -41,7 +41,7 @@ public class HanningInputStream extends PipedAudioFilter {
      * @param input           The stream to wrap.
      * @param useLittleEndian
      */
-    public HanningInputStream(PipedAudioFilter input, boolean useLittleEndian) {
+    public HanningFilter(PipedAudioFilter input, boolean useLittleEndian) {
         super(input, useLittleEndian);
         createWindow();
     }
@@ -52,7 +52,7 @@ public class HanningInputStream extends PipedAudioFilter {
      * @param input           The stream to wrap.
      * @param useLittleEndian
      */
-    public HanningInputStream(PipedAudioFilter input, boolean useLittleEndian, int fftSampleSize) {
+    public HanningFilter(PipedAudioFilter input, boolean useLittleEndian, int fftSampleSize) {
         super(input, useLittleEndian);
         this.fftSampleSize = fftSampleSize;
         createWindow();

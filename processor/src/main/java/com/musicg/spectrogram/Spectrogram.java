@@ -16,8 +16,8 @@
 
 package com.musicg.spectrogram;
 
-import com.musicg.streams.filter.FftInputStream;
-import com.musicg.streams.filter.HanningInputStream;
+import com.musicg.streams.filter.FftFilter;
+import com.musicg.streams.filter.HanningFilter;
 import com.musicg.streams.filter.OverlapAmplitudeFilter;
 import com.musicg.streams.filter.PipedAudioFilter;
 
@@ -78,10 +78,9 @@ public class Spectrogram {
     /**
      * Build spectrogram.
      */
-    public FftInputStream getSpectrogramInputStream() throws IOException {
+    public FftFilter getSpectrogramInputStream() throws IOException {
         OverlapAmplitudeFilter overlapAmp = new OverlapAmplitudeFilter(wave, overlapFactor, fftSampleSize);
-        HanningInputStream hamming = new HanningInputStream(overlapAmp, true, fftSampleSize);
-        return new FftInputStream(hamming, fftSampleSize);
+        return new FftFilter(new HanningFilter(overlapAmp, true, fftSampleSize), fftSampleSize);
     }
 
     /**
@@ -92,8 +91,8 @@ public class Spectrogram {
      */
     public List<double[]> getNormalizedSpectrogram() throws IOException {
         if (normalizedSpectrogram == null) {
-            FftInputStream fftInputStream = getSpectrogramInputStream();
-            int numFrequencyUnit = fftInputStream.getNumFrequencyUnit();
+            FftFilter fftFilter = getSpectrogramInputStream();
+            int numFrequencyUnit = fftFilter.getNumFrequencyUnit();
             // frequency could be caught within the half of nSamples according to Nyquist theory
 
             // requires normalized data.
@@ -103,15 +102,15 @@ public class Spectrogram {
             List<double[]> spectrogram = new ArrayList<>();
             try {
                 do {
-                    spectrogram.add(fftInputStream.readFrame());
+                    spectrogram.add(fftFilter.readFrame());
                 } while (true);
             } catch (EOFException eofe) {
                 // end of stream, read complete.
             }
 
             // The next part requires the entire spectrogram to be processed.
-            double minAmp = fftInputStream.getMinAmp();
-            double maxAmp = fftInputStream.getMaxAmp();
+            double minAmp = fftFilter.getMinAmp();
+            double maxAmp = fftFilter.getMaxAmp();
 
             // normalization
             // avoiding divided by zero

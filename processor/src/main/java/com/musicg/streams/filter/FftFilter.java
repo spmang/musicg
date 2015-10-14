@@ -9,7 +9,7 @@ import java.io.IOException;
  * Stream that processes an entire FFT frame and writes it to an output stream.
  * Created by Scott on 9/19/2015.
  */
-public class FftInputStream extends PipedAudioFilter {
+public class FftFilter extends PipedAudioFilter {
 
     private FastFourierTransform fft;
 
@@ -22,7 +22,7 @@ public class FftInputStream extends PipedAudioFilter {
      *
      * @param input The stream to wrap.
      */
-    public FftInputStream(PipedAudioFilter input, int fftSampleSize) {
+    public FftFilter(PipedAudioFilter input, int fftSampleSize) {
         super(input);
         this.fftSampleSize = fftSampleSize;
         numFrequencyUnit = fftSampleSize / 4;
@@ -35,7 +35,7 @@ public class FftInputStream extends PipedAudioFilter {
      * @param input           The stream to wrap.
      * @param useLittleEndian
      */
-    public FftInputStream(PipedAudioFilter input, boolean useLittleEndian, int fftSampleSize) {
+    public FftFilter(PipedAudioFilter input, boolean useLittleEndian, int fftSampleSize) {
         super(input, useLittleEndian);
         this.fftSampleSize = fftSampleSize;
         numFrequencyUnit = fftSampleSize / 4;

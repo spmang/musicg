@@ -1,7 +1,6 @@
 package com.musicg.streams.filter;
 
 import com.musicg.fingerprint.FingerprintProperties;
-import com.musicg.spectrogram.Spectrogram;
 import com.musicg.streams.AudioFormatInputStream;
 import com.musicg.streams.AudioFormatInputStreamFactory;
 import org.junit.Assert;
@@ -9,14 +8,13 @@ import org.junit.Test;
 
 import java.io.EOFException;
 
-
 /**
- * Created by Scott on 10/3/2015.
+ * Created by Scott on 10/14/2015.
  */
-public class HanningInputStreamTest {
+public class FftFilterTest {
 
     @Test
-    public void testReadDouble() throws Exception {
+    public void TestReadCount() throws Exception {
 
         String filename = "cock_a_1.wav";
         FingerprintProperties fingerprintProperties = FingerprintProperties.getInstance();
@@ -27,15 +25,16 @@ public class HanningInputStreamTest {
         AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream("audio_work/" + filename);
         PipedAudioFilter resampledWaveData = new ResampleFilter(new WaveInputFilter(wave), true, targetRate);
         OverlapAmplitudeFilter overlapAmp = new OverlapAmplitudeFilter(resampledWaveData, 4, 2048);
-        HanningInputStream hamming = new HanningInputStream(overlapAmp, true, 2048);
+        FftFilter filter = new FftFilter(new HanningFilter(overlapAmp, true, 2048), 2048);
+
 
         int counter = 0;
         try {
-            for (; ; hamming.readDouble(), counter++) {
+            for (; ; filter.readFrame(), counter++) {
 
             }
         } catch (EOFException eofe) {
-            Assert.assertEquals("Incorrect Read count.", 77312, counter);
+            Assert.assertEquals("Incorrect Read count.", 37, counter);
         }
     }
 }

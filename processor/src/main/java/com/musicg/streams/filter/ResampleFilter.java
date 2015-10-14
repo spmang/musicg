@@ -1,5 +1,6 @@
 package com.musicg.streams.filter;
 
+import javax.sound.sampled.AudioFormat;
 import java.io.EOFException;
 import java.io.IOException;
 
@@ -20,14 +21,17 @@ public class ResampleFilter extends PipedAudioFilter {
         super(input);
         sampleRate = newSampleRate;
         lengthMultiplier = (float) sampleRate / audioFormat.getSampleRate();
+        audioFormat = new AudioFormat(audioFormat.getEncoding(), audioFormat.getSampleRate(),
+                audioFormat.getSampleSizeInBits(), audioFormat.getChannels(), audioFormat.getFrameSize(), audioFormat.getFrameRate(), audioFormat.isBigEndian());
     }
 
     public ResampleFilter(PipedAudioFilter input, boolean useLittleEndian, float newSampleRate) {
         super(input, useLittleEndian);
         sampleRate = newSampleRate;
         lengthMultiplier = (float) sampleRate / audioFormat.getSampleRate();
+        audioFormat = new AudioFormat(audioFormat.getEncoding(), audioFormat.getSampleRate(),
+                audioFormat.getSampleSizeInBits(), audioFormat.getChannels(), audioFormat.getFrameSize(), audioFormat.getFrameRate(), audioFormat.isBigEndian());
     }
-
 
     /**
      * Reads up to <code>len</code> bytes of data from this input stream

@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c8156ec-ee4b-4882-919a-b8c87ae5df21" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/HanningInputStreamTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/OverlapAmplitudeFilterTest.java" />
-      <change type="DELETED" beforePath="C:\workspace\musicg\processor\src\main\java\com\musicg\spectrogram\SpectrogramFactory.java" afterPath="" />
-      <change type="MOVED" beforePath="C:\workspace\musicg\processor\src\main\java\com\musicg\streams\IntensityInputStream.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/IntensityAudioFilter.java" />
-      <change type="MOVED" beforePath="C:\workspace\musicg\processor\src\main\java\com\musicg\streams\filter\HammingInputStream.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/HanningInputStream.java" />
-      <change type="MOVED" beforePath="C:\workspace\musicg\processor\src\test\java\com\musicg\streams\ResampleInputStreamTest.java" afterPath="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/ResampleFilterTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/AudioFormatInputStream.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/AudioFormatInputStream.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintDemo.java" afterPath="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintDemo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintManager.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/FingerprintManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/OverlapAmplitudeFilter.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/OverlapAmplitudeFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/PairManager.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/fingerprint/PairManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/PipedAudioFilter.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/PipedAudioFilter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/FftFilterTest.java" />
+      <change type="MOVED" beforePath="C:\workspace\musicg\processor\src\main\java\com\musicg\streams\filter\FftInputStream.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/FftFilter.java" />
+      <change type="MOVED" beforePath="C:\workspace\musicg\processor\src\main\java\com\musicg\streams\filter\HanningInputStream.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/HanningFilter.java" />
+      <change type="MOVED" beforePath="C:\workspace\musicg\processor\src\test\java\com\musicg\streams\filter\HanningInputStreamTest.java" afterPath="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/HanningFilterTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/DetectionApi.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/DetectionApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/ResampleFilter.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/ResampleFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/RobustIntensityProcessor.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/processor/RobustIntensityProcessor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java" afterPath="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -42,7 +34,92 @@
     <favorites_list name="musicg" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Spectrogram.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="82" column="25" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FftFilter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/FftFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.49805447">
+              <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FastFourierTransform.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/FastFourierTransform.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="43" column="40" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HanningFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/HanningFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FftFilterTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/FftFilterTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OverlapAmplitudeFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/OverlapAmplitudeFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntensityAudioFilter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/IntensityAudioFilter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="23" column="44" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HanningFilterTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/HanningFilterTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="37" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -65,9 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveTypeDetector.java" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/FingerprintRecognitionDemo.java" />
-        <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WhistleApiDemo.java" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/WaveDemo.java" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/RenderWaveformDemo.java" />
         <option value="$PROJECT_DIR$/demo/src/test/java/experiment/Test1.java" />
@@ -89,7 +163,6 @@
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/OverlapAmplitudeInputStream.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/ResampleInputStream.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/WaveInputStream.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/FftInputStream.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/api/DetectionApi.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/SpectrogramFactory.java" />
         <option value="$PROJECT_DIR$/demo/src/main/java/com/musicg/main/demo/PitchDemo.java" />
@@ -109,13 +182,17 @@
         <option value="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/ResampleFilterTest.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/AudioFormatInputStream.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/OverlapAmplitudeFilter.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/ResampleFilter.java" />
         <option value="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/OverlapAmplitudeFilterTest.java" />
-        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java" />
         <option value="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/HammingInputStreamTest.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/HammingInputStream.java" />
         <option value="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/HanningInputStreamTest.java" />
         <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/HanningInputStream.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/HanningFilter.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/ResampleFilter.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/FftInputStream.java" />
+        <option value="$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/FftFilter.java" />
+        <option value="$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/FftFilterTest.java" />
       </list>
     </option>
   </component>
@@ -618,7 +695,7 @@
       <recent name="com.musicg.spectrogram" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HanningInputStreamTest">
+  <component name="RunManager" selected="JUnit.FftFilterTest">
     <configuration default="false" name="FingerprintDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -665,26 +742,6 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="FingerprintRecognitionDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.musicg.main.demo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.musicg.main.demo.FingerprintRecognitionDemo" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="demo" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="OverlapAmplitudeFilterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -711,7 +768,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="HanningInputStreamTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="HanningFilterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.musicg.streams.filter.*" />
@@ -722,7 +779,33 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.musicg.streams.filter" />
-      <option name="MAIN_CLASS_NAME" value="com.musicg.streams.filter.HanningInputStreamTest" />
+      <option name="MAIN_CLASS_NAME" value="com.musicg.streams.filter.HanningFilterTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="FftFilterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.musicg.streams.filter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="processor" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.musicg.streams.filter" />
+      <option name="MAIN_CLASS_NAME" value="com.musicg.streams.filter.FftFilterTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -944,17 +1027,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.FingerprintDemo" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.ResampleFilterTest" />
-      <item index="2" class="java.lang.String" itemvalue="Application.FingerprintRecognitionDemo" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.OverlapAmplitudeFilterTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.HanningInputStreamTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.OverlapAmplitudeFilterTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.HanningFilterTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.FftFilterTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.HanningInputStreamTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.FftFilterTest" />
         <item index="1" class="java.lang.String" itemvalue="JUnit.OverlapAmplitudeFilterTest" />
-        <item index="2" class="java.lang.String" itemvalue="Application.FingerprintDemo" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.ResampleFilterTest" />
-        <item index="4" class="java.lang.String" itemvalue="Application.FingerprintRecognitionDemo" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.ResampleFilterTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.HanningFilterTest" />
+        <item index="4" class="java.lang.String" itemvalue="Application.FingerprintDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -1034,7 +1117,13 @@
       <option name="project" value="LOCAL" />
       <updated>1442799476356</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Conversion to streaming api.">
+      <created>1444863679182</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1444863679182</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1054,20 +1143,20 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32957503" sideWeight="0.49791667" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3613808" sideWeight="0.5005208" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29881337" sideWeight="0.12591432" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40992448" sideWeight="0.12591432" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.6635417" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2675026" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26907" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39374325" sideWeight="0.44409615" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29881337" sideWeight="0.87408566" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40992448" sideWeight="0.87408566" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1149,21 +1238,15 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java</url>
-          <line>139</line>
+          <line>138</line>
           <properties />
           <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java</url>
-          <line>105</line>
+          <line>104</line>
           <properties />
           <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/FftInputStream.java</url>
-          <line>56</line>
-          <properties />
-          <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/ResampleFilterTest.java</url>
@@ -1184,18 +1267,27 @@
           <option name="timeStamp" value="128" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/HanningInputStreamTest.java</url>
-          <line>37</line>
+          <url>file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/HanningFilterTest.java</url>
+          <line>36</line>
           <properties />
           <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/OverlapAmplitudeFilterTest.java</url>
+          <line>26</line>
+          <properties />
+          <option name="timeStamp" value="160" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="160" />
+      <option name="time" value="167" />
     </breakpoint-manager>
     <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="input.getAudioFormat()" />
+      </configuration>
       <configuration name="Application">
         <watch expression="coordinates[index][j]" />
       </configuration>
@@ -1206,13 +1298,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/api/ClapApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="94" selection-start-line="56" selection-start-column="94" selection-end-line="56" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/wave/WaveTypeDetector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1327,13 +1412,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3931947">
           <caret line="21" column="79" selection-start-line="21" selection-start-column="79" selection-end-line="21" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/FastFourierTransform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1379,22 +1458,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3320965">
           <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/IntensityAudioFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59152544">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/FftInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1450,14 +1513,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/ResampleFilterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6498856">
-          <caret line="34" column="66" selection-start-line="34" selection-start-column="61" selection-end-line="34" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/io/BufferedInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3318078">
@@ -1470,24 +1525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3318078">
           <caret line="313" column="0" selection-start-line="313" selection-start-column="0" selection-end-line="313" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/ResampleFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6430206">
-          <caret line="65" column="31" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/PipedAudioFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3318078">
-          <caret line="17" column="31" selection-start-line="17" selection-start-column="31" selection-end-line="17" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1521,17 +1558,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
           <folding>
-            <element signature="e#2759#2760#0" expanded="true" />
-            <element signature="e#2800#2801#0" expanded="true" />
+            <element signature="e#2759#2760#0" expanded="false" />
+            <element signature="e#2800#2801#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="64" column="22" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1551,45 +1580,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/OverlapAmplitudeFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_51/src.zip!/java/io/FilterInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3327032">
           <caret line="45" column="6" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/AudioFormatInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/OverlapAmplitudeFilterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="52" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/HanningInputStreamTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1601,10 +1596,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/HanningInputStream.java">
+    <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/ResampleFilterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4132901">
-          <caret line="63" column="40" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.64181525">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/PipedAudioFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7607004">
+          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/ResampleFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="76" selection-start-line="30" selection-start-column="76" selection-end-line="30" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/OverlapAmplitudeFilterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/IntensityAudioFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="44" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/spectrogram/Spectrogram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="82" column="25" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/HanningFilterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="37" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/OverlapAmplitudeFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/HanningFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/AudioFormatInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53696495">
+          <caret line="361" column="18" selection-start-line="361" selection-start-column="18" selection-end-line="361" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/dsp/FastFourierTransform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="40" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/test/java/com/musicg/streams/filter/FftFilterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processor/src/main/java/com/musicg/streams/filter/FftFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49805447">
+          <caret line="54" column="41" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="41" />
           <folding />
         </state>
       </provider>
