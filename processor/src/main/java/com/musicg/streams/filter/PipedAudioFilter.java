@@ -17,6 +17,10 @@ public abstract class PipedAudioFilter extends AudioFormatInputStream {
 
     protected PipedAudioFilter inputStream;
 
+    public PipedAudioFilter() {
+        super();
+    }
+
     /**
      * Create a new Stream from the given stream.
      *

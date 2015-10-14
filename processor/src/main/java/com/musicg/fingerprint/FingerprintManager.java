@@ -19,6 +19,8 @@ package com.musicg.fingerprint;
 import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.streams.AudioFormatInputStream;
+import com.musicg.streams.AudioFormatOutputStream;
+import com.musicg.streams.filter.IntensityAudioFilter;
 import com.musicg.streams.filter.PipedAudioFilter;
 import com.musicg.streams.filter.ResampleFilter;
 
@@ -27,7 +29,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -51,7 +52,7 @@ public class FingerprintManager {
      * @param wave Wave Object to be extracted fingerprint
      * @return fingerprint in bytes
      */
-    public static InputStream extractFingerprint(final PipedAudioFilter wave, FingerprintProperties fingerprintProperties) throws IOException {
+    public static PipedAudioFilter extractFingerprint(final PipedAudioFilter wave, FingerprintProperties fingerprintProperties) throws IOException {
 
         if (fingerprintProperties == null) {
             // use default
@@ -94,43 +95,11 @@ public class FingerprintManager {
         }
         // end make fingerprint
         // end for each valid coordinate, append with its intensity
-        return createIntensityStream(numFrames, numRobustPointsPerFrame, coordinates, spectorgramData);
+        return createIntensityStream(coordinates, spectorgramData);
     }
 
-
-    private static InputStream createIntensityStream(final int numFrames, final int numRobustPointsPerFrame,
-                                                     final int[][] coordinates,
-                                                     final List<double[]> spectorgramData) throws IOException {
-        // for each valid coordinate, append with its intensity
-        return null;
-    }
-
-
-    public static void createIntensityStream(final int numFrames, final int numRobustPointsPerFrame,
-                                             final int[][] coordinates, final double[][] spectorgramData,
-                                             final OutputStream outputStream) throws IOException {
-        for (int i = 0; i < numFrames; i++) {
-            for (int j = 0; j < numRobustPointsPerFrame; j++) {
-                if (coordinates[i][j] != -1) {
-                    // first 2 bytes is x
-                    outputStream.write((byte) (i >> 8));
-                    outputStream.write((byte) i);
-
-                    // next 2 bytes is y
-                    int y = coordinates[i][j];
-                    outputStream.write((byte) (y >> 8));
-                    outputStream.write((byte) y);
-
-                    // next 4 bytes is intensity
-                    // spectorgramData is ranged from 0~1
-                    int intensity = (int) (spectorgramData[i][y] * Integer.MAX_VALUE);
-                    outputStream.write((byte) (intensity >> 24));
-                    outputStream.write((byte) (intensity >> 16));
-                    outputStream.write((byte) (intensity >> 8));
-                    outputStream.write((byte) intensity);
-                }
-            }
-        }
+    public static IntensityAudioFilter createIntensityStream(final int[][] coordinates, final List<double[]> spectorgramData) throws IOException {
+        return new IntensityAudioFilter(coordinates, spectorgramData);
     }
 
     public static FingerprintSimilarity getFingerprintSimilarity(AudioFormatInputStream wave1, AudioFormatInputStream wave2) throws IOException {
@@ -180,14 +149,16 @@ public class FingerprintManager {
      * @param fingerprint fingerprint bytes
      * @param filename    fingerprint filename
      */
-    public static void saveFingerprintAsFile(final InputStream fingerprint, final String filename) throws IOException {
+    public static void saveFingerprintAsFile(final PipedAudioFilter fingerprint, final String filename) throws IOException {
         FileOutputStream fileOutputStream = null;
         try {
+            File outFile = new File(filename);
+            outFile.getParentFile().mkdirs();
             fileOutputStream = new FileOutputStream(filename);
-            byte[] data = new byte[1024];
-            for (int read = fingerprint.read(data); read > -1; read = fingerprint.read(data)) {
-                fileOutputStream.write(data, 0, read);
-            }
+            fingerprint.connect(new AudioFormatOutputStream(fileOutputStream, fingerprint.getAudioFormat()));
+            for (fingerprint.pipeValue(); ; ) ;
+        } catch (EOFException eofe) {
+            // complete
         } finally {
             if (fileOutputStream != null) {
                 fileOutputStream.close();
@@ -229,7 +200,7 @@ public class FingerprintManager {
             }
         }
 
-        List<int[]> robustPointList = new LinkedList<>();
+        List<int[]> robustPointList = new ArrayList<>();
 
         // find robust points
         for (int i = 0; i < allBanksIntensities.length; i++) {
@@ -244,9 +215,9 @@ public class FingerprintManager {
         }
         // end find robust points
 
-        List<Integer>[] robustLists = new LinkedList[spectrogramData.size()];
+        List<Integer>[] robustLists = new ArrayList[spectrogramData.size()];
         for (int i = 0; i < robustLists.length; i++) {
-            robustLists[i] = new LinkedList<Integer>();
+            robustLists[i] = new ArrayList<>();
         }
 
         // robustLists[x]=y1,y2,y3,...

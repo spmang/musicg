@@ -147,8 +147,12 @@ public class PairManager {
                     break;
                 }
 
-                if (isReferencePairing && pairedFrameTable[anchorX / anchorPointsIntervalLength] >= numAnchorPointsPerInterval) {
-                    break;
+                try {
+                    if (isReferencePairing && pairedFrameTable[anchorX / anchorPointsIntervalLength] >= numAnchorPointsPerInterval) {
+                        break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException aioobe) {
+                    aioobe.printStackTrace();
                 }
 
                 int[] targetPoint = targetPointListIterator.next();

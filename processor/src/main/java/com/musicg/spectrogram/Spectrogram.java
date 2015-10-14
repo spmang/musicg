@@ -16,9 +16,8 @@
 
 package com.musicg.spectrogram;
 
-import com.musicg.streams.*;
 import com.musicg.streams.filter.FftInputStream;
-import com.musicg.streams.filter.HammingInputStream;
+import com.musicg.streams.filter.HanningInputStream;
 import com.musicg.streams.filter.OverlapAmplitudeFilter;
 import com.musicg.streams.filter.PipedAudioFilter;
 
@@ -81,7 +80,7 @@ public class Spectrogram {
      */
     public FftInputStream getSpectrogramInputStream() throws IOException {
         OverlapAmplitudeFilter overlapAmp = new OverlapAmplitudeFilter(wave, overlapFactor, fftSampleSize);
-        HammingInputStream hamming = new HammingInputStream(overlapAmp, true, fftSampleSize);
+        HanningInputStream hamming = new HanningInputStream(overlapAmp, true, fftSampleSize);
         return new FftInputStream(hamming, fftSampleSize);
     }
 
@@ -93,8 +92,6 @@ public class Spectrogram {
      */
     public List<double[]> getNormalizedSpectrogram() throws IOException {
         if (normalizedSpectrogram == null) {
-
-
             FftInputStream fftInputStream = getSpectrogramInputStream();
             int numFrequencyUnit = fftInputStream.getNumFrequencyUnit();
             // frequency could be caught within the half of nSamples according to Nyquist theory
@@ -103,13 +100,13 @@ public class Spectrogram {
             normalizedSpectrogram = new ArrayList<double[]>();
 
             // read entire spectrogram
+            List<double[]> spectrogram = new ArrayList<>();
             try {
                 do {
-                    normalizedSpectrogram.add(fftInputStream.readFrame());
+                    spectrogram.add(fftInputStream.readFrame());
                 } while (true);
             } catch (EOFException eofe) {
                 // end of stream, read complete.
-                eofe.printStackTrace();
             }
 
             // The next part requires the entire spectrogram to be processed.
@@ -127,7 +124,7 @@ public class Spectrogram {
 
             double diff = Math.log10(maxAmp / minAmp);    // perceptual difference
 
-            for (double[] fftFrame : normalizedSpectrogram) {
+            for (double[] fftFrame : spectrogram) {
                 double[] frame = new double[numFrequencyUnit];
                 for (int j = 0; j < numFrequencyUnit; j++) {
                     if (fftFrame[j] < minValidAmp) {

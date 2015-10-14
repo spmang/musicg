@@ -31,9 +31,11 @@ public class RobustIntensityProcessor implements IntensityProcessor {
             double passValue = arrayRankDouble.getNthOrderedValue(tmpArray, numPointsPerFrame, false);
 
             // only passed elements will be assigned a value
+            double[] processedFrame = new double[numY];
+            processedIntensities.add(processedFrame);
             for (int j = 0; j < numY; j++) {
                 if (frame[j] >= passValue) {
-                    frame[j] = frame[j];
+                    processedFrame[j] = frame[j];
                 }
             }
         }

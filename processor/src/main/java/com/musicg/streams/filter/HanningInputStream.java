@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Created by Scott on 9/19/2015.
  */
-public class HammingInputStream extends PipedAudioFilter {
+public class HanningInputStream extends PipedAudioFilter {
 
     private int fftSampleSize = Spectrogram.SPECTROGRAM_DEFAULT_FFT_SAMPLE_SIZE;
     private double[] win;
@@ -19,7 +19,7 @@ public class HammingInputStream extends PipedAudioFilter {
      *
      * @param input The stream to wrap.
      */
-    public HammingInputStream(PipedAudioFilter input) {
+    public HanningInputStream(PipedAudioFilter input) {
         super(input);
         createWindow();
     }
@@ -29,7 +29,7 @@ public class HammingInputStream extends PipedAudioFilter {
      *
      * @param input The stream to wrap.
      */
-    public HammingInputStream(PipedAudioFilter input, int fftSampleSize) {
+    public HanningInputStream(PipedAudioFilter input, int fftSampleSize) {
         super(input);
         this.fftSampleSize = fftSampleSize;
         createWindow();
@@ -41,7 +41,7 @@ public class HammingInputStream extends PipedAudioFilter {
      * @param input           The stream to wrap.
      * @param useLittleEndian
      */
-    public HammingInputStream(PipedAudioFilter input, boolean useLittleEndian) {
+    public HanningInputStream(PipedAudioFilter input, boolean useLittleEndian) {
         super(input, useLittleEndian);
         createWindow();
     }
@@ -52,7 +52,7 @@ public class HammingInputStream extends PipedAudioFilter {
      * @param input           The stream to wrap.
      * @param useLittleEndian
      */
-    public HammingInputStream(PipedAudioFilter input, boolean useLittleEndian, int fftSampleSize) {
+    public HanningInputStream(PipedAudioFilter input, boolean useLittleEndian, int fftSampleSize) {
         super(input, useLittleEndian);
         this.fftSampleSize = fftSampleSize;
         createWindow();
@@ -68,7 +68,7 @@ public class HammingInputStream extends PipedAudioFilter {
     public double readDouble() throws IOException {
         // modify data with window data
         double value = inputStream.readShort() * win[readOffset++];
-        if (readOffset > fftSampleSize) {
+        if (readOffset >= fftSampleSize) {
             readOffset = 0;
         }
         return value;

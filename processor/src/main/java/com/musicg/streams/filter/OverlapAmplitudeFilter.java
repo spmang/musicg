@@ -1,6 +1,8 @@
 package com.musicg.streams.filter;
 
-import java.io.EOFException;
+import com.musicg.streams.AudioFormatInputStream;
+
+import java.io.BufferedInputStream;
 import java.io.IOException;
 
 /**
@@ -11,11 +13,10 @@ import java.io.IOException;
 public class OverlapAmplitudeFilter extends PipedAudioFilter {
 
     private int overlapFactor;
-    private int backSamples;
     private int fftSampleSize;
     private int fftSampleSize_1;
     private int numSamples;
-    private int markposition;
+    private int markPosition;
 
     /**
      * Create a new Stream from the given stream.
@@ -23,7 +24,7 @@ public class OverlapAmplitudeFilter extends PipedAudioFilter {
      * @param input The stream to wrap.
      */
     public OverlapAmplitudeFilter(PipedAudioFilter input, int overlapFactor, int fftSampleSize) {
-        super(input);
+        super(new AudioFormatInputStream(new BufferedInputStream(input, fftSampleSize * 2), input.getAudioFormat(), true), true);
         initialize(overlapFactor, fftSampleSize);
     }
 
@@ -34,35 +35,41 @@ public class OverlapAmplitudeFilter extends PipedAudioFilter {
      * @param useLittleEndian
      */
     public OverlapAmplitudeFilter(PipedAudioFilter input, boolean useLittleEndian, int overlapFactor, int fftSampleSize) {
-        super(input, useLittleEndian);
+        super(new AudioFormatInputStream(new BufferedInputStream(input, fftSampleSize * 2), input.getAudioFormat(), true), true);
         initialize(overlapFactor, fftSampleSize);
     }
 
     private void initialize(int overlapFactor, int fftSampleSize) {
         this.overlapFactor = overlapFactor;
         this.fftSampleSize = fftSampleSize;
-        backSamples = fftSampleSize * (overlapFactor - 1) / overlapFactor;
+
+        // offset for 0 index.
         fftSampleSize_1 = fftSampleSize - 1;
-        markposition = fftSampleSize = backSamples;
+
+        // mark reset for window. Sample size - back samples.
+        markPosition = fftSampleSize - (fftSampleSize * (overlapFactor - 1) / overlapFactor);
     }
 
+    int readCount =0;
     public short readShort() throws IOException {
         // overlapping
-        short value = inputStream.readShort();
-        if (overlapFactor > 1) {
-            if (value == -1) {
-                throw new EOFException("End of stream.");
+        try {
+            short value = super.readShort();
+            if (overlapFactor > 1) {
+                if (numSamples++ % fftSampleSize == fftSampleSize_1) {
+                    // overlap
+                    reset();
+                    numSamples = 0;
+                }
+                if (numSamples == markPosition) {
+                    mark(fftSampleSize * 2);
+                }
             }
-            if (++numSamples % fftSampleSize == fftSampleSize_1) {
-                // overlap
-                this.reset();
-                numSamples = 0;
-            }
-            if (numSamples == markposition) {
-                this.mark(backSamples);
-            }
+            readCount++;
+            return value;
+        } catch (IOException ioe) {
+            throw ioe;
         }
-        return value;
     }
 
     public void pipeValue() throws IOException {
