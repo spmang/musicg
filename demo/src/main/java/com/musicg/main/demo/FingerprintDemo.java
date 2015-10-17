@@ -22,6 +22,7 @@ import com.musicg.streams.filter.PipedAudioFilter;
 import com.musicg.streams.filter.WaveInputFilter;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -41,14 +42,14 @@ public class FingerprintDemo {
 
             // dump the fingerprint
             try {
-                FingerprintManager.saveFingerprintAsFile(fingerprint, "out/" + filename + ".fingerprint");
+                FingerprintManager.saveFingerprintAsFile(fingerprint, new File("out/" + filename + ".fingerprint").getAbsolutePath());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             // load fingerprint from file
             try {
-                byte[] fingerprintFile = FingerprintManager.getFingerprint("out/" + filename + ".fingerprint");
+                byte[] fingerprintFile = FingerprintManager.getFingerprint(new File("out/" + filename + ".fingerprint").getAbsolutePath());
                 System.out.println("Fingerprint size == " + fingerprintFile.length);
             } catch (IOException e) {
                 e.printStackTrace();

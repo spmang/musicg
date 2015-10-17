@@ -95,10 +95,6 @@ public class FingerprintManager {
         }
         // end make fingerprint
         // end for each valid coordinate, append with its intensity
-        return createIntensityStream(coordinates, spectorgramData);
-    }
-
-    public static IntensityAudioFilter createIntensityStream(final int[][] coordinates, final List<double[]> spectorgramData) throws IOException {
         return new IntensityAudioFilter(coordinates, spectorgramData);
     }
 
@@ -115,13 +111,20 @@ public class FingerprintManager {
      */
     public static byte[] getFingerprint(String fingerprintFile) throws IOException, URISyntaxException {
         URL input = Thread.currentThread().getContextClassLoader().getResource(fingerprintFile);
+        File location = null;
         if (input == null) {
-            throw new IOException("File not found.");
+            if (!new File(fingerprintFile).exists()) {
+                throw new IOException("File not found.");
+            } else {
+                location = new File(fingerprintFile);
+            }
+        } else {
+            location = new File(input.toURI());
         }
 
         InputStream fis = null;
         try {
-            fis = new FileInputStream(new File(input.toURI()));
+            fis = new FileInputStream(location);
             return getFingerprint(fis);
         } finally {
             if (fis != null) {
@@ -156,7 +159,7 @@ public class FingerprintManager {
             outFile.getParentFile().mkdirs();
             fileOutputStream = new FileOutputStream(filename);
             fingerprint.connect(new AudioFormatOutputStream(fileOutputStream, fingerprint.getAudioFormat()));
-            for (fingerprint.pipeValue(); ; ) ;
+            for (; ; fingerprint.pipeValue()) ;
         } catch (EOFException eofe) {
             // complete
         } finally {
