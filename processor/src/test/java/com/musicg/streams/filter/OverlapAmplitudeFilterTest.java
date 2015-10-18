@@ -31,7 +31,7 @@ public class OverlapAmplitudeFilterTest {
             for (; ; overlapAmp.readShort(), counter++) ;
         } catch (EOFException eofe) {
             // read complete -- expected 79428
-            Assert.assertEquals("Read count incorrect", 77312, counter);
+            Assert.assertEquals("Read count incorrect", 73617, counter);
         }
     }
 }

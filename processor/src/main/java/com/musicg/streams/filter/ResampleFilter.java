@@ -69,8 +69,9 @@ public class ResampleFilter extends PipedAudioFilter {
                 }
             } catch (EOFException ioe) {
                 if (counter == off) {
-                    throw ioe;
+                    return -1;
                 }
+                return counter - off;
             }
         }
         return counter - off;
