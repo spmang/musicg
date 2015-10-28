@@ -43,10 +43,12 @@ public class OverlapAmplitudeFilter extends PipedAudioFilter {
         this.fftSampleSize = fftSampleSize;
 
         // mark reset for window. Sample size - back samples.
-        markPosition = fftSampleSize - (fftSampleSize * (overlapFactor - 1) / overlapFactor);
+        markPosition = fftSampleSize / overlapFactor;
     }
 
     int readCount = 0;
+    int markCount =0;
+    int resetCount =0;
 
     public short readShort() throws IOException {
         // overlapping
@@ -54,13 +56,14 @@ public class OverlapAmplitudeFilter extends PipedAudioFilter {
             short value = super.readShort();
             numSamples ++;
             readCount++;
-            System.err.println(readCount + " : " + value);
             if (overlapFactor > 1) {
                 if (numSamples == markPosition) {
+                    markCount ++;
                     mark(fftSampleSize * 2);
                 }
                 if (numSamples % fftSampleSize == 0) {
                     // overlap
+                    resetCount ++;
                     reset();
                     numSamples = 0;
                 }

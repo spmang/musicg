@@ -53,7 +53,7 @@ public class AudioFormatInputStream extends FilterInputStream {
      * @param in The stream to wrap.
      */
     public AudioFormatInputStream(InputStream in, AudioFormat format) {
-        super(new AudioInputStream(in, format, AudioSystem.NOT_SPECIFIED));
+        super(in);
         audioFormat = format;
     }
 
@@ -65,15 +65,6 @@ public class AudioFormatInputStream extends FilterInputStream {
     public AudioFormatInputStream(InputStream in, AudioFormat format, boolean useLittleEndian) {
         this(in, format);
         littleEndian = useLittleEndian;
-    }
-
-    /**
-     * Get the AudioInputStream this stream wraps.
-     *
-     * @return The AudioInputStream
-     */
-    public AudioInputStream getAudioInputStream() {
-        return (AudioInputStream) in;
     }
 
     /**

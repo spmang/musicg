@@ -3,6 +3,7 @@ package com.musicg.streams.filter;
 import com.musicg.dsp.FastFourierTransform;
 import com.musicg.streams.filter.PipedAudioFilter;
 
+import java.io.EOFException;
 import java.io.IOException;
 
 /**
@@ -49,8 +50,13 @@ public class FftFilter extends PipedAudioFilter {
      */
     public double[] readFrame() throws IOException {
         double[] signals = new double[fftSampleSize];
-        for (int n = 0; n < fftSampleSize; n++) {
-            signals[n] = inputStream.readDouble();
+        int n = 0;
+        try {
+            for (n = 0; n < fftSampleSize; n++) {
+                signals[n] = inputStream.readDouble();
+            }
+        } catch (EOFException eofe) {
+            if (n == 0) throw eofe;
         }
         // for each frame in signals, do fft on it
         double[] magnitudes = fft.getMagnitudes(signals);

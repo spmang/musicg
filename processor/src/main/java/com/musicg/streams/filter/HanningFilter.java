@@ -61,7 +61,7 @@ public class HanningFilter extends PipedAudioFilter {
     private void createWindow() {
         // set signals for fft
         WindowFunction window = new WindowFunction();
-        window.setWindowType("Hamming");
+        window.setWindowType(WindowFunction.HAMMING);
         win = window.generate(fftSampleSize);
     }
 

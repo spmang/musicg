@@ -27,14 +27,13 @@ public class FftFilterTest {
         OverlapAmplitudeFilter overlapAmp = new OverlapAmplitudeFilter(resampledWaveData, 4, 2048);
         FftFilter filter = new FftFilter(new HanningFilter(overlapAmp, true, 2048), 2048);
 
-
         int counter = 0;
         try {
             for (; ; filter.readFrame(), counter++) {
 
             }
         } catch (EOFException eofe) {
-            Assert.assertEquals("Incorrect Read count.", 37, counter);
+            Assert.assertEquals("Incorrect Read count.", 36, counter);
         }
     }
 }

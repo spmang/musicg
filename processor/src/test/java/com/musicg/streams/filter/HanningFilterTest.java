@@ -34,7 +34,7 @@ public class HanningFilterTest {
 
             }
         } catch (EOFException eofe) {
-            Assert.assertEquals("Incorrect Read count.", 77312, counter);
+            Assert.assertEquals("Incorrect Read count.", 73617, counter);
         }
     }
 }
