@@ -36,7 +36,7 @@ public class FingerprintDemo{
 		
 		// load fingerprint from file
 		byte[] loadedFp=fingerprintManager.getFingerprintFromFile("out/"+filename+".fingerprint");
-		
+		System.out.println("Fingerprint length == " + loadedFp.length);
 		/*
 		// fingerprint bytes checking
 		for (int i=0; i<fingerprint.length; i++){

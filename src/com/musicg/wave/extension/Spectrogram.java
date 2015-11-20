@@ -105,7 +105,9 @@ public class Spectrogram{
 		// end overlapping
 			
 		numFrames=numSamples/fftSampleSize;
-		framesPerSecond=(int)(numFrames/wave.length());	
+		framesPerSecond=(int)(numFrames/wave.length());
+
+
 			
 		// set signals for fft
 		WindowFunction window = new WindowFunction();

@@ -16,11 +16,7 @@
 
 package com.musicg.fingerprint;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -189,6 +185,8 @@ public class FingerprintManager{
 
         FileOutputStream fileOutputStream;
 		try {
+			File outFile = new File(filename);
+			outFile.getParentFile().mkdirs();
 			fileOutputStream = new FileOutputStream(filename);
 			fileOutputStream.write(fingerprint);
 			fileOutputStream.close();
