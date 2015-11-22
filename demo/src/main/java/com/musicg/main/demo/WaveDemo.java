@@ -34,7 +34,7 @@ public class WaveDemo {
             AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(filename);
 
             // print the wave header and info
-            System.out.println(wave);
+            System.out.println(wave.getAudioFormat());
 
             // save the trimmed wav
             AudioFileManager.saveWaveAsFile(wave, outFolder + "/out.wav", 1.0, 0.5);

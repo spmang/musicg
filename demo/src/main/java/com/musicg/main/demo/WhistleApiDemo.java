@@ -29,7 +29,7 @@ public class WhistleApiDemo {
         try {
             AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream("audio_work/whistle.wav");
             WaveTypeDetector waveTypeDetector = new WaveTypeDetector(wave);
-            System.out.println("Is whistle probability: " + waveTypeDetector.getWhistleProbability(10, -1));
+            System.out.println("Is whistle probability: " + waveTypeDetector.getWhistleProbability(1024, -1));
         } catch (IOException ioe) {
             System.out.println("Could not load input file");
             ioe.printStackTrace();

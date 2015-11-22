@@ -23,6 +23,7 @@ import com.musicg.streams.filter.WaveInputFilter;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -48,21 +49,18 @@ public class FingerprintDemo {
             }
 
             // load fingerprint from file
+            InputStream fingerprintFile = null;
             try {
-                byte[] fingerprintFile = FingerprintManager.getFingerprint(new File("out/" + filename + ".fingerprint").getAbsolutePath());
-                System.out.println("Fingerprint size == " + fingerprintFile.length);
+                fingerprintFile = new FileInputStream(new File("out/" + filename + ".fingerprint").getAbsolutePath());
+                System.out.println("Fingerprint size == " + fingerprintFile.available());
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                if (fingerprintFile != null) {
+                    fingerprintFile.close();
+                }
             }
 
-		/*
-        // fingerprint bytes checking
-		for (int i=0; i<fingerprint.length; i++){
-			System.out.println(fingerprint[i]+" vs "+loadedFp[i]);
-		}
-		*/
-        } catch (URISyntaxException urie) {
-            System.out.println("The test file could not be loaded.");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (UnsupportedAudioFileException uafe) {

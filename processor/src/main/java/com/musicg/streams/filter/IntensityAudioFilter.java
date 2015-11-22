@@ -1,5 +1,6 @@
 package com.musicg.streams.filter;
 
+import javax.sound.sampled.AudioFormat;
 import java.io.EOFException;
 import java.io.IOException;
 import java.util.List;
@@ -12,14 +13,28 @@ public class IntensityAudioFilter extends PipedAudioFilter {
     private List<double[]> spectrogramData;
     private int index = 0;
 
-    public IntensityAudioFilter(int[][] coordinates, List<double[]> spectrogramData) {
+    /**
+     * Build an basic intensity filter.
+     *
+     * @param format The original audio format.
+     * @param coordinates
+     * @param spectrogramData
+     */
+    public IntensityAudioFilter(final AudioFormat format, int[][] coordinates, List<double[]> spectrogramData) {
         super();
         this.coordinates = coordinates;
         this.spectrogramData = spectrogramData;
+        audioFormat = format;
     }
 
-    public void pipeValue() throws IOException {
-
+    /**
+     * Pipe the value to the connected outputstream.
+     *
+     * @return The number of bytes sent, or -1 for end f stream.
+     * @throws IOException
+     */
+    public int pipeValue() throws IOException {
+        int length = 0;
         if (index >= spectrogramData.size()) {
             throw new EOFException("End of Stream.");
         }
@@ -42,8 +57,10 @@ public class IntensityAudioFilter extends PipedAudioFilter {
                 outputStream.write((byte) (intensity >> 16));
                 outputStream.write((byte) (intensity >> 8));
                 outputStream.write((byte) intensity);
+                length += 8;
             }
         }
         index++;
+        return length;
     }
 }

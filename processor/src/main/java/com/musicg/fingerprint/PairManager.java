@@ -30,22 +30,40 @@ import java.util.List;
  */
 public class PairManager {
 
-    FingerprintProperties fingerprintProperties = FingerprintProperties.getInstance();
-    private int numFilterBanks = fingerprintProperties.getNumFilterBanks();
-    private int bandwidthPerBank = fingerprintProperties.getNumFrequencyUnits() / numFilterBanks;
-    private int anchorPointsIntervalLength = fingerprintProperties.getAnchorPointsIntervalLength();
-    private int numAnchorPointsPerInterval = fingerprintProperties.getNumAnchorPointsPerInterval();
-    private int maxTargetZoneDistance = fingerprintProperties.getMaxTargetZoneDistance();
-    private int numFrequencyUnits = fingerprintProperties.getNumFrequencyUnits();
+    private FingerprintProperties fingerprintProperties;
+    private int numFilterBanks;
+    private int bandwidthPerBank;
+    private int anchorPointsIntervalLength;
+    private int numAnchorPointsPerInterval;
+    private int maxTargetZoneDistance;
+    private int numFrequencyUnits;
 
     private int maxPairs;
     private boolean isReferencePairing;
-    private HashMap<Integer, Boolean> stopPairTable = new HashMap<Integer, Boolean>();
+    private HashMap<Integer, Boolean> stopPairTable;
 
     /**
      * Constructor
      */
     public PairManager() {
+        this(FingerprintProperties.getInstance());
+    }
+
+    public PairManager(FingerprintProperties properties) {
+        super();
+        fingerprintProperties = properties;
+        init();
+    }
+
+    protected void init() {
+        numFilterBanks = fingerprintProperties.getNumFilterBanks();
+        bandwidthPerBank = fingerprintProperties.getNumFrequencyUnits() / numFilterBanks;
+        anchorPointsIntervalLength = fingerprintProperties.getAnchorPointsIntervalLength();
+        numAnchorPointsPerInterval = fingerprintProperties.getNumAnchorPointsPerInterval();
+        maxTargetZoneDistance = fingerprintProperties.getMaxTargetZoneDistance();
+        numFrequencyUnits = fingerprintProperties.getNumFrequencyUnits();
+
+        stopPairTable = new HashMap<Integer, Boolean>();
         maxPairs = fingerprintProperties.getRefMaxActivePairs();
         isReferencePairing = true;
     }

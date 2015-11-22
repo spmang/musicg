@@ -125,7 +125,7 @@ public class FingerprintSimilarityComputer {
 		/*
 		Iterator<Integer> orderedKeyListIterator=orderedKeyList.iterator();
 		while (orderedKeyListIterator.hasNext()){
-			int offset=orderedKeyListIterator.next();					
+			int offset=orderedKeyListIterator.next();
 			System.out.println(offset+": "+offset_Score_Table.get(offset));
 		}
 		*/

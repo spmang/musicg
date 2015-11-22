@@ -58,7 +58,8 @@ public class WaveInputFilter extends PipedAudioFilter {
      *
      * @throws IOException
      */
-    public void pipeValue() throws IOException {
+    public int pipeValue() throws IOException {
         outputStream.writeShort(readShort());
+        return Short.BYTES;
     }
 }

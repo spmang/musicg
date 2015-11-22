@@ -110,9 +110,10 @@ public abstract class PipedAudioFilter extends AudioFormatInputStream {
     /**
      * Read a value from the underlying stream and send it to the output stream.
      *
+     * @return -1 if at end of stream.
      * @throws IOException
      */
-    public abstract void pipeValue() throws IOException;
+    public abstract int pipeValue() throws IOException;
 
     /**
      * Stream the content of this stream to the given output stream.

@@ -74,7 +74,8 @@ public class HanningFilter extends PipedAudioFilter {
         return value;
     }
 
-    public void pipeValue() throws IOException {
+    public int pipeValue() throws IOException {
         outputStream.writeDouble(readDouble());
+        return Double.BYTES;
     }
 }

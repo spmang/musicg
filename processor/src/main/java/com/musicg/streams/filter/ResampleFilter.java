@@ -96,7 +96,8 @@ public class ResampleFilter extends PipedAudioFilter {
         return value;
     }
 
-    public void pipeValue() throws IOException {
+    public int pipeValue() throws IOException {
         outputStream.writeShort(readShort());
+        return Short.BYTES;
     }
 }

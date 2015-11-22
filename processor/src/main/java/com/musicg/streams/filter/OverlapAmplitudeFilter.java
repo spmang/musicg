@@ -43,27 +43,29 @@ public class OverlapAmplitudeFilter extends PipedAudioFilter {
         this.fftSampleSize = fftSampleSize;
 
         // mark reset for window. Sample size - back samples.
-        markPosition = fftSampleSize / overlapFactor;
+        if (overlapFactor > 0) {
+            markPosition = fftSampleSize / overlapFactor;
+        }
     }
 
-    int readCount = 0;
-    int markCount =0;
-    int resetCount =0;
-
+    /**
+     * Read a short value from the underlying stream.
+     * This will mark and reset the underlying stream as appropriate based on the overlap factor.
+     *
+     * @return The short value read from the stream.
+     * @throws IOException
+     */
     public short readShort() throws IOException {
         // overlapping
         try {
             short value = super.readShort();
-            numSamples ++;
-            readCount++;
             if (overlapFactor > 1) {
+                numSamples++;
                 if (numSamples == markPosition) {
-                    markCount ++;
                     mark(fftSampleSize * 2);
                 }
                 if (numSamples % fftSampleSize == 0) {
                     // overlap
-                    resetCount ++;
                     reset();
                     numSamples = 0;
                 }
@@ -74,7 +76,8 @@ public class OverlapAmplitudeFilter extends PipedAudioFilter {
         }
     }
 
-    public void pipeValue() throws IOException {
+    public int pipeValue() throws IOException {
         outputStream.writeShort(readShort());
+        return Short.BYTES;
     }
 }

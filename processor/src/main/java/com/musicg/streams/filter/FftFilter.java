@@ -69,10 +69,13 @@ public class FftFilter extends PipedAudioFilter {
      * @throws IOException
      */
     @Override
-    public void pipeValue() throws IOException {
+    public int pipeValue() throws IOException {
+        int length = 0;
         for (double value : readFrame()) {
             outputStream.writeDouble(value);
+            length += Double.BYTES;
         }
+        return length;
     }
 
     public int getNumFrequencyUnit() {

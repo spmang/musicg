@@ -19,11 +19,14 @@ package com.musicg.fingerprint;
 import com.musicg.processor.TopManyPointsProcessorChain;
 import com.musicg.spectrogram.Spectrogram;
 import com.musicg.streams.AudioFormatInputStream;
+import com.musicg.streams.AudioFormatInputStreamFactory;
 import com.musicg.streams.AudioFormatOutputStream;
 import com.musicg.streams.filter.IntensityAudioFilter;
 import com.musicg.streams.filter.PipedAudioFilter;
 import com.musicg.streams.filter.ResampleFilter;
+import com.musicg.streams.filter.WaveInputFilter;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -95,12 +98,11 @@ public class FingerprintManager {
         }
         // end make fingerprint
         // end for each valid coordinate, append with its intensity
-        return new IntensityAudioFilter(coordinates, spectorgramData);
+        return new IntensityAudioFilter(wave.getAudioFormat(), coordinates, spectorgramData);
     }
 
-    public static FingerprintSimilarity getFingerprintSimilarity(AudioFormatInputStream wave1, AudioFormatInputStream wave2) throws IOException {
-        return new FingerprintSimilarityComputer(getFingerprint(wave1),
-                getFingerprint(wave2)).getFingerprintsSimilarity();
+    public static FingerprintSimilarity getFingerprintSimilarity(AudioFormatInputStream wave1, AudioFormatInputStream wave2) throws IOException, UnsupportedAudioFileException {
+        return new FingerprintSimilarityComputer(getFingerprint(wave1), getFingerprint(wave2)).getFingerprintsSimilarity();
     }
 
     /**
@@ -109,7 +111,7 @@ public class FingerprintManager {
      * @param fingerprintFile fingerprint filename
      * @return fingerprint in bytes
      */
-    public static byte[] getFingerprint(String fingerprintFile) throws IOException, URISyntaxException {
+    public static PipedAudioFilter getFingerprint(String fingerprintFile) throws IOException, URISyntaxException, UnsupportedAudioFileException {
         URL input = Thread.currentThread().getContextClassLoader().getResource(fingerprintFile);
         File location = null;
         if (input == null) {
@@ -121,16 +123,10 @@ public class FingerprintManager {
         } else {
             location = new File(input.toURI());
         }
+        AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(location);
 
-        InputStream fis = null;
-        try {
-            fis = new FileInputStream(location);
-            return getFingerprint(fis);
-        } finally {
-            if (fis != null) {
-                fis.close();
-            }
-        }
+        // get the fingerprint
+        return FingerprintManager.extractFingerprint(new WaveInputFilter(wave), null);
     }
 
     /**
@@ -139,11 +135,63 @@ public class FingerprintManager {
      * @param inputStream fingerprint inputstream
      * @return fingerprint in bytes
      */
-    public static byte[] getFingerprint(InputStream inputStream) throws IOException {
-        byte[] fingerprint = new byte[inputStream.available()];
-        int bytesRead = inputStream.read(fingerprint);
-        // TODO verify that bytesRead == fingerprint.length
-        return fingerprint;
+    public static byte[] getFingerprint(InputStream inputStream) throws IOException, UnsupportedAudioFileException {
+
+        // get the fingerprint
+        PipedAudioFilter input = FingerprintManager.getFinterprintStream(inputStream);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        input.connect(new AudioFormatOutputStream(output, input.getAudioFormat()));
+
+        try {
+            while (input.pipeValue() > -1) ;
+        } catch (IOException ioe) {
+            // ignore eof
+        }
+        return output.toByteArray();
+    }
+
+    /**
+     * Get bytes from fingerprint inputstream
+     *
+     * @param inputStream fingerprint inputstream
+     * @return fingerprint in bytes
+     */
+    public static byte[] getFingerprint(AudioFormatInputStream inputStream) throws IOException, UnsupportedAudioFileException {
+        // get the fingerprint
+        PipedAudioFilter input = FingerprintManager.getFinterprintStream(inputStream);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        input.connect(new AudioFormatOutputStream(output, input.getAudioFormat()));
+
+        try {
+            while (input.pipeValue() > -1) ;
+        } catch (IOException ioe) {
+            // ignore eof
+        }
+        return output.toByteArray();
+    }
+
+    /**
+     * Get bytes from fingerprint inputstream
+     *
+     * @param inputStream fingerprint inputstream
+     * @return fingerprint in bytes
+     */
+    public static PipedAudioFilter getFinterprintStream(InputStream inputStream) throws IOException, UnsupportedAudioFileException {
+        AudioFormatInputStream wave = AudioFormatInputStreamFactory.createAudioFormatInputStream(inputStream);
+
+        // get the fingerprint
+        return FingerprintManager.extractFingerprint(new WaveInputFilter(wave), null);
+    }
+
+    /**
+     * Get bytes from fingerprint inputstream
+     *
+     * @param inputStream fingerprint inputstream
+     * @return fingerprint in bytes
+     */
+    public static PipedAudioFilter getFinterprintStream(AudioFormatInputStream inputStream) throws IOException, UnsupportedAudioFileException {
+        // get the fingerprint
+        return FingerprintManager.extractFingerprint(new WaveInputFilter(inputStream), null);
     }
 
     /**
@@ -156,10 +204,14 @@ public class FingerprintManager {
         FileOutputStream fileOutputStream = null;
         try {
             File outFile = new File(filename);
-            outFile.getParentFile().mkdirs();
+            if (!outFile.getParentFile().exists()) {
+                if (!outFile.getParentFile().mkdirs()) {
+                    throw new IOException("Cannot create output directory");
+                }
+            }
             fileOutputStream = new FileOutputStream(filename);
             fingerprint.connect(new AudioFormatOutputStream(fileOutputStream, fingerprint.getAudioFormat()));
-            for (; ; fingerprint.pipeValue()) ;
+            while (fingerprint.pipeValue() > -1) ;
         } catch (EOFException eofe) {
             // complete
         } finally {
@@ -180,7 +232,7 @@ public class FingerprintManager {
 
         for (int b = 0; b < numFilterBanks; b++) {
 
-            List<double[]> bankIntensities = new ArrayList<double[]>();
+            List<double[]> bankIntensities = new ArrayList<>();
 
             for (int i = 0; i < numX; i++) {
                 double[] frame = spectrogramData.get(i);

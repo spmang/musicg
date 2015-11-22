@@ -42,39 +42,53 @@ public class FingerprintRecognitionDemo {
             AudioFormatInputStream waveE = AudioFormatInputStreamFactory.createAudioFormatInputStream(songE);
 
             String recordedClip = "audio_work/songs/top_of_the_world_rec.wav";
-            AudioFormatInputStream waveRec = AudioFormatInputStreamFactory.createAudioFormatInputStream(recordedClip);
 
             FingerprintSimilarity similarity;
 
             // song A:
+            AudioFormatInputStream waveRec = AudioFormatInputStreamFactory.createAudioFormatInputStream(recordedClip);
             similarity = FingerprintManager.getFingerprintSimilarity(waveA, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songA + " with similarity " + similarity.getSimilarity());
+            waveA.close();
+            waveRec.close();
 
             // song B:
+            waveRec = AudioFormatInputStreamFactory.createAudioFormatInputStream(recordedClip);
             similarity = FingerprintManager.getFingerprintSimilarity(waveB, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songB + " with similarity " + similarity.getSimilarity());
+            waveB.close();
+            waveRec.close();
 
             // song C:
+            waveRec = AudioFormatInputStreamFactory.createAudioFormatInputStream(recordedClip);
             similarity = FingerprintManager.getFingerprintSimilarity(waveC, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songC + " with similarity " + similarity.getSimilarity());
+            waveC.close();
+            waveRec.close();
 
             // song D:
+            waveRec = AudioFormatInputStreamFactory.createAudioFormatInputStream(recordedClip);
             similarity = FingerprintManager.getFingerprintSimilarity(waveD, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songD + " with similarity " + similarity.getSimilarity());
+            waveD.close();
+            waveRec.close();
 
             // song E:
+            waveRec = AudioFormatInputStreamFactory.createAudioFormatInputStream(recordedClip);
             similarity = FingerprintManager.getFingerprintSimilarity(waveE, waveRec);
             System.out.println("clip is found at "
                     + similarity.getsetMostSimilarTimePosition() + "s in "
                     + songE + " with similarity " + similarity.getSimilarity());
+            waveE.close();
+            waveRec.close();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (UnsupportedAudioFileException uafe) {
